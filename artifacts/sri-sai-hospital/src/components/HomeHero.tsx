@@ -32,8 +32,8 @@ function BuildingCard({ isOpen }: { isOpen: boolean }) {
         <span aria-hidden="true" />{isOpen ? 'Open now' : 'Closed now'} · 7 days
       </span>
       <figcaption className="vh-building-caption">
-        <strong>Rashtrapati Road, Sajjapuram</strong>
-        <span>Above HDFC Bank · beside Polytechnic College</span>
+        <strong>Sajjapuram</strong>
+        <span>Andhra Pradesh 534211</span>
       </figcaption>
     </figure>
   );
@@ -78,11 +78,11 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
             </span>
           </a>
           {/* The doctors already rotate in the panel above, so the rail carries where to go and what patients say. */}
-          <a className="vh-rail-item" href={directions} target="_blank" rel="noreferrer" aria-label="Find us: Rashtrapati Road, above HDFC Bank. Opens directions in Google Maps">
+          <a className="vh-rail-item" href={directions} target="_blank" rel="noreferrer" aria-label="Find us: Sajjapuram, Andhra Pradesh 534211. Opens directions in Google Maps">
             <span className="vh-rail-icon"><MapPin size={20} strokeWidth={1.6} aria-hidden="true" /></span>
             <span className="vh-rail-text">
               <span className="vh-rail-title">Find us</span>
-              <span className="vh-rail-meta">Above HDFC Bank, Rashtrapati Road</span>
+              <span className="vh-rail-meta">Sajjapuram, Andhra Pradesh 534211</span>
             </span>
             <ArrowUpRight className="vh-rail-arrow" size={18} strokeWidth={1.6} aria-hidden="true" />
           </a>

@@ -1,6 +1,6 @@
 # Sri Balaji Hospital, Tanuku — static website
 
-Single-page public website for Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku, Andhra Pradesh 534211. The site is frontend-only and static-hostable.
+Single-page public website for Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211. The site is frontend-only and static-hostable.
 
 
 ## Assets

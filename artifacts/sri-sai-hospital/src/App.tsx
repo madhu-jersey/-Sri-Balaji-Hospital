@@ -809,7 +809,7 @@ function Visit() {
           <div className="visit-panel">
             <div className="visit-block reveal" style={{ '--visit-index': 0 } as React.CSSProperties}>
               <p className="visit-label">Address</p>
-              <p className="visit-value address">Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku, West Godavari District, Andhra Pradesh 534211. Above HDFC Bank, beside Polytechnic College.</p>
+              <p className="visit-value address">Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211</p>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 1 } as React.CSSProperties}>
               <p className="visit-label">Call</p>
@@ -847,7 +847,7 @@ function Visit() {
             </div>
             <iframe
               key={mapView}
-              title={mapView === 'map' ? 'Map: Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku' : 'Street View of Sri Balaji Hospital'}
+              title={mapView === 'map' ? 'Map: Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211' : 'Street View of Sri Balaji Hospital'}
               data-testid="frame-hospital-map"
               src={mapView === 'map' ? mapPinUrl : streetViewUrl}
               referrerPolicy="strict-origin-when-cross-origin"
@@ -879,7 +879,7 @@ function Footer() {
             <img src="/assets/sri-balaji-hospital-logo.png" alt="Sri Balaji Hospital logo" />
             <h2>Sri Balaji Hospital</h2>
             <p className="font-telugu" lang="te">శ్రీ బాలాజీ హాస్పిటల్</p>
-            <p className="footer-location">Rashtrapati Road, Sajjapuram, Tanuku, Andhra Pradesh 534211</p>
+            <p className="footer-location">Sajjapuram, Andhra Pradesh 534211</p>
           </div>
           <div className="footer-explore-column reveal" style={{ '--footer-index': 1 } as React.CSSProperties}>
             <p className="footer-label">Explore</p>
@@ -951,7 +951,7 @@ function App() {
       },
       gallery: {
         title: 'Gallery · Sri Balaji Hospital, Tanuku',
-        description: 'Photographs of Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku.',
+        description: 'Photographs of Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211.',
       },
     } satisfies Record<PageRoute, { title: string; description: string }>;
     document.title = pageMetadata[pageRoute].title;

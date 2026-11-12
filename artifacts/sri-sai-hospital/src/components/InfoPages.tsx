@@ -35,7 +35,7 @@ const reasons = [
   },
   {
     title: 'Easy to find',
-    text: 'On Rashtrapati Road, Sajjapuram, above HDFC Bank and beside Polytechnic College.',
+    text: 'Sajjapuram, Andhra Pradesh 534211, with directions one tap away.',
     icon: MapPin,
   },
 ];
@@ -100,7 +100,7 @@ const questions = [
   },
   {
     question: 'Where is Sri Balaji Hospital located?',
-    answer: <>Rashtrapati Road, Sajjapuram, Tanuku, West Godavari District, Andhra Pradesh 534211. The hospital is above HDFC Bank, beside Polytechnic College.</>,
+    answer: <>Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211. Tap “Directions” for the route in Google Maps.</>,
   },
 ];
 
