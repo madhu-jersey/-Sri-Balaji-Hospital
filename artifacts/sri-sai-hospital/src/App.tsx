@@ -15,7 +15,8 @@ const phoneLabel = '08819 221778';
 const directions = 'https://www.google.com/maps/dir/?api=1&destination=16.7576927,81.6740091';
 const reviewsUrl = 'https://www.google.com/maps/search/?api=1&query=Sri+Balaji+Hospital+Sajjapuram+Tanuku+reviews';
 // Street View of the hospital front, as supplied by the hospital.
-const mapEmbedUrl = 'https://www.google.com/maps/embed?pb=!4v1794485477933!6m8!1m7!1ssWC_F3N6P1sG3tlpzx1FNg!2m2!1d16.7576926651265!2d81.67400905864211!3f263.43756!4f0!5f0.7820865974627469';
+const mapPinUrl = 'https://www.google.com/maps?q=16.7576927,81.6740091&z=17&output=embed';
+const streetViewUrl = 'https://www.google.com/maps/embed?pb=!4v1794485477933!6m8!1m7!1ssWC_F3N6P1sG3tlpzx1FNg!2m2!1d16.7576926651265!2d81.67400905864211!3f263.43756!4f0!5f0.7820865974627469';
 // No verified YouTube channel or Instagram account supplied: both are removed from the page.
 
 type PageRoute = 'home' | 'gallery';
@@ -790,6 +791,7 @@ function Reviews() {
 function Visit() {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapInteractive, setMapInteractive] = useState(false);
+  const [mapView, setMapView] = useState<'map' | 'street'>('map');
   return (
     <section className="section section-white visit-section" id="visit" aria-labelledby="visit-heading">
       <div className="container">
@@ -836,11 +838,15 @@ function Visit() {
             <a className="map-directions" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Go to Sri Balaji Hospital location in Google Maps" data-testid="link-go-to-location">
               <MapPin size={17} strokeWidth={1.8} aria-hidden="true" /> Go to location
             </a>
+            <div className="map-view-toggle" role="group" aria-label="Map view">
+              <button type="button" aria-pressed={mapView === 'map'} onClick={() => setMapView('map')}>Map</button>
+              <button type="button" aria-pressed={mapView === 'street'} onClick={() => { setMapView('street'); setMapInteractive(true); }}>Street view</button>
+            </div>
             <iframe
-              title="Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku"
+              key={mapView}
+              title={mapView === 'map' ? 'Map: Sri Balaji Hospital, Rashtrapati Road, Sajjapuram, Tanuku' : 'Street View of Sri Balaji Hospital'}
               data-testid="frame-hospital-map"
-              src={mapEmbedUrl}
-              loading="lazy"
+              src={mapView === 'map' ? mapPinUrl : streetViewUrl}
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
               onLoad={() => setMapLoaded(true)}
