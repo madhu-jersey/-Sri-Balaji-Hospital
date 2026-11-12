@@ -145,3 +145,6 @@
   .doctor-image { max-height: 320px; }
   .faq-question { padding-block: 14px; }
 }
+
+/* Map state lives in data attributes so React never rewrites the class list (which would drop is-visible). */
+.map-frame[data-interactive="true"] iframe { pointer-events: auto; }

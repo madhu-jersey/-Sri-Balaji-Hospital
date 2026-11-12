@@ -831,7 +831,10 @@ function Visit() {
             </div>
           </div>
           <div
-            className={`map-frame reveal${mapLoaded ? ' is-loaded' : ''}${mapInteractive ? ' is-interactive' : ''}`}
+            // className stays constant: the reveal observer adds is-visible to the DOM, and a re-render must not wipe it.
+            className="map-frame reveal"
+            data-loaded={mapLoaded}
+            data-interactive={mapInteractive}
             data-testid="card-hospital-map"
           >
             <div className="map-shimmer" aria-hidden="true" />
