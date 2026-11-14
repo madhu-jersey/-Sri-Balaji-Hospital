@@ -81,9 +81,7 @@ export function DoctorsSection() {
     <section className="section section-white doctors-section" id="doctors" aria-labelledby="doctors-heading">
       <div className="container">
         <div className="section-heading reveal">
-          <span className="eyebrow">Meet your doctors</span>
-          <h2 id="doctors-heading">Our doctors</h2>
-          <p>The doctor who sees patients at Sri Balaji Hospital, Tanuku.</p>
+          <h2 id="doctors-heading">Meet your <em>doctor</em></h2>
         </div>
         <div className="doctor-grid">
           {doctors.map((doctor, doctorIndex) => (

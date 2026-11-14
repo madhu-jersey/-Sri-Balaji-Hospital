@@ -545,15 +545,8 @@ function Services() {
     <section className="section services-section" id="services" aria-labelledby="services-heading" ref={sectionRef}>
       <div className="container">
         <div className="section-heading service-heading reveal">
-          <span className="eyebrow">Care at Sri Balaji</span>
-          <h2 id="services-heading">
-            <span className="service-word"><span>Thoughtful</span></span>{' '}
-            <span className="service-word"><span>care</span></span>{' '}
-            <span className="service-word"><span>for</span></span>{' '}
-            <em><span className="service-word"><span>every</span></span>{' '}
-            <span className="service-word"><span>day.</span></span></em>
-          </h2>
-          <p>Medical care across key needs, with a focus on careful assessment and ongoing support.</p>
+          <h2 id="services-heading">What we <em>treat</em></h2>
+          <p>Services listed for the hospital. Call to confirm anything not shown here.</p>
         </div>
         <div className="service-grid">
           {services.map(({ title, text, icon }, index) => (
@@ -581,9 +574,8 @@ function Gallery() {
     <section className="section" id="gallery" aria-labelledby="gallery-heading">
       <div className="container">
         <div className="section-heading gallery-section-heading reveal">
-          <span className="eyebrow">A look around</span>
-          <h2 id="gallery-heading"><span className="gallery-heading-word"><span>A place for</span></span>{' '}<em><span className="gallery-heading-word"><span>care.</span></span></em></h2>
-          <p>Explore the spaces at Sri Balaji Hospital.</p>
+          <h2 id="gallery-heading">The <em>hospital</em></h2>
+          <p>More photographs of the reception, rooms and laboratory are on the way.</p>
         </div>
         <div className="gallery-preview-grid">
           {galleryItems.map((item, index) => (
@@ -741,17 +733,8 @@ function Reviews() {
     <section className="section reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div className="container">
         <div className="section-heading review-heading reveal">
-          <span className="eyebrow">Patient experiences</span>
-          <h2 id="reviews-heading">
-            <span className="review-heading-line">
-              <span className="review-word"><span>Words</span></span>{' '}
-              <span className="review-word"><span>from</span></span>{' '}
-              <span className="review-word"><span>our</span></span>
-            </span>
-            <br />
-            <em><span className="review-heading-line"><span className="review-word"><span>community.</span></span></span></em>
-          </h2>
-          <p>Experiences shared by people who have visited Sri Balaji Hospital.</p>
+          <h2 id="reviews-heading">What patients <em>say</em></h2>
+          <p>Reviews from Google, shown as patients wrote them.</p>
         </div>
         <div className="reviews-showcase">
           <aside className="rating-panel reveal" aria-label="Google rating">
@@ -796,14 +779,8 @@ function Visit() {
     <section className="section section-white visit-section" id="visit" aria-labelledby="visit-heading">
       <div className="container">
         <div className="section-heading reveal">
-          <span className="eyebrow">Find us in Sajjapuram, Tanuku</span>
-          <h2 id="visit-heading">
-            <span className="visit-heading-word"><span>We’re</span></span>{' '}
-            <span className="visit-heading-word"><span>here</span></span>{' '}
-            <span className="visit-heading-word"><span>when</span></span>{' '}
-            <em><span className="visit-heading-word"><span>you need us.</span></span></em>
-          </h2>
-          <p>Plan your visit or call the hospital for assistance.</p>
+          <h2 id="visit-heading">Visit the <em>hospital</em></h2>
+          <p>Sajjapuram, Andhra Pradesh 534211. Call ahead if you are unsure of the timings.</p>
         </div>
         <div className="visit-grid">
           <div className="visit-panel">
@@ -974,11 +951,11 @@ function App() {
       ) : (
         <main>
           <HomeHero phone={phone} phoneLabel={phoneLabel} directions={directions} isOpenAt={getOpenState} />
-          <Services />
-          <WhyChooseSection />
           <Doctors />
-          <Gallery />
+          <Services />
           <Reviews />
+          <WhyChooseSection />
+          <Gallery />
           {/* Insurance / Aarogyasri support is not confirmed for this hospital, so the section stays off the page. */}
           <FaqSection />
           <Visit />

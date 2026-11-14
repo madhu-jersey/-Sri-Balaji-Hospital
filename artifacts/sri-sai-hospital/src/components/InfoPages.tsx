@@ -107,7 +107,6 @@ const questions = [
 function Heading({ id, label, words, italic }: { id: string; label: string; words: string[]; italic: string }) {
   return (
     <header className="info-heading">
-      <span className="eyebrow">{label}</span>
       <h2 id={id}>
         {words.map((word, index) => (
           <Fragment key={word}>
