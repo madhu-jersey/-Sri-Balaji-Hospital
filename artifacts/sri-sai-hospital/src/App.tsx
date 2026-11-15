@@ -4,8 +4,8 @@ import {
 } from 'lucide-react';
 import { DoctorsSection } from './components/DoctorsSection';
 import { HeroDotField } from './components/HeroDotField';
-import { HomeHero } from './components/HomeHero';
-import { FaqSection, WhyChooseSection } from './components/InfoPages';
+import { LuxuryDoctor, LuxuryHero, LuxuryReviews, LuxuryServices } from './components/LuxuryHome';
+import { FaqSection } from './components/InfoPages';
 import { galleryItems } from './data/gallery';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
@@ -22,7 +22,7 @@ const streetViewUrl = 'https://www.google.com/maps/embed?pb=!4v1794485477933!6m8
 type PageRoute = 'home' | 'gallery';
 
 // FAQ and Why choose us used to be separate pages; their old URLs now open the matching home section.
-const legacySectionPaths: Record<string, string> = { '/faq': 'faq', '/why-choose': 'why-choose' };
+const legacySectionPaths: Record<string, string> = { '/faq': 'faq', '/why-choose': 'doctors' };
 
 function getPageRoute(): PageRoute {
   if (window.location.pathname === '/gallery' || window.location.hash === '#gallery-view') return 'gallery';
@@ -124,7 +124,6 @@ function SiteHeader() {
         </a>
         <nav className={`nav-links${menuOpen ? ' open' : ''}`} aria-label="Main navigation">
           <a href={navLink('services')} aria-current={activeSection === 'services' ? 'location' : undefined} data-testid="link-nav-services" onClick={closeMenu}>Services</a>
-          <a href={navLink('why-choose')} aria-current={activeSection === 'why-choose' ? 'location' : undefined} data-testid="link-nav-why-choose" onClick={closeMenu}>Why choose us</a>
           <a href={navLink('doctors')} aria-current={activeSection === 'doctors' ? 'location' : undefined} data-testid="link-nav-doctors" onClick={closeMenu}>Our doctors</a>
           <a href={navLink('gallery')} aria-current={activeSection === 'gallery' ? 'location' : undefined} data-testid="link-nav-hospital" onClick={closeMenu}>Hospital</a>
           <a href={navLink('reviews')} aria-current={activeSection === 'reviews' ? 'location' : undefined} data-testid="link-nav-reviews" onClick={closeMenu}>Reviews</a>
@@ -861,7 +860,7 @@ function Footer() {
           <div className="footer-explore-column reveal" style={{ '--footer-index': 1 } as React.CSSProperties}>
             <p className="footer-label">Explore</p>
             <nav className="footer-nav" aria-label="Footer navigation">
-              <a href={`${homePrefix}#services`} data-testid="link-footer-services">Services</a><a href={`${homePrefix}#why-choose`} data-testid="link-footer-why-choose">Why choose us</a>
+              <a href={`${homePrefix}#services`} data-testid="link-footer-services">Services</a>
               <a href={`${homePrefix}#doctors`} data-testid="link-footer-doctors">Our doctors</a><a href={`${homePrefix}#gallery`} data-testid="link-footer-hospital">Hospital</a>
               <a href={`${homePrefix}#reviews`} data-testid="link-footer-reviews">Reviews</a><a href={`${homePrefix}#faq`} data-testid="link-footer-faq">FAQ</a>
               <a href={`${homePrefix}#visit`} data-testid="link-footer-visit">Visit us</a>
@@ -950,11 +949,10 @@ function App() {
         </Suspense>
       ) : (
         <main>
-          <HomeHero phone={phone} phoneLabel={phoneLabel} directions={directions} isOpenAt={getOpenState} />
-          <Doctors />
-          <Services />
-          <Reviews />
-          <WhyChooseSection />
+          <LuxuryHero phone={phone} phoneLabel={phoneLabel} directions={directions} reviewsUrl={reviewsUrl} />
+          <LuxuryDoctor phone={phone} />
+          <LuxuryServices phone={phone} />
+          <LuxuryReviews reviewsUrl={reviewsUrl} />
           <Gallery />
           {/* Insurance / Aarogyasri support is not confirmed for this hospital, so the section stays off the page. */}
           <FaqSection />

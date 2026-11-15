@@ -8,8 +8,7 @@ import './premium.css';
 import './hero.css';
 import './mobile.css';
 import './compact.css';
-import './home.css';
-import './polish.css';
+import './luxury.css';
 
 createRoot(document.getElementById('root')!, {
   // Keeps caught errors off reportError(), which would raise the dev overlay.
