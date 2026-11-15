@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { HeroDotField } from './HeroDotField';
 import { ArrowUpRight, MapPin, PhoneCall, Star } from 'lucide-react';
 
 type HomeHeroProps = {
@@ -119,15 +120,63 @@ function TodayBoard({ now, isOpen }: { now: Date; isOpen: boolean }) {
   );
 }
 
+// Gentle 3D tilt that follows the cursor over the building photo.
+function usePhotoTilt() {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fine = window.matchMedia('(pointer: fine) and (hover: hover)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!fine.matches || reduced.matches) return;
+    let frame = 0;
+    const move = (event: PointerEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        el.style.setProperty('--tilt-x', `${(-y * 6).toFixed(2)}deg`);
+        el.style.setProperty('--tilt-y', `${(x * 8).toFixed(2)}deg`);
+        el.style.setProperty('--glare-x', `${((x + 0.5) * 100).toFixed(1)}%`);
+        el.style.setProperty('--glare-y', `${((y + 0.5) * 100).toFixed(1)}%`);
+        el.classList.add('is-tilting');
+      });
+    };
+    const leave = () => {
+      cancelAnimationFrame(frame);
+      el.classList.remove('is-tilting');
+      el.style.removeProperty('--tilt-x');
+      el.style.removeProperty('--tilt-y');
+    };
+    el.addEventListener('pointermove', move);
+    el.addEventListener('pointerleave', leave);
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener('pointermove', move);
+      el.removeEventListener('pointerleave', leave);
+    };
+  }, []);
+  return ref;
+}
+
 export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroProps) {
   const now = useNow();
   const isOpen = isOpenAt(now);
 
+  const photoRef = usePhotoTilt();
+
   return (
     <section className="sb-hero" id="home" aria-labelledby="hero-title">
+      <HeroDotField />
+      <span className="sb-glow sb-glow-a" aria-hidden="true" />
+      <span className="sb-glow sb-glow-b" aria-hidden="true" />
       <div className="container sb-hero-grid">
         <div className="sb-hero-copy">
-          <h1 id="hero-title">Sri Balaji Hospital</h1>
+          <h1 id="hero-title" aria-label="Sri Balaji Hospital">
+            <span className="sb-line" aria-hidden="true"><span>Sri Balaji</span></span>
+            <span className="sb-line" aria-hidden="true"><span>Hospital</span></span>
+          </h1>
           <p className="sb-hero-telugu font-telugu" lang="te" data-testid="text-hospital-name-telugu">శ్రీ బాలాజీ హాస్పిటల్</p>
           <p className="sb-hero-lede">General medicine and anaesthesia care in Sajjapuram, led by Dr. Billygraham Deepati, MD. Open seven days a week.</p>
 
@@ -155,15 +204,28 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           </a>
         </div>
 
-        <figure className="sb-hero-photo">
-          <img
-            src="/assets/hero-sri-balaji-building.webp"
-            alt="Sri Balaji Hospital building with its rooftop Telugu name board"
-            width="934"
-            height="1685"
-            fetchPriority="high"
-          />
-        </figure>
+        <div className="sb-photo-stage">
+          <figure className="sb-hero-photo" ref={photoRef}>
+            <img
+              src="/assets/hero-sri-balaji-building.webp"
+              alt="Sri Balaji Hospital building with its rooftop Telugu name board"
+              width="934"
+              height="1685"
+              fetchPriority="high"
+            />
+            <span className="sb-photo-glare" aria-hidden="true" />
+          </figure>
+          <a className="sb-photo-chip sb-photo-chip-rating" href="#reviews" aria-label="Rated 3.8 on Google from 38 reviews">
+            <span className="sb-chip-stars" aria-hidden="true">
+              {[0, 1, 2, 3].map((i) => <Star key={i} size={13} strokeWidth={0} fill="currentColor" />)}
+            </span>
+            <span><strong>3.8</strong> Google rating</span>
+          </a>
+          <span className="sb-photo-chip sb-photo-chip-doctor">
+            <span className="sb-chip-dot" aria-hidden="true" />
+            MD-led care · 7 days
+          </span>
+        </div>
       </div>
 
       <div className="container">
