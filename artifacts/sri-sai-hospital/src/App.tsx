@@ -1,28 +1,32 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import {
-  ArrowRight, Camera, Clock3, HeartPulse, MapPin, Menu, PhoneCall, Stethoscope, X, ChevronDown,
+  ArrowRight, Camera, Clock3, HeartPulse, MapPin, Menu, PhoneCall, Stethoscope, X, ChevronDown, ArrowUpRight,
 } from 'lucide-react';
 import { DoctorsSection } from './components/DoctorsSection';
+import { ServicesSection } from './components/ServicesSection';
 import { HeroDotField } from './components/HeroDotField';
-import { LuxuryDoctor, LuxuryHero, LuxuryReviews, LuxuryServices } from './components/LuxuryHome';
-import { FaqSection } from './components/InfoPages';
+import { HomeHero } from './components/HomeHero';
+import { FaqSection, WhyChooseSection } from './components/InfoPages';
 import { galleryItems } from './data/gallery';
+import { useImageRatios } from './hooks/useImageRatios';
+import { galleryRowOptions, useJustifiedLayout } from './hooks/useJustifiedLayout';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
-const phone = '+918819221778';
-const phoneLabel = '08819 221778';
-const directions = 'https://www.google.com/maps/dir/?api=1&destination=16.7576927,81.6740091';
+import { landline, landlineLabel, phone, phoneLabel } from './data/contact';
+// Use the hospital's Google Maps listing (west side of Coaxial St), not raw coordinates,
+// so the destination shows the hospital name and the pin lands on the building.
+const directions = 'https://www.google.com/maps/dir//Sri+Balaji+Hospital,+Sajjapuram,+Andhra+Pradesh+534211/@16.7576843,81.6738392,262m/data=!3m1!1e3!4m17!1m7!3m6!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2sSri+Balaji+Hospital!8m2!3d16.7576843!4d81.6738392!16s%2Fg%2F11c5480cck!4m8!1m0!1m5!1m1!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2m2!1d81.6738392!2d16.7576843!3e0!5m1!1e1?entry=ttu';
 const reviewsUrl = 'https://www.google.com/maps/search/?api=1&query=Sri+Balaji+Hospital+Sajjapuram+Tanuku+reviews';
 // Street View of the hospital front, as supplied by the hospital.
-const mapPinUrl = 'https://www.google.com/maps?q=16.7576927,81.6740091&z=17&output=embed';
+const mapPinUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d600!2d81.6738392!3d16.7576843!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a37b7eff274126f%3A0x8c3bfa541f70b6fc!2sSri%20Balaji%20Hospital!5e0!3m2!1sen!2sin!4v1794850000000!5m2!1sen!2sin';
 const streetViewUrl = 'https://www.google.com/maps/embed?pb=!4v1794485477933!6m8!1m7!1ssWC_F3N6P1sG3tlpzx1FNg!2m2!1d16.7576926651265!2d81.67400905864211!3f263.43756!4f0!5f0.7820865974627469';
 // No verified YouTube channel or Instagram account supplied: both are removed from the page.
 
 type PageRoute = 'home' | 'gallery';
 
 // FAQ and Why choose us used to be separate pages; their old URLs now open the matching home section.
-const legacySectionPaths: Record<string, string> = { '/faq': 'faq', '/why-choose': 'doctors' };
+const legacySectionPaths: Record<string, string> = { '/faq': 'faq', '/why-choose': 'why-choose' };
 
 function getPageRoute(): PageRoute {
   if (window.location.pathname === '/gallery' || window.location.hash === '#gallery-view') return 'gallery';
@@ -32,16 +36,6 @@ function getPageRoute(): PageRoute {
 function isStandaloneRoute() {
   return getPageRoute() !== 'home';
 }
-
-// Services as mentioned in public directory listings; the full current list is not yet verified with the hospital.
-const services = [
-  { title: 'General Medicine', text: 'Consultation, diagnosis and treatment for everyday and long-term medical conditions.', icon: 'stethoscope' },
-  { title: 'Anaesthesiology', text: 'Adult anaesthesia care, planned and monitored by a doctor trained in anaesthesia.', icon: 'pulse' },
-  { title: 'Regional & Nerve Block', text: 'Regional anaesthesia and nerve block techniques for targeted pain control.', icon: 'brain' },
-  { title: 'Viral Fever Treatment', text: 'Assessment and treatment of viral fevers and related symptoms.', icon: 'headache' },
-  { title: 'Chest & Abdominal Pain', text: 'Medical evaluation and treatment for chest pain and abdominal pain.', icon: 'heart-hand' },
-  { title: 'General Hospital Services', text: 'Hospital care open Monday to Saturday 9:30 AM – 8:30 PM, and Sunday 10 AM – 8 PM.', icon: 'clock' },
-];
 
 // Transcribed from Google Maps review screenshots supplied by the hospital; review dates were not supplied.
 const reviews = [
@@ -124,6 +118,7 @@ function SiteHeader() {
         </a>
         <nav className={`nav-links${menuOpen ? ' open' : ''}`} aria-label="Main navigation">
           <a href={navLink('services')} aria-current={activeSection === 'services' ? 'location' : undefined} data-testid="link-nav-services" onClick={closeMenu}>Services</a>
+          <a href={navLink('why-choose')} aria-current={activeSection === 'why-choose' ? 'location' : undefined} data-testid="link-nav-why-choose" onClick={closeMenu}>Why choose us</a>
           <a href={navLink('doctors')} aria-current={activeSection === 'doctors' ? 'location' : undefined} data-testid="link-nav-doctors" onClick={closeMenu}>Our doctors</a>
           <a href={navLink('gallery')} aria-current={activeSection === 'gallery' ? 'location' : undefined} data-testid="link-nav-hospital" onClick={closeMenu}>Hospital</a>
           <a href={navLink('reviews')} aria-current={activeSection === 'reviews' ? 'location' : undefined} data-testid="link-nav-reviews" onClick={closeMenu}>Reviews</a>
@@ -185,26 +180,26 @@ function useReveal(isGalleryPage: boolean) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          if (entry.target.matches('.review-summary')) {
-            const score = entry.target.querySelector<HTMLElement>('.review-score');
+          if (entry.target.matches('.review-summary, .sbr-summary')) {
+            const score = entry.target.querySelector<HTMLElement>('.review-score, .sbr-score');
             if (score && score.dataset.countStarted !== 'true') {
               score.dataset.countStarted = 'true';
               score.textContent = '0.0';
               scoreTimer = window.setTimeout(() => {
                 const start = performance.now();
                 const updateScore = (now: number) => {
-                  const progress = Math.min(1, (now - start) / 900);
+                  const progress = Math.min(1, (now - start) / 700);
                   score.textContent = `${(reviewRating * progress).toFixed(1)}`;
                   if (progress < 1) scoreFrame = window.requestAnimationFrame(updateScore);
                 };
                 scoreFrame = window.requestAnimationFrame(updateScore);
-              }, 650);
+              }, 150);
             }
           }
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
     elements.forEach((element) => observer.observe(element));
     return () => {
       observer.disconnect();
@@ -428,177 +423,43 @@ function EmergencyStrip() {
   );
 }
 
-type ServiceIconName = typeof services[number]['icon'];
-
-function ServiceIcon({ name }: { name: ServiceIconName }) {
-  const shared = {
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.75,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-  };
-
-  switch (name) {
-    case 'brain':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M12 4.2c-.9-1.2-2.7-1.4-3.9-.3-1.8-.1-3.2 1.5-2.8 3.3-1.5 1-1.7 3.2-.4 4.5-1.1 1.7-.2 4 1.7 4.6.1 1.8 1.8 3 3.5 2.4.6 1.4 2.2 2.1 3.6 1.4" />
-        <path pathLength="1" d="M12 4.2c.9-1.2 2.7-1.4 3.9-.3 1.8-.1 3.2 1.5 2.8 3.3 1.5 1 1.7 3.2.4 4.5 1.1 1.7.2 4-1.7 4.6-.1 1.8-1.8 3-3.5 2.4-.6 1.4-2.2 2.1-3.6 1.4" />
-        <path pathLength="1" d="M12 4.5v15M8.2 7.2c1.4.2 2 1.1 1.9 2.4m5.7-2.4c-1.4.2-2 1.1-1.9 2.4M7.4 13c1.4-.2 2.3.6 2.4 2m6.8-2c-1.4-.2-2.3.6-2.4 2" />
-      </svg>;
-    case 'pulse':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M3 12h4l2.2-5.5L13 18l2.5-6H21" />
-      </svg>;
-    case 'stethoscope':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M5 4v5a4 4 0 0 0 8 0V4M3.5 4h3M11.5 4h3M9 13v1.5a5.5 5.5 0 0 0 11 0v-1" />
-        <path pathLength="1" d="M17 11.5a2 2 0 1 0 4 0 2 2 0 0 0-4 0Z" />
-      </svg>;
-    case 'heart-hand':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M12 19s-7.5-4.4-7.5-9.3a4.1 4.1 0 0 1 7.5-2.2 4.1 4.1 0 0 1 7.5 2.2c0 1.5-.7 2.9-1.8 4.2" />
-        <path pathLength="1" d="M3 17h4l2 2h5.5a3 3 0 0 0 2.1-.9l3.1-3.1a1.4 1.4 0 0 0-2-2l-2.2 1.8H12" />
-      </svg>;
-    case 'headache':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M10 21v-2.8c-2.8-1.3-4.5-4.2-4.5-7.1V8.4a6.4 6.4 0 0 1 12.8 0v2.4c0 .6-.4 1.1-.9 1.4l-1.2.7.8 1.1c.3.4 0 .9-.5.9h-1.1c-.2 1.6-1.1 2.6-2.7 3.1V21" />
-        <path pathLength="1" d="m7.3 5.3 1 1-1 1 1 1m5.2 2.6h.1" />
-      </svg>;
-    case 'clock':
-      return <svg className="service-icon-svg" viewBox="0 0 24 24" aria-hidden="true" {...shared}>
-        <path pathLength="1" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" />
-        <path pathLength="1" d="M12 7v5l3.5 2" />
-      </svg>;
-    default:
-      return null;
-  }
-}
-
-function Services() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const finePointer = window.matchMedia('(pointer: fine)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!sectionRef.current) return;
-
-    const cards = Array.from(sectionRef.current.querySelectorAll<HTMLElement>('.service-card'));
-    const frames = new Map<HTMLElement, number>();
-    const positions = new Map<HTMLElement, { clientX: number; clientY: number }>();
-    const onEntranceEnd = (event: TransitionEvent) => {
-      if (event.target === event.currentTarget && event.propertyName === 'transform') {
-        (event.currentTarget as HTMLElement).classList.add('is-settled');
-      }
-    };
-    const onMove = (event: PointerEvent) => {
-      const card = event.currentTarget as HTMLElement;
-      positions.set(card, { clientX: event.clientX, clientY: event.clientY });
-      if (frames.has(card)) return;
-      frames.set(card, window.requestAnimationFrame(() => {
-        try {
-          const position = positions.get(card);
-          if (!position || reducedMotion.matches) return;
-          const rect = card.getBoundingClientRect();
-          const x = (position.clientX - rect.left) / rect.width;
-          const y = (position.clientY - rect.top) / rect.height;
-          card.style.setProperty('--spotlight-x', `${x * 100}%`);
-          card.style.setProperty('--spotlight-y', `${y * 100}%`);
-          card.style.setProperty('--service-tilt-x', `${(0.5 - y) * 8}deg`);
-          card.style.setProperty('--service-tilt-y', `${(x - 0.5) * 8}deg`);
-        } finally {
-          frames.delete(card);
-        }
-      }));
-    };
-    const onLeave = (event: PointerEvent) => {
-      const card = event.currentTarget as HTMLElement;
-      const frame = frames.get(card);
-      if (frame !== undefined) window.cancelAnimationFrame(frame);
-      frames.delete(card);
-      positions.delete(card);
-      card.style.removeProperty('--spotlight-x');
-      card.style.removeProperty('--spotlight-y');
-      card.style.removeProperty('--service-tilt-x');
-      card.style.removeProperty('--service-tilt-y');
-    };
-
-    cards.forEach((card) => card.addEventListener('transitionend', onEntranceEnd));
-    if (finePointer.matches && !reducedMotion.matches) {
-      cards.forEach((card) => {
-        card.addEventListener('pointermove', onMove);
-        card.addEventListener('pointerleave', onLeave);
-      });
-    }
-    return () => {
-      cards.forEach((card) => {
-        card.removeEventListener('transitionend', onEntranceEnd);
-        card.removeEventListener('pointermove', onMove);
-        card.removeEventListener('pointerleave', onLeave);
-      });
-      frames.forEach((frame) => window.cancelAnimationFrame(frame));
-    };
-  }, []);
-
-  return (
-    <section className="section services-section" id="services" aria-labelledby="services-heading" ref={sectionRef}>
-      <div className="container">
-        <div className="section-heading service-heading reveal">
-          <h2 id="services-heading">What we <em>treat</em></h2>
-          <p>Services listed for the hospital. Call to confirm anything not shown here.</p>
-        </div>
-        <div className="service-grid">
-          {services.map(({ title, text, icon }, index) => (
-            <article className="service-card reveal" key={title} data-service-icon={icon} data-testid={`card-service-${index + 1}`}>
-              <div className="service-icon"><ServiceIcon name={icon} /></div>
-              <h3 data-title={title}>{title}</h3>
-              <p>{text}</p>
-              <svg className="service-arrow" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" pathLength="1" />
-              </svg>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Doctors() {
   return <DoctorsSection />;
 }
 
+const homeGalleryItems = galleryItems.slice(0, 5);
+
 function Gallery() {
+  const ratioOf = useImageRatios(homeGalleryItems.map((item) => item.src));
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const { boxes, gap } = useJustifiedLayout(galleryRef, homeGalleryItems.map((item) => ratioOf(item.src)), galleryRowOptions);
   return (
     <section className="section" id="gallery" aria-labelledby="gallery-heading">
       <div className="container">
         <div className="section-heading gallery-section-heading reveal">
-          <h2 id="gallery-heading">The <em>hospital</em></h2>
-          <p>More photographs of the reception, rooms and laboratory are on the way.</p>
+          <span className="eyebrow">A look around</span>
+          <h2 id="gallery-heading"><span className="gallery-heading-word"><span>A place for</span></span>{' '}<em><span className="gallery-heading-word"><span>care.</span></span></em></h2>
+          <p>Explore the spaces at Sri Balaji Hospital.</p>
         </div>
-        <div className="gallery-preview-grid">
-          {galleryItems.map((item, index) => (
-            <div className={`gallery-preview-card gallery-preview-card--${item.category} reveal`} key={item.id} style={{ '--gallery-index': index } as React.CSSProperties}>
-              {item.src ? (
-                <img src={item.src} alt={item.alt} loading="lazy" data-testid={`image-hospital-${index + 1}`} />
-              ) : (
-                <span className="gallery-placeholder" role="img" aria-label={item.caption}>
-                  <Camera size={28} strokeWidth={1.3} aria-hidden="true" />
-                </span>
-              )}
+        {/* Justified rows: every row is the same height and fills the width; each photo keeps its own shape, nothing is cropped. */}
+        <div ref={galleryRef} className="gallery-rows" style={{ gap }}>
+          {homeGalleryItems.map((item, index) => (
+            <a className="gallery-preview-card gallery-tile reveal" href="#gallery-view" key={item.id} style={{ '--gallery-index': index, '--r': ratioOf(item.src), width: boxes[index]?.width || undefined, height: boxes[index]?.height || undefined } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
+              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" data-testid={`image-hospital-${index + 1}`} />
               <span className="gallery-caption">{item.caption}</span>
-            </div>
+            </a>
           ))}
         </div>
+        {galleryItems.length < 4 && <p className="gallery-soon">More photographs of the hospital will be added soon.</p>}
         <div className="gallery-view-link-row">
-          <a className="gallery-view-link" href="#gallery-view">View photographs <ArrowRight size={18} aria-hidden="true" /></a>
+          <a className="gallery-view-link" href="#gallery-view">
+            {galleryItems.length > 5 ? 'View more photos' : 'View photos'} <ArrowRight size={18} aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
   );
 }
-
-const [featuredReview, ...otherReviews] = reviews;
 
 // `fill` is how much of the star is coloured (0–1); partial stars use a hard-stop gradient.
 function ReviewStar({ index, fill = 1, gradientId }: { index: number; fill?: number; gradientId?: string }) {
@@ -618,58 +479,6 @@ function ReviewStar({ index, fill = 1, gradientId }: { index: number; fill?: num
         {...(partial ? { fill: `url(#${gradientId})`, stroke: 'currentColor', strokeWidth: 1.2, strokeLinejoin: 'round' as const } : {})}
       />
     </svg>
-  );
-}
-
-function ReviewAuthor({ name, age }: { name: string; age: string }) {
-  const initials = name.split(/\s+/).map((part) => part[0]?.toUpperCase() ?? '').join('').slice(0, 2);
-  return (
-    <div className="review-author">
-      <span className="review-avatar" aria-hidden="true">{initials}</span>
-      <span className="review-author-text">
-        <span className="review-author-name">{name}</span>
-        <span className="review-author-meta">Google review{age ? <> · <time>{age}</time></> : null}</span>
-      </span>
-    </div>
-  );
-}
-
-// The long review leads; it opens to full length on request so the section keeps an even rhythm.
-function FeaturedReview({ review }: { review: typeof reviews[number] }) {
-  const [expanded, setExpanded] = useState(false);
-  const [fullHeight, setFullHeight] = useState<number | null>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const measure = () => setFullHeight(textRef.current?.scrollHeight ?? null);
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
-  return (
-    <article className="review-feature reveal" data-expanded={expanded} data-testid="card-review-1">
-      <div className="review-feature-top">
-        <span className="review-quote-mark" aria-hidden="true">“</span>
-        {/* Supplied with a 5/5 rating. */}
-        <span className="review-stars review-feature-stars" aria-label="Rated 5 out of 5">
-          {[0, 1, 2, 3, 4].map((star) => <ReviewStar key={star} index={star} />)}
-        </span>
-      </div>
-      <div
-        className="review-feature-text"
-        id="featured-review-text"
-        ref={textRef}
-        style={{ maxHeight: expanded && fullHeight ? `${fullHeight}px` : undefined }}
-      >
-        <blockquote>{review.quote}</blockquote>
-      </div>
-      <div className="review-feature-bottom">
-        <ReviewAuthor name={review.name} age={review.age} />
-        <button className="review-expand" type="button" aria-expanded={expanded} aria-controls="featured-review-text" onClick={() => setExpanded(!expanded)}>
-          {expanded ? 'Show less' : 'Read full review'}
-          <ChevronDown size={16} aria-hidden="true" />
-        </button>
-      </div>
-    </article>
   );
 }
 
@@ -732,37 +541,46 @@ function Reviews() {
     <section className="section reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div className="container">
         <div className="section-heading review-heading reveal">
-          <h2 id="reviews-heading">What patients <em>say</em></h2>
-          <p>Reviews from Google, shown as patients wrote them.</p>
+          <span className="eyebrow">Patient experiences</span>
+          <h2 id="reviews-heading">
+            <span className="review-word"><span>What</span></span>{' '}
+            <span className="review-word"><span>patients</span></span>{' '}
+            <em><span className="review-word"><span>say</span></span></em>
+          </h2>
+          <p>Real experiences shared by patients and their families on Google.</p>
         </div>
-        <div className="reviews-showcase">
-          <aside className="rating-panel reveal" aria-label="Google rating">
-            <p className="rating-panel-label">Google rating</p>
-            <div className="review-summary reveal">
-              <div className="review-rating">
-                <span className="review-score" aria-label={`${reviewRating} out of 5`}>{reviewRating.toFixed(1)}</span>
-                <span className="rating-out-of" aria-hidden="true">/ 5</span>
-              </div>
-              <span className="review-stars" aria-label={`${reviewRating} stars`}>
-                {[0, 1, 2, 3, 4].map((star) => (
-                  <ReviewStar key={star} index={star} fill={Math.max(0, Math.min(1, reviewRating - star))} gradientId={`review-star-partial-${star}`} />
-                ))}
+        <div className="sbr-layout">
+          <aside className="sbr-summary reveal" aria-label="Google rating">
+            <div className="sbr-score-row">
+              <span className="sbr-score" aria-label={`${reviewRating} out of 5`}>{reviewRating.toFixed(1)}</span>
+              <span className="sbr-score-meta">
+                <span className="review-stars" aria-label={`${reviewRating} stars`}>
+                  {[0, 1, 2, 3, 4].map((star) => (
+                    <ReviewStar key={star} index={star} fill={Math.max(0, Math.min(1, reviewRating - star))} gradientId={`review-star-partial-${star}`} />
+                  ))}
+                </span>
+                <span className="sbr-count">{reviewCount} Google reviews</span>
               </span>
-              <span className="review-count">Based on {reviewCount} Google reviews</span>
             </div>
-            <p className="rating-panel-note">Reviews are shown as patients wrote them on Google.</p>
-            <a ref={reviewButtonRef} className="button reviews-button" href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="button-more-google-reviews"><span data-label="More Google reviews">More Google reviews</span><ArrowRight size={16} /></a>
+            <p className="sbr-note">Reviews are shown as patients wrote them on Google.</p>
+            <a ref={reviewButtonRef} className="sbr-button" href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="button-more-google-reviews">
+              Read more reviews on Google <ArrowUpRight size={18} aria-hidden="true" />
+            </a>
           </aside>
-          <div className="reviews-stream">
-            <FeaturedReview review={featuredReview} />
-            <div className="review-minis">
-              {otherReviews.map((review, index) => (
-                <article className="review-mini reveal" key={review.name} style={{ transitionDelay: `${(index + 1) * 120}ms` }} data-testid={`card-review-${index + 2}`}>
-                  <blockquote>“{review.quote}”</blockquote>
-                  <ReviewAuthor name={review.name} age={review.age} />
-                </article>
-              ))}
-            </div>
+          <div className="sbr-grid">
+            {reviews.map((review, index) => (
+              <article className={`sbr-card reveal${index === 0 ? ' sbr-card-wide' : ''}`} key={review.name} data-testid={`card-review-${index + 1}`}>
+                {/* Each review was supplied with a 5/5 rating. */}
+                <span className="sbr-stars review-stars" aria-label="Rated 5 out of 5">
+                  {[0, 1, 2, 3, 4].map((star) => <ReviewStar key={star} index={star} />)}
+                </span>
+                <blockquote>{review.quote}</blockquote>
+                <footer className="sbr-card-foot">
+                  <span className="sbr-name">{review.name}</span>
+                  <span className="sbr-source">Google review</span>
+                </footer>
+              </article>
+            ))}
           </div>
         </div>
       </div>
@@ -778,8 +596,14 @@ function Visit() {
     <section className="section section-white visit-section" id="visit" aria-labelledby="visit-heading">
       <div className="container">
         <div className="section-heading reveal">
-          <h2 id="visit-heading">Visit the <em>hospital</em></h2>
-          <p>Sajjapuram, Andhra Pradesh 534211. Call ahead if you are unsure of the timings.</p>
+          <span className="eyebrow">Visit us</span>
+          <h2 id="visit-heading">
+            <span className="visit-heading-word"><span>We’re</span></span>{' '}
+            <span className="visit-heading-word"><span>here</span></span>{' '}
+            <span className="visit-heading-word"><span>when</span></span>{' '}
+            <em><span className="visit-heading-word"><span>you need us.</span></span></em>
+          </h2>
+          <p>Plan your visit or call the hospital for assistance.</p>
         </div>
         <div className="visit-grid">
           <div className="visit-panel">
@@ -791,14 +615,16 @@ function Visit() {
               <p className="visit-label">Call</p>
               <div className="visit-actions">
                 <a className="button button-primary" href={`tel:${phone}`} data-testid="button-call-visit"><PhoneIcon /> {phoneLabel}</a>
+                <a className="visit-mobile" href={`tel:${landline}`} data-testid="button-call-landline">Landline: {landlineLabel}</a>
               </div>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 2 } as React.CSSProperties}>
-              <p className="visit-label">Hospital hours</p>
+              <p className="visit-label">Hospital hours <span className="visit-emergency-pill">Emergency 24/7</span></p>
               <div className="hours-table">
-                <div className="hours-row reveal" style={{ '--hours-index': 0 } as React.CSSProperties}><span>Monday–Saturday</span><span>9:30 AM – 8:30 PM</span></div>
-                <div className="hours-row reveal" style={{ '--hours-index': 1 } as React.CSSProperties}><span>Sunday</span><span>10:00 AM – 8:00 PM</span></div>
-                <div className="hours-row reveal" style={{ '--hours-index': 2 } as React.CSSProperties}><span>Doctor consultation (Mon–Sat)</span><span>10 AM – 2 PM, 6 PM – 9 PM</span></div>
+                <div className="hours-row hours-row-emergency"><span>Emergency</span><span>24 hours, 7 days</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 0 } as React.CSSProperties}><span>OP · Monday–Saturday</span><span>9:30 AM – 8:30 PM</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 1 } as React.CSSProperties}><span>OP · Sunday</span><span>10:00 AM – 8:00 PM</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 2 } as React.CSSProperties}><span>Doctor consultation</span><span>10 AM – 2 PM, 6 PM – 8:30 PM</span></div>
               </div>
             </div>
             <div className="visit-block casualty-block reveal" style={{ '--visit-index': 3 } as React.CSSProperties}>
@@ -860,7 +686,7 @@ function Footer() {
           <div className="footer-explore-column reveal" style={{ '--footer-index': 1 } as React.CSSProperties}>
             <p className="footer-label">Explore</p>
             <nav className="footer-nav" aria-label="Footer navigation">
-              <a href={`${homePrefix}#services`} data-testid="link-footer-services">Services</a>
+              <a href={`${homePrefix}#services`} data-testid="link-footer-services">Services</a><a href={`${homePrefix}#why-choose`} data-testid="link-footer-why-choose">Why choose us</a>
               <a href={`${homePrefix}#doctors`} data-testid="link-footer-doctors">Our doctors</a><a href={`${homePrefix}#gallery`} data-testid="link-footer-hospital">Hospital</a>
               <a href={`${homePrefix}#reviews`} data-testid="link-footer-reviews">Reviews</a><a href={`${homePrefix}#faq`} data-testid="link-footer-faq">FAQ</a>
               <a href={`${homePrefix}#visit`} data-testid="link-footer-visit">Visit us</a>
@@ -923,7 +749,7 @@ function App() {
     const pageMetadata = {
       home: {
         title: 'Sri Balaji Hospital, Tanuku',
-        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku. General medicine and anaesthesia care, open seven days a week. Call 08819 221778.',
+        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku. Comprehensive medical care, critical care, emergency services and surgical care. Emergency 24/7. Call 98857 71197.',
       },
       gallery: {
         title: 'Gallery · Sri Balaji Hospital, Tanuku',
@@ -949,14 +775,15 @@ function App() {
         </Suspense>
       ) : (
         <main>
-          <LuxuryHero phone={phone} phoneLabel={phoneLabel} directions={directions} reviewsUrl={reviewsUrl} />
-          <LuxuryDoctor phone={phone} />
-          <LuxuryServices phone={phone} />
-          <LuxuryReviews reviewsUrl={reviewsUrl} />
+          <HomeHero phone={phone} phoneLabel={phoneLabel} directions={directions} isOpenAt={getOpenState} />
+          <ServicesSection />
+          <WhyChooseSection />
+          <Doctors />
           <Gallery />
+          <Reviews />
           {/* Insurance / Aarogyasri support is not confirmed for this hospital, so the section stays off the page. */}
-          <FaqSection />
           <Visit />
+          <FaqSection />
         </main>
       )}
       <Footer />

@@ -1,42 +1,36 @@
 import { Fragment, useState } from 'react';
 import {
-  Check, ChevronDown, Clock3, CreditCard, Landmark, MapPin, MessageCircleHeart, PhoneCall, ShieldCheck, Star, UserCheck,
+  Check, ChevronDown, CreditCard, HandHeart, HeartPulse, Landmark, PhoneCall, Plus, Scissors, ShieldCheck, Siren, Stethoscope,
 } from 'lucide-react';
 
-const phone = '+918819221778';
+import { phone, phoneLabel } from '../data/contact';
 
-// Reasons to trust the hospital, kept separate from the Services list.
-// Each line rests on the doctors' listed degrees, the supplied hours, the Google rating, or the reviews shown on this page.
+// Five reasons to trust the hospital, each resting on the brochure or on patients' own Google reviews.
 const reasons = [
   {
-    title: 'Doctor-led care',
-    text: 'Care from Dr. Billygraham Deepati, MD (General Medicine), who is also trained in anaesthesia.',
-    icon: UserCheck,
+    title: 'Specialist Doctor',
+    text: 'Led by Dr. D. Billy Graham, M.B.B.S., M.D., who personally attends serious and critical cases.',
+    icon: Stethoscope,
   },
   {
-    title: 'Open seven days',
-    text: 'Monday to Saturday 9:30 AM – 8:30 PM, and Sunday 10:00 AM – 8:00 PM.',
-    icon: Clock3,
+    title: '24/7 Emergency Care',
+    text: 'Accidents, snakebite, poisoning and cardiac emergencies attended at any hour, every day.',
+    icon: Siren,
   },
   {
-    title: 'Rated by patients',
-    text: '3.8 out of 5 from 38 Google reviews. Reviews on this site are shown as patients wrote them.',
-    icon: Star,
+    title: 'ICU & Life Support',
+    text: 'Intensive care with ventilator, cardiac monitors, defibrillator and central oxygen.',
+    icon: HeartPulse,
   },
   {
-    title: 'Fair, honest treatment',
-    text: 'Patients’ reviews mention reasonable rates and no unnecessary lab tests or medicines.',
-    icon: MessageCircleHeart,
+    title: 'Surgical Care',
+    text: 'General, laparoscopic, neuro and reconstructive surgery without travelling far.',
+    icon: Scissors,
   },
   {
-    title: 'Wheelchair accessible',
-    text: 'Wheelchair-accessible parking, entrance and exit.',
-    icon: Check,
-  },
-  {
-    title: 'Easy to find',
-    text: 'Sajjapuram, Andhra Pradesh 534211, with directions one tap away.',
-    icon: MapPin,
+    title: 'Honest, Fair Care',
+    text: 'Reasonable rates, with only the tests and medicines you actually need.',
+    icon: HandHeart,
   },
 ];
 
@@ -75,27 +69,27 @@ const questions = [
   {
     question: "What are the hospital's opening hours?",
     answer: (
-      <>Sri Balaji Hospital is listed as open Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM. Please call to confirm before visiting.</>
+      <>Emergency care is available 24 hours a day, 7 days a week. Outpatient (OP) timings are Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM.</>
     ),
   },
   {
     question: 'Is the hospital open at night?',
     answer: (
-      <>24-hour emergency and inpatient services are not confirmed. Please call <a href={`tel:${phone}`}>08819 221778</a> to check current availability, or call <a href="tel:112">112</a> in an emergency.</>
+      <>Yes, for emergencies. Emergency care is available 24 hours a day, every day. Call <a href={`tel:${phone}`}>{phoneLabel}</a> on the way so the team can prepare. For an ambulance, call <a href="tel:108">108</a>.</>
     ),
   },
   {
     question: 'Which doctor is available at the hospital?',
-    answer: <>Dr. Billygraham Deepati, MD (General Medicine) and Anaesthesia. Listed consultation timings are Monday to Saturday, 10:00 AM – 2:00 PM and 6:00 PM – 9:00 PM, with a listed consultation fee of ₹300. Please confirm availability and the current fee before visiting.</>,
+    answer: <>Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Registration No. 42113). Consultation hours are 10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM. Emergency cases are attended at all times.</>,
   },
   {
     question: 'What conditions are treated?',
-    answer: <>Public listings mention general medicine consultation, viral fever, chest pain and abdominal pain, and anaesthesia services including adult, regional and nerve block anaesthesia. Confirm the current scope of treatment directly with the hospital.</>,
+    answer: <>General medicine and emergency care (including snakebite, poisoning, cardiac, diabetes, blood pressure, asthma and stroke care), general surgery, neurosurgery, plastic and reconstructive surgery, laparoscopic surgery, and critical care with an ICU and ventilator. See Our services for the full list.</>,
   },
   {
     question: 'How can I book an appointment?',
     answer: (
-      <>Call <a href={`tel:${phone}`}>08819 221778</a> to ask about appointments and doctor availability.</>
+      <>Call <a href={`tel:${phone}`}>{phoneLabel}</a> to ask about appointments and doctor availability.</>
     ),
   },
   {
@@ -107,6 +101,7 @@ const questions = [
 function Heading({ id, label, words, italic }: { id: string; label: string; words: string[]; italic: string }) {
   return (
     <header className="info-heading">
+      <span className="eyebrow">{label}</span>
       <h2 id={id}>
         {words.map((word, index) => (
           <Fragment key={word}>
@@ -130,22 +125,23 @@ export function WhyChooseSection() {
     <section className="info-page why-choose-page" id="why-choose" aria-labelledby="why-choose-heading">
       <div className="container info-container">
         <div className="info-intro">
-          <Heading id="why-choose-heading" label="Why choose us" words={['Care', 'that', 'is']} italic="close to home." />
-          <p>What patients can count on at Sri Balaji Hospital.</p>
+          <header className="info-heading why-heading">
+            {/* Labelled heading as in the reference the owner supplied. */}
+            <p className="why-kicker">Why choose Sri Balaji</p>
+            <h2 id="why-choose-heading">Why families choose <span className="why-name">Sri Balaji</span></h2>
+          </header>
+          <p>Care designed around your family's needs in Sajjapuram, Tanuku.</p>
         </div>
-        <div className="reason-grid">
+        <ol className="why-grid">
           {reasons.map(({ title, text, icon: Icon }, index) => (
-            <article className="reason-card" key={title} style={{ '--item-index': index } as React.CSSProperties}>
-              <span className="reason-icon"><Icon size={23} strokeWidth={1.6} aria-hidden="true" /></span>
+            <li className="why-item" key={title} style={{ '--item-index': index } as React.CSSProperties}>
+              <Icon className="why-icon" size={26} strokeWidth={1.6} aria-hidden="true" />
+              <span className="why-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
               <h3>{title}</h3>
               <p>{text}</p>
-            </article>
+            </li>
           ))}
-        </div>
-        <div className="info-doctors">
-          <a className="info-doctor-link" href="#doctor-billygraham"><span><Check size={17} aria-hidden="true" /> Dr. Billygraham Deepati</span><ChevronDown size={17} aria-hidden="true" /></a>
-          <a className="button button-primary info-book-button" href={`tel:${phone}`}><PhoneCall size={17} aria-hidden="true" /> Call to book</a>
-        </div>
+        </ol>
       </div>
     </section>
   );
@@ -173,7 +169,7 @@ export function InsuranceSection() {
           <ul className="insurance-partner-list">
             {insurancePartners.map((partner) => <li key={partner}>{partner}</li>)}
           </ul>
-          <a className="button button-primary insurance-call" href={`tel:${phone}`}><PhoneCall size={17} aria-hidden="true" /> Call 08819 221778</a>
+          <a className="button button-primary insurance-call" href={`tel:${phone}`}><PhoneCall size={17} aria-hidden="true" /> Call {phoneLabel}</a>
         </div>
       </div>
     </section>
@@ -181,46 +177,52 @@ export function InsuranceSection() {
 }
 
 export function FaqSection() {
-  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
+  const [openQuestion, setOpenQuestion] = useState<number | null>(0);
 
   return (
-    <section className="info-page faq-page" id="faq" aria-labelledby="faq-heading">
-      <div className="container info-container">
-        <Heading id="faq-heading" label="FAQ" words={['Questions,']} italic="answered." />
-        <div className="faq-list">
+    <section className="info-page faq-page fq" id="faq" aria-labelledby="faq-heading">
+      <div className="container fq-layout">
+        <div className="fq-intro">
+          <p className="why-kicker">FAQ</p>
+          <h2 id="faq-heading">Questions, <span className="why-name">answered.</span></h2>
+          <p className="fq-lead">Quick answers about emergencies, timings, the doctor and treatment at Sri Balaji Hospital.</p>
+          <div className="fq-help">
+            <span className="fq-help-icon"><PhoneCall size={20} strokeWidth={1.8} aria-hidden="true" /></span>
+            <div>
+              <p className="fq-help-title">Still have a question?</p>
+              <p className="fq-help-text">Call us, day or night for emergencies.</p>
+            </div>
+            <a className="fq-help-call" href={`tel:${phone}`}>Call {phoneLabel}</a>
+          </div>
+        </div>
+
+        <div className="fq-list">
           {questions.map(({ question, answer }, index) => {
             const isOpen = openQuestion === index;
             const answerId = `faq-answer-${index + 1}`;
             return (
-              <article className="faq-item" key={question} style={{ '--item-index': index } as React.CSSProperties}>
+              <article className={`fq-item${isOpen ? ' is-open' : ''}`} key={question} style={{ '--item-index': index } as React.CSSProperties}>
                 <h3>
                   <button
-                    className="faq-question"
+                    className="fq-question"
                     id={`faq-question-${index + 1}`}
                     type="button"
                     aria-expanded={isOpen}
                     aria-controls={answerId}
                     onClick={() => setOpenQuestion(isOpen ? null : index)}
                   >
-                    <span>{question}</span>
-                    <ChevronDown className="faq-chevron" size={20} aria-hidden="true" />
+                    <span className="fq-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="fq-text">{question}</span>
+                    <span className="fq-toggle" aria-hidden="true"><Plus size={18} strokeWidth={2.2} /></span>
                   </button>
                 </h3>
-                <div
-                  className={`faq-answer${isOpen ? ' is-open' : ''}`}
-                  id={answerId}
-                  role="region"
-                  aria-labelledby={`faq-question-${index + 1}`}
-                  aria-hidden={!isOpen}
-                  inert={!isOpen}
-                >
-                  <div className="faq-answer-inner"><p>{answer}</p></div>
+                <div className="fq-answer" id={answerId} role="region" aria-labelledby={`faq-question-${index + 1}`} inert={!isOpen}>
+                  <div className="fq-answer-inner"><p>{answer}</p></div>
                 </div>
               </article>
             );
           })}
         </div>
-        <p className="faq-contact">Still have a question? <a href={`tel:${phone}`}>Call 08819 221778.</a></p>
       </div>
     </section>
   );

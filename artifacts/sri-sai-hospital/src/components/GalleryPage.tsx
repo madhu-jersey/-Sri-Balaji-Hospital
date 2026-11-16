@@ -1,19 +1,15 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
-import { Camera, X } from 'lucide-react';
-import { galleryItems, type GalleryCategory, type GalleryItem } from '../data/gallery';
+import { X } from 'lucide-react';
+import { galleryCategories, galleryItems, type GalleryItem } from '../data/gallery';
+import { useImageRatios } from '../hooks/useImageRatios';
+import { galleryRowOptions, useJustifiedLayout } from '../hooks/useJustifiedLayout';
 
-const filters: { label: string; value: GalleryCategory | 'all' }[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Building', value: 'building' },
-  { label: 'Reception', value: 'reception' },
-  { label: 'Consultation room', value: 'consultation' },
-  { label: 'Waiting area', value: 'waiting' },
-  { label: 'Laboratory', value: 'laboratory' },
-];
+// Filters come from the photo folders that exist (see src/data/gallery.ts).
+const filters: { label: string; value: string }[] = [{ label: 'All', value: 'all' }, ...galleryCategories];
 
 export function GalleryPage() {
-  const [activeFilter, setActiveFilter] = useState<GalleryCategory | 'all'>('all');
-  const [displayFilter, setDisplayFilter] = useState<GalleryCategory | 'all'>('all');
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+  const [displayFilter, setDisplayFilter] = useState<string>('all');
   const [exitingIds, setExitingIds] = useState<Set<string>>(() => new Set());
   const [enteringIds, setEnteringIds] = useState<Set<string>>(() => new Set());
   const [revealedIds, setRevealedIds] = useState<Set<string>>(() => new Set());
@@ -26,11 +22,15 @@ export function GalleryPage() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const reducedMotion = useRef(false);
+  const ratioOf = useImageRatios(galleryItems.map((item) => item.src));
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const visibleItems = useMemo(
     () => galleryItems.filter((item) => displayFilter === 'all' || item.category === displayFilter),
     [displayFilter],
   );
+
+  const { boxes, gap } = useJustifiedLayout(gridRef, visibleItems.map((item) => ratioOf(item.src)), galleryRowOptions);
 
   useEffect(() => {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -105,7 +105,7 @@ export function GalleryPage() {
     };
   }, [activeItem, visibleItems]);
 
-  function changeFilter(value: GalleryCategory | 'all') {
+  function changeFilter(value: string) {
     window.clearTimeout(filterTimer.current);
     window.clearTimeout(enterTimer.current);
     const nextItems = galleryItems.filter((item) => value === 'all' || item.category === value);
@@ -200,6 +200,7 @@ export function GalleryPage() {
           <a href="/" className="gallery-back-link">Back to home</a>
         </header>
 
+        {filters.length > 2 && (
         <div className="gallery-filters" role="group" aria-label="Filter photographs">
           {filters.map((filter) => (
             <button
@@ -213,31 +214,26 @@ export function GalleryPage() {
             </button>
           ))}
         </div>
-
-        {galleryItems.every(({ src }) => src === null) && (
-          <p className="gallery-empty-note">Photographs will be added soon.</p>
         )}
-        <div className="gallery-page-grid">
+
+        {galleryItems.length < 4 && (
+          <p className="gallery-empty-note">More photographs of the hospital will be added soon.</p>
+        )}
+        <div ref={gridRef} className="gallery-page-grid gallery-rows" style={{ gap }}>
           {visibleItems.map((item, index) => (
             <button
               key={item.id}
               ref={(node) => setCardRef(item.id, node)}
               type="button"
-              className={`gallery-page-card reveal${revealedIds.has(item.id) ? ' is-visible' : ''}${exitingIds.has(item.id) ? ' is-exiting' : ''}${enteringIds.has(item.id) ? ' is-entering' : ''}`}
+              className={`gallery-page-card gallery-tile reveal${revealedIds.has(item.id) ? ' is-visible' : ''}${exitingIds.has(item.id) ? ' is-exiting' : ''}${enteringIds.has(item.id) ? ' is-entering' : ''}`}
               data-gallery-card={item.id}
-              style={{ '--gallery-index': index } as CSSProperties}
+              style={{ '--gallery-index': index, '--r': ratioOf(item.src), width: boxes[index]?.width || undefined, height: boxes[index]?.height || undefined } as CSSProperties}
               disabled={exitingIds.has(item.id)}
               onClick={(event) => openLightbox(item, event.currentTarget)}
               onKeyDown={(event) => openWithKeyboard(event, item)}
               aria-label={`Open ${item.caption}`}
             >
-              {item.src ? (
-                <img src={item.src} alt={item.alt} loading="lazy" />
-              ) : (
-                <span className="gallery-placeholder" role="img" aria-label={item.caption}>
-                  <Camera size={30} strokeWidth={1.3} aria-hidden="true" />
-                </span>
-              )}
+              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
               <span className="gallery-caption">{item.caption}</span>
             </button>
           ))}
@@ -259,13 +255,7 @@ export function GalleryPage() {
           </button>
           <button className="gallery-lightbox-arrow previous" onClick={() => moveLightbox(-1)} aria-label="Previous photograph">‹</button>
           <figure className={`gallery-lightbox-content slide-${slideDirection}`} key={activeItem.id}>
-            {activeItem.src ? (
-              <img src={activeItem.src} alt={activeItem.alt} />
-            ) : (
-              <div className="gallery-lightbox-placeholder" role="img" aria-label={activeItem.caption}>
-                <Camera size={40} strokeWidth={1.2} aria-hidden="true" />
-              </div>
-            )}
+            <img src={activeItem.src} alt={activeItem.alt} />
             <figcaption>{activeItem.caption}</figcaption>
           </figure>
           <button className="gallery-lightbox-arrow next" onClick={() => moveLightbox(1)} aria-label="Next photograph">›</button>

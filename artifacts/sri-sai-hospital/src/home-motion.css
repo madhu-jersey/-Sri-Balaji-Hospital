@@ -1,0 +1,127 @@
+/*
+  One motion language for the home page, replacing the mix of older per-section timings.
+  - Reveal: content eases up from 18px with a soft blur clearing, on a long expo ease-out.
+  - Stagger: cards in a grid follow each other by 70ms.
+  - Hover: cards lift 4px and their icon tile fills blue; images ease in slightly.
+  - Hero photo drifts with the scroll where the browser supports scroll-driven animation.
+  Reveal uses `translate`/`opacity`/`filter`, so hover can use `transform` without fighting it.
+  Everything is visible by default and with reduced motion.
+*/
+main {
+  --motion-ease: cubic-bezier(.16, 1, .3, 1);
+  --motion-reveal: .75s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Reveal: neutralise the older transforms and long delays, then apply one entrance */
+  main .reveal {
+    opacity: 0;
+    translate: 0 18px;
+    filter: blur(6px);
+    transform: none !important;
+    transition:
+      opacity var(--motion-reveal) var(--motion-ease),
+      translate var(--motion-reveal) var(--motion-ease),
+      filter calc(var(--motion-reveal) * .8) var(--motion-ease),
+      box-shadow .45s var(--motion-ease),
+      border-color .45s ease,
+      background-color .45s ease !important;
+    transition-delay: var(--motion-delay, 0ms) !important;
+  }
+  main .reveal.is-visible { opacity: 1; translate: none; filter: none; }
+
+  /* Headings reveal as one calm block instead of word-by-word */
+  main .section-heading.reveal,
+  main .info-intro,
+  main .faq-page .info-heading { transition-delay: 0ms !important; }
+  main [class*='-word'] > span,
+  main .info-heading-word > span { opacity: 1 !important; transform: none !important; translate: none !important; animation: none !important; }
+  main .info-page .info-heading,
+  main .info-page .info-intro > p { opacity: 0; translate: 0 18px; filter: blur(6px); transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease), filter .8s var(--motion-ease); }
+  main .info-page.is-visible .info-heading,
+  main .info-page.is-visible .info-intro > p { opacity: 1; translate: none; filter: none; }
+  main .info-page.is-visible .info-intro > p { transition-delay: 80ms; }
+
+  /* Staggers inside grids */
+  main .service-grid > :nth-child(2), main .sbr-grid > :nth-child(2), main .gallery-preview-grid > :nth-child(2) { --motion-delay: 70ms; }
+  main .service-grid > :nth-child(3), main .sbr-grid > :nth-child(3), main .gallery-preview-grid > :nth-child(3) { --motion-delay: 140ms; }
+  main .service-grid > :nth-child(4), main .gallery-preview-grid > :nth-child(4) { --motion-delay: 210ms; }
+  main .service-grid > :nth-child(5), main .gallery-preview-grid > :nth-child(5) { --motion-delay: 280ms; }
+  main .service-grid > :nth-child(6), main .gallery-preview-grid > :nth-child(6) { --motion-delay: 350ms; }
+  main .sbr-summary { --motion-delay: 0ms; }
+
+  /* Why-choose and FAQ items are revealed by their section; same entrance, staggered by index */
+  main .info-page .reason-card,
+  main .info-page .faq-item { animation: none !important; opacity: 0; translate: 0 18px; filter: blur(6px); }
+  main .info-page.is-visible .reason-card,
+  main .info-page.is-visible .faq-item {
+    animation: sb-motion-in var(--motion-reveal) var(--motion-ease) calc(160ms + var(--item-index, 0) * 70ms) both !important;
+  }
+  @keyframes sb-motion-in {
+    from { opacity: 0; translate: 0 18px; filter: blur(6px); }
+    to { opacity: 1; translate: none; filter: none; }
+  }
+
+  /* Hover: a gentle lift, a deeper soft shadow and the icon tile filling blue */
+  main .service-card,
+  main .reason-card,
+  main .sbr-card,
+  main .faq-item,
+  main .doctor-card {
+    transition: transform .45s var(--motion-ease), box-shadow .45s var(--motion-ease), border-color .45s ease, background-color .45s ease;
+  }
+  main .service-card.is-visible:hover,
+  main .info-page.is-visible .reason-card:hover,
+  main .sbr-card.is-visible:hover {
+    transform: translateY(-4px) !important;
+    border-color: #C5D6EF;
+    box-shadow: 0 18px 36px rgba(13, 31, 69, .09);
+    transition-delay: 0ms !important;
+  }
+  main .reveal.is-visible:hover { transition-delay: 0ms !important; }
+  main .service-icon,
+  main .reason-icon { transition: background-color .45s var(--motion-ease), color .45s var(--motion-ease), transform .45s var(--motion-ease); }
+  main .service-card:hover .service-icon,
+  main .reason-card:hover .reason-icon { background: #0B4FC4; color: #fff; transform: scale(1.06); }
+  main .info-page .faq-item:hover { border-color: #C5D6EF; }
+
+  /* Images: settle from a slight zoom when revealed, and ease in on hover */
+  main .gallery-preview-card img,
+  main .doctor-image img { scale: 1.06; transition: scale 1.4s var(--motion-ease); }
+  main .gallery-preview-card.is-visible img,
+  main .doctor-card.is-visible .doctor-image img { scale: 1; }
+  main .gallery-preview-card.is-visible:hover img { scale: 1.04; transition-duration: .8s; }
+
+  /* Buttons and links: a short lift and an arrow nudge */
+  main .button,
+  main .sbr-button,
+  main .gallery-view-link,
+  .sbh-button { transition: transform .35s var(--motion-ease), background-color .3s ease, color .3s ease, box-shadow .35s var(--motion-ease); }
+  main .button:hover,
+  main .sbr-button:hover,
+  main .gallery-view-link:hover { transform: translateY(-2px); }
+  main .sbr-button svg,
+  main .gallery-view-link svg { transition: transform .35s var(--motion-ease); }
+  main .sbr-button:hover svg { transform: translate(2px, -2px); }
+  main .gallery-view-link:hover svg { transform: translateX(4px); }
+
+  /* Hero photo: a slow drift as the page scrolls (progressive; ignored where unsupported) */
+  @supports (animation-timeline: scroll()) {
+    .sbh-photo img {
+      animation: sbh-drift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+    @keyframes sbh-drift {
+      from { scale: 1; translate: 0 0; }
+      to { scale: 1.08; translate: 0 4%; }
+    }
+  }
+}
+
+/* Reduced motion: everything in place, no movement */
+@media (prefers-reduced-motion: reduce) {
+  main .reveal,
+  main .info-page .reason-card,
+  main .info-page .faq-item { opacity: 1 !important; translate: none !important; filter: none !important; transform: none !important; animation: none !important; transition: none !important; }
+}

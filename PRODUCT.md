@@ -18,7 +18,7 @@ Public website for Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211. Succe
 
 ## Positioning
 
-A doctor-led local hospital: Dr. Billygraham Deepati, MD (General Medicine) and Anaesthesia. Patient reviews mention reasonable rates, no unnecessary tests or medicines, and a doctor who attends serious cases.
+A doctor-led local hospital: Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Reg. No. 42113). Tagline: "We care for you". Offers comprehensive medical care, critical care, emergency services and surgical care. Patient reviews mention reasonable rates, no unnecessary tests or medicines, and a doctor who attends serious cases.
 
 ## Operating Context
 
@@ -26,11 +26,13 @@ Visitors read in English with Telugu alongside (the building signboard is Telugu
 
 ## Capabilities and Constraints
 
-- Phone: 08819 221778.
+- Phone: 08819 221778. Mobile: 98857 71197.
 - Address: Sajjapuram, Andhra Pradesh 534211 (owner-corrected; do not add street names or landmarks).
-- Hospital hours: Mon–Sat 9:30 AM – 8:30 PM, Sun 10:00 AM – 8:00 PM. Doctor consultation Mon–Sat 10 AM – 2 PM and 6 PM – 9 PM; listed fee ₹300.
-- Services as publicly listed: general medicine, anaesthesiology (adult, regional, nerve block), viral fever, chest pain, abdominal pain.
-- Not confirmed, so never claimed: 24-hour emergency, ICU, lab, pharmacy, insurance, Aarogyasri.
+- Hospital hours: Mon–Sat 9:30 AM – 8:30 PM, Sun 10:00 AM – 8:00 PM. Doctor consultation 10 AM – 2 PM and 6 PM – 8:30 PM (brochure).
+- Services (hospital brochure, supplied by the owner Nov 2026): General Medicine & Emergency Care, General Surgery, Neurosurgery, Plastic & Reconstructive Surgery, Laparoscopic Surgery, each with its listed sub-services (see src/components/ServicesSection.tsx).
+- Equipment and facilities (brochure): ICU, ventilator, central oxygen, cardiac and multiparameter monitors, defibrillator, infusion and syringe pumps, pulse oximeter, nebulizer, general ward. Inpatient care subject to available facilities.
+- Emergency care 24 hours, 7 days, on 08819 221778 (confirmed by the owner, Nov 2026). Outpatient (OP) hours are the hospital hours above.
+- Not confirmed, so never claimed: lab, pharmacy, insurance, Aarogyasri.
 
 ## Brand Commitments
 

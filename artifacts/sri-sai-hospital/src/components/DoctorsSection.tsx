@@ -1,28 +1,27 @@
 import { useEffect } from 'react';
 import { Check, PhoneCall } from 'lucide-react';
 
-// Details as listed in the associated doctor profile; confirm availability and fee before visiting.
+// Details from the hospital's brochure (supplied by the owner, Nov 2026).
 const doctors = [
   {
     id: 'doctor-billygraham',
-    name: 'Dr. Billygraham Deepati',
-    specialty: 'General Medicine & Anaesthesia',
-    degree: 'MD (General Medicine), Anaesthesia',
-    registration: 'Consultation fee: ₹300 · Mon–Sat 10 AM – 2 PM, 6 PM – 9 PM',
+    name: 'Dr. D. Billy Graham',
+    specialty: 'Critical Care Specialist',
+    degree: 'M.B.B.S., M.D.',
+    registration: 'Registration No. 42113 · Consultation 10 AM – 2 PM, 6 PM – 8:30 PM',
     image: '/assets/dr-billygraham-deepati.webp',
-    alt: 'Dr. Billygraham Deepati at his consultation desk',
-    bookingName: 'Dr. Billygraham',
-    caption: 'Patients describe a friendly doctor, supportive nursing staff, reasonable rates and no unnecessary tests or medicines.',
+    alt: 'Dr. D. Billy Graham at his consultation desk',
+    bookingName: 'Dr. Billy Graham',
     areas: [
-      'General medicine consultation',
-      'Viral fever, chest pain and abdominal pain',
-      'Adult and regional anaesthesia',
-      'Nerve block / regional block anaesthesia',
+      'General medicine and emergency care',
+      'Critical care and ICU management',
+      'Snakebite and poisoning treatment',
+      'Cardiac, diabetes and blood pressure care',
     ],
   },
 ];
 
-const phone = '+918819221778';
+import { phone } from '../data/contact';
 
 function useDoctorPortraitEffects() {
   useEffect(() => {
@@ -81,7 +80,9 @@ export function DoctorsSection() {
     <section className="section section-white doctors-section" id="doctors" aria-labelledby="doctors-heading">
       <div className="container">
         <div className="section-heading reveal">
+          <span className="eyebrow">Meet your doctors</span>
           <h2 id="doctors-heading">Meet your <em>doctor</em></h2>
+          <p>The doctor who sees patients at Sri Balaji Hospital, Tanuku.</p>
         </div>
         <div className="doctor-grid">
           {doctors.map((doctor, doctorIndex) => (
@@ -129,11 +130,7 @@ export function DoctorsSection() {
                     </li>
                   ))}
                 </ul>
-                <div className="doctor-caption doctor-staged" style={{ transitionDelay: '600ms' }}>
-                  <h4>What patients can expect</h4>
-                  <p>{doctor.caption}</p>
-                </div>
-                <div className="doctor-actions doctor-staged" style={{ transitionDelay: '660ms' }}>
+                <div className="doctor-actions doctor-staged" style={{ transitionDelay: '600ms' }}>
                   <a
                     className="button button-primary"
                     href={`tel:${phone}`}
