@@ -106,6 +106,17 @@ function SiteHeader() {
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [isStandalonePage]);
+  // While the phone menu is open: lock page scroll and let Escape close it.
+  useEffect(() => {
+    if (!menuOpen) return;
+    document.body.classList.add('menu-open');
+    const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setMenuOpen(false); };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.body.classList.remove('menu-open');
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [menuOpen]);
   const closeMenu = () => setMenuOpen(false);
   const homePrefix = isStandalonePage ? '/' : '';
   const navLink = (section: string) => `${homePrefix}#${section}`;
@@ -124,7 +135,10 @@ function SiteHeader() {
           <a href={navLink('reviews')} aria-current={activeSection === 'reviews' ? 'location' : undefined} data-testid="link-nav-reviews" onClick={closeMenu}>Reviews</a>
           <a href={navLink('faq')} aria-current={activeSection === 'faq' ? 'location' : undefined} data-testid="link-nav-faq" onClick={closeMenu}>FAQ</a>
           <a href={navLink('visit')} aria-current={activeSection === 'visit' ? 'location' : undefined} data-testid="link-nav-visit" onClick={closeMenu}>Visit us</a>
-          <a className="nav-mobile-call" href={`tel:${phone}`} onClick={closeMenu}>Call now</a>
+          <div className="nav-mobile-actions">
+            <a className="nav-mobile-call" href={`tel:${phone}`} onClick={closeMenu}><PhoneIcon /> Call {phoneLabel}</a>
+            <a className="nav-mobile-directions" href={directions} target="_blank" rel="noreferrer" onClick={closeMenu}><MapPin size={17} aria-hidden="true" /> Get directions</a>
+          </div>
         </nav>
         <div className="header-contact-actions">
           <a className="nav-call" href={`tel:${phone}`} data-testid="button-call-header"><PhoneIcon /> Call now</a>
@@ -447,10 +461,11 @@ function Gallery() {
             <a className="gallery-preview-card gallery-tile reveal" href="#gallery-view" key={item.id} style={{ '--gallery-index': index, '--r': ratioOf(item.src), width: boxes[index]?.width || undefined, height: boxes[index]?.height || undefined } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
               <img src={item.src} alt={item.alt} loading="lazy" decoding="async" data-testid={`image-hospital-${index + 1}`} />
               <span className="gallery-caption">{item.caption}</span>
+              {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </a>
           ))}
         </div>
-        {galleryItems.length < 4 && <p className="gallery-soon">More photographs of the hospital will be added soon.</p>}
+        {galleryItems.some((item) => item.sample) && <p className="gallery-soon">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>}
         <div className="gallery-view-link-row">
           <a className="gallery-view-link" href="#gallery-view">
             {galleryItems.length > 5 ? 'View more photos' : 'View photos'} <ArrowRight size={18} aria-hidden="true" />
@@ -709,9 +724,30 @@ function Footer() {
   );
 }
 
+// The floating Call / Directions bar stays hidden while the hero's own buttons are on screen,
+// and slides up once the visitor scrolls past them.
 function MobileActions() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const heroActions = document.querySelector('.sbh-actions');
+      const passed = heroActions ? heroActions.getBoundingClientRect().bottom < 0 : window.scrollY > window.innerHeight * 0.6;
+      setVisible(passed);
+    };
+    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
   return (
-    <div className="mobile-actions" aria-label="Quick contact">
+    <div className={`mobile-actions${visible ? ' is-visible' : ''}`} aria-label="Quick contact" aria-hidden={!visible} inert={!visible}>
       <a className="call" href={`tel:${phone}`} data-testid="button-call-mobile"><PhoneIcon /> Call</a>
       <a className="directions" href={directions} target="_blank" rel="noreferrer" data-testid="button-directions-mobile"><MapPin size={17} aria-hidden="true" /> Directions</a>
     </div>

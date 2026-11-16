@@ -216,8 +216,8 @@ export function GalleryPage() {
         </div>
         )}
 
-        {galleryItems.length < 4 && (
-          <p className="gallery-empty-note">More photographs of the hospital will be added soon.</p>
+        {galleryItems.some((item) => item.sample) && (
+          <p className="gallery-empty-note">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>
         )}
         <div ref={gridRef} className="gallery-page-grid gallery-rows" style={{ gap }}>
           {visibleItems.map((item, index) => (
@@ -235,6 +235,7 @@ export function GalleryPage() {
             >
               <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
               <span className="gallery-caption">{item.caption}</span>
+              {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </button>
           ))}
         </div>

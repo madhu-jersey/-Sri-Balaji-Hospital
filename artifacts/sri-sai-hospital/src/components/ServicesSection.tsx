@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { Activity, Bandage, Brain, Check, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
+import { Activity, Bandage, Brain, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
 
 // Departments, sub-services and equipment as listed in the hospital's own brochure (supplied by the owner, Nov 2026).
 const departments: { title: string; short: string; text: string; icon: LucideIcon; items: string[] }[] = [
@@ -119,6 +119,7 @@ import { phone, phoneLabel } from '../data/contact';
 // Keeps every department the same footprint and shows all sub-services without tall cards.
 export function ServicesSection() {
   const [active, setActive] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState<number | null>(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const department = departments[active];
   const Icon = department.icon;
@@ -200,6 +201,45 @@ export function ServicesSection() {
               <PhoneCall size={17} aria-hidden="true" /> Call {phoneLabel} to ask about {department.title.toLowerCase()}
             </a>
           </div>
+        </div>
+
+        {/* Phones: one tidy card per department; tap to open its full list. Shown instead of the tabs below 760px. */}
+        <div className="svc-acc">
+          {departments.map(({ title, text, icon: ItemIcon, items }, index) => {
+            const open = mobileOpen === index;
+            return (
+              <article className={`svc-acc-item reveal${open ? ' is-open' : ''}`} key={title} style={{ '--motion-delay': `${index * 50}ms` } as React.CSSProperties}>
+                <h3>
+                  <button
+                    type="button"
+                    className="svc-acc-head"
+                    aria-expanded={open}
+                    aria-controls={`svc-acc-panel-${index + 1}`}
+                    id={`svc-acc-head-${index + 1}`}
+                    onClick={() => setMobileOpen(open ? null : index)}
+                  >
+                    <span className="svc-acc-icon"><ItemIcon size={22} strokeWidth={1.7} aria-hidden="true" /></span>
+                    <span className="svc-acc-text">
+                      <span className="svc-acc-title">{title}</span>
+                      <span className="svc-acc-count">{items.length} services</span>
+                    </span>
+                    <span className="svc-acc-chevron" aria-hidden="true"><ChevronDown size={18} strokeWidth={2.2} /></span>
+                  </button>
+                </h3>
+                <div className="svc-acc-panel" id={`svc-acc-panel-${index + 1}`} role="region" aria-labelledby={`svc-acc-head-${index + 1}`} inert={!open}>
+                  <div className="svc-acc-inner">
+                    <p className="svc-acc-desc">{text}</p>
+                    <ul className="svc-acc-list">
+                      {items.map((item) => (
+                        <li key={item}><span className="svc-check" aria-hidden="true"><Check size={11} strokeWidth={2.6} /></span>{item}</li>
+                      ))}
+                    </ul>
+                    <a className="svc-acc-call" href={`tel:${phone}`}><PhoneCall size={16} aria-hidden="true" /> Call {phoneLabel}</a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

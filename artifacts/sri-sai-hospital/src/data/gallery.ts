@@ -19,6 +19,7 @@ export type GalleryItem = {
   caption: string;
   category: string;
   categoryLabel: string;
+  sample?: boolean;
 };
 
 // Folders listed here appear first, in this order; any other folder follows alphabetically.
@@ -67,6 +68,32 @@ const uploaded: GalleryItem[] = Object.entries(files)
     || a.category.localeCompare(b.category)
     || a.id.localeCompare(b.id, undefined, { numeric: true }));
 
+/*
+  Sample illustrations (src/assets/gallery-samples/) fill the gallery until real photos are added.
+  They are drawn scenes, not photographs of this hospital, and are labelled "Sample" on the page.
+  They disappear automatically once 4 or more real photos are in src/assets/gallery/.
+*/
+const sampleFiles = import.meta.glob<string>('../assets/gallery-samples/*.svg', { eager: true, query: '?url', import: 'default' });
+const sampleOrder: { file: string; caption: string; category: string }[] = [
+  { file: 'reception', caption: 'Reception', category: 'reception' },
+  { file: 'ward', caption: 'Patient ward', category: 'ward' },
+  { file: 'icu', caption: 'ICU', category: 'icu' },
+  { file: 'waiting-area', caption: 'Waiting area', category: 'waiting-area' },
+  { file: 'consultation-room', caption: 'Consultation room', category: 'consultation' },
+];
+const samples: GalleryItem[] = sampleOrder.flatMap(({ file, caption, category }) => {
+  const src = sampleFiles[`../assets/gallery-samples/${file}.svg`];
+  return src ? [{
+    id: `sample-${file}`,
+    src,
+    alt: `Sample illustration of a hospital ${caption.toLowerCase()}`,
+    caption,
+    category,
+    categoryLabel: toLabel(category),
+    sample: true,
+  }] : [];
+});
+
 // The building photo already used in the hero always leads the gallery.
 export const galleryItems: GalleryItem[] = [
   {
@@ -78,6 +105,7 @@ export const galleryItems: GalleryItem[] = [
     categoryLabel: 'Building',
   },
   ...uploaded,
+  ...(uploaded.length < 4 ? samples : []),
 ];
 
 export const galleryCategories: { value: string; label: string }[] = Array.from(

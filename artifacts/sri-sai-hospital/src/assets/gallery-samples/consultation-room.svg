@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200">
+  <defs><linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F8FE"/><stop offset="1" stop-color="#E1EAF7"/></linearGradient></defs>
+  <rect width="1200" height="1200" fill="url(#w)"/>
+  <rect y="880" width="1200" height="320" fill="#C8D7EE"/>
+  <path d="M0 880h1200" stroke="#AFC3E2" stroke-width="4"/>
+  <rect x="120" y="170" width="300" height="220" rx="16" fill="#fff" stroke="#D6E2F3" stroke-width="6"/>
+  <rect x="150" y="210" width="240" height="14" rx="7" fill="#0B4FC4"/><rect x="150" y="248" width="180" height="12" rx="6" fill="#9FBEEE"/><rect x="150" y="280" width="210" height="12" rx="6" fill="#9FBEEE"/><rect x="150" y="312" width="150" height="12" rx="6" fill="#9FBEEE"/>
+  <rect x="520" y="160" width="140" height="180" rx="14" fill="#fff" stroke="#D6E2F3" stroke-width="6"/><path d="M590 200v100M545 250h90" stroke="#D12C38" stroke-width="22" stroke-linecap="round"/>
+  <rect x="160" y="620" width="560" height="44" rx="14" fill="#C9A27A"/><rect x="190" y="664" width="22" height="220" rx="10" fill="#A9825C"/><rect x="668" y="664" width="22" height="220" rx="10" fill="#A9825C"/>
+  <rect x="260" y="520" width="170" height="104" rx="10" fill="#1E2D4C"/><rect x="272" y="532" width="146" height="80" rx="6" fill="#5C9BF0"/>
+  <path d="M520 600c-20-50 30-60 40-30s50 40 70 20" fill="none" stroke="#1E2D4C" stroke-width="8" stroke-linecap="round"/><circle cx="640" cy="588" r="16" fill="#8FA6CC"/>
+  <rect x="390" y="560" width="130" height="150" rx="30" fill="#2E6FD6"/><rect x="380" y="700" width="150" height="40" rx="16" fill="#0B4FC4"/><rect x="448" y="740" width="14" height="140" rx="7" fill="#5C83C4"/><rect x="400" y="872" width="110" height="12" rx="6" fill="#5C83C4"/>
+  <rect x="780" y="760" width="350" height="22" rx="10" fill="#7C97C2"/><rect x="790" y="700" width="330" height="70" rx="22" fill="#fff" stroke="#C9D8EE" stroke-width="6"/><rect x="790" y="650" width="120" height="70" rx="26" fill="#F6F9FF" stroke="#DCE6F5" stroke-width="5"/><rect x="820" y="770" width="18" height="114" rx="9" fill="#5C83C4"/><rect x="1070" y="770" width="18" height="114" rx="9" fill="#5C83C4"/>
+  <g transform="translate(1080 400)"><rect x="-40" y="180" width="80" height="60" rx="12" fill="#fff"/><path d="M0 180c-50-34-60-120 0-160 60 40 50 126 0 160z" fill="#4CAF7A"/></g>
+  <ellipse cx="600" cy="1020" rx="460" ry="28" fill="#9EB6DC" opacity=".5"/>
+</svg>

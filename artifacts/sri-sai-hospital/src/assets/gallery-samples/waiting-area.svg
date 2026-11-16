@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000">
+  <defs>
+    <linearGradient id="w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F5F8FE"/><stop offset="1" stop-color="#E3ECF8"/></linearGradient>
+    <g id="chair"><rect x="0" y="-80" width="150" height="96" rx="24" fill="#5C9BF0"/><rect x="0" y="0" width="150" height="70" rx="22" fill="#2E6FD6"/><rect x="18" y="70" width="12" height="90" rx="6" fill="#5C83C4"/><rect x="120" y="70" width="12" height="90" rx="6" fill="#5C83C4"/></g>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#w)"/>
+  <rect y="740" width="1600" height="260" fill="#CAD8EE"/>
+  <path d="M0 740h1600" stroke="#AFC3E2" stroke-width="4"/>
+  <rect y="430" width="1600" height="16" fill="#D6E2F3"/>
+  <circle cx="800" cy="210" r="86" fill="#fff" stroke="#0B4FC4" stroke-width="12"/><path d="M800 210v-52M800 210l40 24" stroke="#0D1F45" stroke-width="10" stroke-linecap="round"/>
+  <rect x="1100" y="150" width="340" height="200" rx="18" fill="#1E2D4C"/><rect x="1116" y="166" width="308" height="168" rx="10" fill="#5C9BF0"/><path d="M1150 290l70-60 60 40 80-70 50 40v80h-260z" fill="#8EC2F5"/>
+  <use href="#chair" x="160" y="590"/><use href="#chair" x="330" y="590"/><use href="#chair" x="500" y="590"/><use href="#chair" x="670" y="590"/><use href="#chair" x="840" y="590"/>
+  <rect x="140" y="660" width="900" height="16" rx="8" fill="#5C83C4"/>
+  <g transform="translate(1250 470)"><rect x="0" y="0" width="140" height="290" rx="22" fill="#fff" stroke="#C9D8EE" stroke-width="6"/><rect x="25" y="-120" width="90" height="130" rx="30" fill="#BFE0FF" stroke="#9FBEEE" stroke-width="6"/><rect x="40" y="70" width="60" height="16" rx="8" fill="#0B4FC4"/><rect x="40" y="110" width="60" height="16" rx="8" fill="#D12C38"/></g>
+  <g transform="translate(1490 600)"><rect x="-45" y="80" width="90" height="70" rx="14" fill="#fff"/><path d="M0 80c-60-40-70-140 0-190 70 50 60 150 0 190z" fill="#4CAF7A"/></g>
+  <ellipse cx="620" cy="880" rx="480" ry="26" fill="#9EB6DC" opacity=".5"/>
+</svg>
