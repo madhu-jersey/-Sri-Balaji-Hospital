@@ -211,7 +211,6 @@ export function FaqSection() {
                     aria-controls={answerId}
                     onClick={() => setOpenQuestion(isOpen ? null : index)}
                   >
-                    <span className="fq-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                     <span className="fq-text">{question}</span>
                     <span className="fq-toggle" aria-hidden="true"><Plus size={18} strokeWidth={2.2} /></span>
                   </button>

@@ -39,14 +39,12 @@
 
 /* Touch feedback: everything tappable gives a soft press */
 @media (hover: none) and (prefers-reduced-motion: no-preference) {
-  .button, .sbh-button, .sbr-button, .fq-question, .fq-help-call, .svc-tab, .gallery-tile,
-  .gallery-view-link, .mobile-actions a, .svc-call, .nav-call {
+  .button, .sbh-button, .sbr-button, .fq-question, .fq-help-call, .svc-tab, .gallery-view-link, .mobile-actions a, .svc-call, .nav-call {
     transition: transform .25s cubic-bezier(.16, 1, .3, 1), background-color .25s ease, box-shadow .25s ease;
     -webkit-tap-highlight-color: transparent;
   }
   .button:active, .sbh-button:active, .sbr-button:active, .fq-help-call:active, .svc-tab:active,
   .gallery-view-link:active, .mobile-actions a:active, .nav-call:active { transform: scale(.96); }
-  .gallery-tile:active { transform: scale(.98); }
   .fq-question:active { background: rgba(11, 79, 196, .04); }
 }
 

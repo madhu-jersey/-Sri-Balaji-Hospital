@@ -41,35 +41,20 @@ main {
   main .info-page.is-visible .info-intro > p { transition-delay: 80ms; }
 
   /* Staggers inside grids */
-  main .service-grid > :nth-child(2), main .sbr-grid > :nth-child(2), main .gallery-preview-grid > :nth-child(2) { --motion-delay: 70ms; }
-  main .service-grid > :nth-child(3), main .sbr-grid > :nth-child(3), main .gallery-preview-grid > :nth-child(3) { --motion-delay: 140ms; }
-  main .service-grid > :nth-child(4), main .gallery-preview-grid > :nth-child(4) { --motion-delay: 210ms; }
-  main .service-grid > :nth-child(5), main .gallery-preview-grid > :nth-child(5) { --motion-delay: 280ms; }
-  main .service-grid > :nth-child(6), main .gallery-preview-grid > :nth-child(6) { --motion-delay: 350ms; }
+  main .sbr-grid > :nth-child(2) { --motion-delay: 70ms; }
+  main .sbr-grid > :nth-child(3) { --motion-delay: 140ms; }
   main .sbr-summary { --motion-delay: 0ms; }
 
   /* Why-choose and FAQ items are revealed by their section; same entrance, staggered by index */
-  main .info-page .reason-card,
-  main .info-page .faq-item { animation: none !important; opacity: 0; translate: 0 18px; }
-  main .info-page.is-visible .reason-card,
-  main .info-page.is-visible .faq-item {
-    animation: sb-motion-in var(--motion-reveal) var(--motion-ease) calc(160ms + var(--item-index, 0) * 70ms) both !important;
-  }
   @keyframes sb-motion-in {
     from { opacity: 0; translate: 0 18px; }
     to { opacity: 1; translate: none; }
   }
 
   /* Hover: a gentle lift, a deeper soft shadow and the icon tile filling blue */
-  main .service-card,
-  main .reason-card,
-  main .sbr-card,
-  main .faq-item,
-  main .doctor-card {
+  main .sbr-card {
     transition: transform .45s var(--motion-ease), box-shadow .45s var(--motion-ease), border-color .45s ease, background-color .45s ease;
   }
-  main .service-card.is-visible:hover,
-  main .info-page.is-visible .reason-card:hover,
   main .sbr-card.is-visible:hover {
     transform: translateY(-4px) !important;
     border-color: #C5D6EF;
@@ -77,18 +62,8 @@ main {
     transition-delay: 0ms !important;
   }
   main .reveal.is-visible:hover { transition-delay: 0ms !important; }
-  main .service-icon,
-  main .reason-icon { transition: background-color .45s var(--motion-ease), color .45s var(--motion-ease), transform .45s var(--motion-ease); }
-  main .service-card:hover .service-icon,
-  main .reason-card:hover .reason-icon { background: #0B4FC4; color: #fff; transform: scale(1.06); }
-  main .info-page .faq-item:hover { border-color: #C5D6EF; }
 
   /* Images: settle from a slight zoom when revealed, and ease in on hover */
-  main .gallery-preview-card img,
-  main .doctor-image img { scale: 1.06; transition: scale 1.4s var(--motion-ease); }
-  main .gallery-preview-card.is-visible img,
-  main .doctor-card.is-visible .doctor-image img { scale: 1; }
-  main .gallery-preview-card.is-visible:hover img { scale: 1.04; transition-duration: .8s; }
 
   /* Buttons and links: a short lift and an arrow nudge */
   main .button,
@@ -119,9 +94,7 @@ main {
 
 /* Reduced motion: everything in place, no movement */
 @media (prefers-reduced-motion: reduce) {
-  main .reveal,
-  main .info-page .reason-card,
-  main .info-page .faq-item { opacity: 1 !important; translate: none !important; filter: none !important; transform: none !important; animation: none !important; transition: none !important; }
+  main .reveal { opacity: 1 !important; translate: none !important; filter: none !important; transform: none !important; animation: none !important; transition: none !important; }
 }
 
 /* No blur in scroll reveals: animating blur is expensive while scrolling on phones. Also neutralises older blur rules. */

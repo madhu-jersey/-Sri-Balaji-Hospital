@@ -75,23 +75,8 @@ main .info-intro > p {
   line-height: 1.6;
 }
 main .section-heading { margin-bottom: 44px; text-align: left; }
-.sb-why-heading .sb-wordmark {
-  display: inline-block;
-  font-family: 'Anton', 'Plus Jakarta Sans', sans-serif;
-  font-weight: 400;
-  font-size: 1em;
-  letter-spacing: .01em;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--sb-deep);
-  vertical-align: baseline;
-}
 
 /* Shared card language */
-main .service-card,
-main .reason-card,
-main .why-choose-page .reason-card,
-main .faq-item,
 .sbr-summary,
 .sbr-card {
   border: 1px solid var(--sb-line);
@@ -101,56 +86,13 @@ main .faq-item,
 }
 
 /* Services */
-main .service-grid { gap: 20px; }
-main .service-card { min-height: 0; padding: 28px 28px 26px; }
-main .service-card::before,
-main .service-card::after { display: none; }
-main .service-icon {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 20px;
-  border-radius: 18px;
-  background: var(--sb-tile);
-  color: var(--sb-blue);
-}
-main .service-icon svg { width: 24px; height: 24px; }
-main .service-card h3 { margin: 0 0 10px; color: var(--sb-ink); font: 600 20px/1.3 'Plus Jakarta Sans', sans-serif; letter-spacing: -.02em; }
-main .service-card p { margin: 0; color: var(--sb-muted); font-size: 15px; line-height: 1.65; }
-main .service-arrow { display: none; }
 
 /* Why choose: tinted cards on white, like the reference */
-main .reason-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 44px; }
-main .reason-card,
-main .why-choose-page .reason-card { min-height: 0; padding: 26px 26px 28px; background: #F6F9FE; box-shadow: none; }
-main .reason-icon {
-  display: grid;
-  place-items: center;
-  width: 50px;
-  height: 50px;
-  margin-bottom: 20px;
-  border-radius: 16px;
-  background: var(--sb-tile);
-  color: var(--sb-blue);
-}
-main .reason-card h3 { margin: 0 0 10px; color: var(--sb-ink); font: 600 19px/1.3 'Plus Jakarta Sans', sans-serif; letter-spacing: -.02em; }
-main .reason-card p { margin: 0; color: var(--sb-muted); font-size: 15px; line-height: 1.7; }
 /* premium.css once made this section dark; bring it back to the light card language */
-main .why-choose-page .reason-card h3 { color: var(--sb-ink); }
-main .why-choose-page .reason-card p,
 main .why-choose-page .info-intro > p { color: var(--sb-muted); }
-main .why-choose-page .reason-icon { background: var(--sb-tile); color: var(--sb-blue); box-shadow: none; }
-main .why-choose-page .reason-card:hover { background: #fff; border-color: var(--sb-line); box-shadow: var(--sb-card-shadow); }
-main .why-choose-page .info-doctor-link { border-color: var(--sb-line); background: #fff; color: var(--sb-ink); }
-main .why-choose-page .info-doctor-link svg { color: var(--sb-blue) !important; }
-main .why-choose-page .info-book-button { background: var(--sb-blue); color: #fff; box-shadow: 0 12px 24px rgba(11, 79, 196, .24); }
-main .why-choose-page .info-book-button:hover { background: var(--sb-deep); color: #fff; }
 main .why-choose-page :focus-visible { outline-color: var(--sb-blue); }
-main .info-doctors { margin-top: 40px; }
 
 /* Doctor */
-main .doctor-card { border: 1px solid var(--sb-line); border-radius: 32px; background: #fff; box-shadow: var(--sb-card-shadow); }
 main .doctor-name { color: var(--sb-ink); }
 main .doctor-specialty { color: var(--sb-blue); }
 
@@ -160,7 +102,6 @@ main .button-primary { background: var(--sb-blue); color: #fff; box-shadow: 0 8p
 main .button-primary:hover { background: var(--sb-deep); }
 
 /* Gallery */
-main .gallery-preview-card { border-radius: 24px; }
 main .gallery-view-link {
   display: inline-flex;
   align-items: center;
@@ -224,11 +165,7 @@ main .gallery-view-link:hover { background: var(--sb-tile); }
 .sbr-source { color: var(--sb-muted); font-size: 14px; white-space: nowrap; }
 
 /* FAQ */
-main .faq-list { display: grid; gap: 14px; margin-top: 48px; }
-main .faq-item { border-radius: 22px; box-shadow: none; overflow: hidden; }
 main .faq-question { padding-inline: 28px; color: var(--sb-ink); }
-main .faq-answer-inner p { padding-inline: 28px; color: var(--sb-muted); }
-main .faq-contact a { color: var(--sb-blue); font-weight: 700; }
 
 /* Visit us: big phone pill, white hours card, rounded map */
 main .visit-panel { display: grid; gap: 24px; align-content: start; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; }
@@ -251,7 +188,6 @@ main .map-frame { border-color: var(--sb-line); border-radius: 28px; box-shadow:
 @media (max-width: 1100px) {
   .sbr-layout { grid-template-columns: 1fr; }
   .sbr-summary { position: static; }
-  main .reason-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
   main .section,
@@ -260,15 +196,6 @@ main .map-frame { border-color: var(--sb-line); border-radius: 28px; box-shadow:
   main .section-heading h2,
   main .info-heading h2,
   main .why-choose-page .info-heading h2 { font-size: clamp(28px, 8vw, 36px); }
-  main .reason-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
-  main .service-grid { gap: 14px; }
-  main .service-card,
-  main .reason-card,
-  main .why-choose-page .reason-card { padding: 24px 22px; border-radius: 22px; }
-  main .service-icon,
-  main .reason-icon { width: 54px; height: 54px; margin-bottom: 18px; }
-  main .service-card h3,
-  main .reason-card h3 { font-size: 18px; }
   .sbr-grid { grid-template-columns: 1fr; gap: 14px; }
   .sbr-card { padding: 26px 22px 22px; border-radius: 22px; }
   .sbr-card blockquote { font-size: 16px; }

@@ -17,44 +17,12 @@
   .section-heading p { font-size: 15px; }
 
   /* Services: icon beside the text instead of stacked, so six cards fit in about two screens. */
-  .service-grid { gap: 10px; grid-auto-rows: auto; }
-  .service-card {
-    display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
-    column-gap: 14px;
-    align-items: start;
-    min-height: 0;
-    padding: 16px 16px 16px 14px;
-  }
-  .service-card .service-icon { grid-row: 1 / span 2; }
-  .service-card h3 { margin: 1px 0 4px; font-size: 16px; }
-  .service-card p { grid-column: 2; font-size: 13.5px; line-height: 1.55; }
-  .service-arrow { display: none; }
 
   /* Why choose us: same compact pattern. */
-  .reason-grid { gap: 10px; }
-  .reason-card {
-    display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
-    column-gap: 14px;
-    align-items: start;
-    min-height: 0;
-    padding: 16px 16px 16px 14px;
-  }
-  .reason-icon { grid-row: 1 / span 2; width: 42px; height: 42px; margin: 0; border-radius: 12px; }
-  .reason-icon svg { width: 20px; height: 20px; }
-  .reason-card h3 { margin: 1px 0 4px; font-size: 16px; }
-  .reason-card p { grid-column: 2; font-size: 13.5px; line-height: 1.55; }
-  .info-doctors { gap: 10px; }
 
   /* Doctor card */
-  .doctor-image { width: 100%; max-height: 380px; aspect-ratio: 4 / 5; }
-  .doctor-image img { object-position: 60% 18%; }
-  .doctor-actions .button { width: 100%; justify-content: center; }
 
   /* Reviews */
-  .review-feature { padding: 22px 18px; }
-  .review-mini { padding: 20px 18px; }
 
   /* Visit */
   .visit-value.address { font-size: 16px; }
@@ -72,7 +40,6 @@
 
 @media (max-width: 380px) {
   .brand-name small { font-size: 10.5px; }
-  .vh-hero h1 { font-size: 42px; }
   .hours-row { flex-wrap: wrap; }
   .hours-row span:last-child { white-space: normal; }
 }

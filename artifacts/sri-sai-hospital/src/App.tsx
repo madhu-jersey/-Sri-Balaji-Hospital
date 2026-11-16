@@ -106,7 +106,7 @@ function SiteHeader() {
     <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-inner">
         <a className="brand" href={navLink('home')} aria-label="Sri Balaji Hospital home" data-testid="link-brand-home" onClick={closeMenu}>
-          <img src="/assets/sri-balaji-hospital-logo.png" alt="Sri Balaji Hospital logo" />
+          <img src="/icon-192.png" alt="Sri Balaji Hospital logo" width="192" height="192" />
           <span className="brand-name">Sri Balaji Hospital<small>Sajjapuram · Tanuku</small></span>
         </a>
         <nav className={`nav-links${menuOpen ? ' open' : ''}`} aria-label="Main navigation">
@@ -228,7 +228,7 @@ function Gallery() {
         <div className="gallery-grid">
           {homeGalleryItems.map((item, index) => (
             <a className="gallery-card reveal" href="#gallery-view" key={item.id} style={{ '--motion-delay': `${(index % 3) * 70}ms` } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
-              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} data-testid={`image-hospital-${index + 1}`} />
+              <img src={item.src} alt={item.alt} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} data-testid={`image-hospital-${index + 1}`} />
               <span className="gallery-caption">{item.caption}</span>
               {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </a>
@@ -407,7 +407,7 @@ function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand reveal" style={{ '--footer-index': 0 } as React.CSSProperties}>
-            <img src="/assets/sri-balaji-hospital-logo.png" alt="Sri Balaji Hospital logo" />
+            <img src="/icon-192.png" alt="Sri Balaji Hospital logo" width="192" height="192" />
             <h2>Sri Balaji Hospital</h2>
             <p className="font-telugu" lang="te">శ్రీ బాలాజీ హాస్పిటల్</p>
             <p className="footer-location">Sajjapuram, Andhra Pradesh 534211</p>
@@ -492,7 +492,7 @@ function App() {
     const pageMetadata = {
       home: {
         title: 'Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku',
-        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku – 24/7 emergency hospital with ICU, ventilator and critical care, general medicine and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778.',
+        description: 'Sri Balaji Hospital, Tanuku – 24/7 emergency hospital with ICU, critical care and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778.',
       },
       gallery: {
         title: 'Gallery · Sri Balaji Hospital Tanuku',

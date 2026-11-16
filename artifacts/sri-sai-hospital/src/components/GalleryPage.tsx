@@ -227,7 +227,7 @@ export function GalleryPage() {
               onKeyDown={(event) => openWithKeyboard(event, item)}
               aria-label={`Open ${item.caption}`}
             >
-              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} />
+              <img src={item.src} alt={item.alt} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} />
               <span className="gallery-caption">{item.caption}</span>
               {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </button>

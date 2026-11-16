@@ -289,3 +289,7 @@
   .sbh-emergency-row dt span { animation: sbh-pulse-dot 2.4s ease-in-out infinite; }
   @keyframes sbh-pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 rgba(209, 44, 56, .35); } 50% { box-shadow: 0 0 0 5px rgba(209, 44, 56, 0); } }
 }
+
+/* The tag line now sits inside the h1 (for search); keep it looking like the tag above the name. */
+.sbh-hero h1 .sbh-pill { display: flex; width: max-content; max-width: 100%; }
+.sbh-h1-sep { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }

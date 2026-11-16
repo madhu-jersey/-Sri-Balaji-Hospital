@@ -70,9 +70,11 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
     <section className="sbh-hero" id="home" aria-labelledby="hero-title" ref={heroRef}>
       <div className="container sbh-inner">
         <div className="sbh-copy">
-          <p className="sbh-pill"><span aria-hidden="true" /> 24/7 Emergency Hospital in Tanuku</p>
+          {/* One heading for search engines: "24/7 Emergency Hospital in Tanuku – Sri Balaji Hospital" (looks unchanged). */}
           <h1 id="hero-title">
-            <span className="sbh-wordmark">Sri Balaji</span>
+            <span className="sbh-pill"><span aria-hidden="true" /> 24/7 Emergency Hospital in Tanuku</span>
+            <span className="sbh-h1-sep"> – </span>
+            <span className="sbh-wordmark">Sri Balaji</span>{' '}
             <span className="sbh-subtitle">Hospital</span>
           </h1>
           <p className="sbh-telugu font-telugu" lang="te" data-testid="text-hospital-name-telugu">శ్రీ బాలాజీ హాస్పిటల్</p>
@@ -103,7 +105,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
             />
           </figure>
           <span className="sbh-badge">
-            <img src="/assets/sri-balaji-hospital-logo.png" alt="" width="96" height="96" />
+            <img src="/icon-192.png" alt="" width="192" height="192" />
           </span>
 
           <div className="sbh-hours" aria-labelledby="sbh-hours-title">

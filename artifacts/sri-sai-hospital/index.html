@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--
       Search targets: "sri balaji hospital tanuku", "balaji hospital tanuku", "emergency hospital in tanuku".
       When the domain is bought, add:  <link rel="canonical" href="https://YOUR-DOMAIN/" />
       and the matching og:url, then fill public/sitemap.xml and submit it in Google Search Console.
     -->
     <title>Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku</title>
-    <meta name="description" content="Sri Balaji Hospital, Sajjapuram, Tanuku – 24/7 emergency hospital with ICU, ventilator and critical care, general medicine and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778." />
+    <meta name="description" content="Sri Balaji Hospital, Tanuku – 24/7 emergency hospital with ICU, critical care and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778." />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="geo.region" content="IN-AP" />
     <meta name="geo.placename" content="Tanuku" />
@@ -26,8 +26,11 @@
     <meta name="twitter:description" content="24/7 emergency and critical care hospital in Sajjapuram, Tanuku. Call 08819 221778." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" />
-    <link rel="icon" type="image/png" href="/assets/sri-balaji-hospital-logo.png" />
+    <!-- Hero photo is the largest thing on the first screen: start downloading it immediately. -->
+    <link rel="preload" as="image" href="/assets/hero-sri-balaji-building.webp" fetchpriority="high" />
+    <!-- Display font loads without blocking the first paint (text shows in a fallback font for a moment). -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap" /></noscript>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
