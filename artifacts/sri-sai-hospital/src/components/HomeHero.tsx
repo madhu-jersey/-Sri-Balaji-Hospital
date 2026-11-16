@@ -57,9 +57,17 @@ function usePointerDrift() {
 export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroProps) {
   const isOpen = isOpenAt(useNow());
   const visualRef = usePointerDrift();
+  const heroRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+    const observer = new IntersectionObserver(([entry]) => hero.classList.toggle('is-offscreen', !entry.isIntersecting));
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section className="sbh-hero" id="home" aria-labelledby="hero-title">
+    <section className="sbh-hero" id="home" aria-labelledby="hero-title" ref={heroRef}>
       <div className="container sbh-inner">
         <div className="sbh-copy">
           <p className="sbh-pill"><span aria-hidden="true" /> 24/7 Emergency Hospital in Tanuku</p>

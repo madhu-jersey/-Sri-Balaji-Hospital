@@ -69,28 +69,23 @@ function SiteHeader() {
   const [activeSection, setActiveSection] = useState('');
   const isStandalonePage = isStandaloneRoute();
   useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      setScrolled(window.scrollY > 20);
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        frame = 0;
-        if (isStandaloneRoute()) {
-          setActiveSection('');
-          return;
-        }
-        const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
-        const current = sections.filter((section) => section.getBoundingClientRect().top <= 120).at(-1);
-        setActiveSection(current?.id ?? '');
-      });
-    };
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    // Reading scrollY alone never forces a layout, so this stays cheap on every scroll event.
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    if (isStandaloneRoute()) {
+      setActiveSection('');
+      return () => window.removeEventListener('scroll', onScroll);
+    }
+    // The section crossing a thin line just below the header is the current one.
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActiveSection((entry.target as HTMLElement).id); });
+    }, { rootMargin: '-120px 0px -70% 0px', threshold: 0 });
+    sections.forEach((section) => observer.observe(section));
     return () => {
-      window.removeEventListener('scroll', update);
-      window.removeEventListener('resize', update);
-      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', onScroll);
+      observer.disconnect();
     };
   }, [isStandalonePage]);
   // While the phone menu is open: lock page scroll and let Escape close it.
@@ -145,24 +140,26 @@ function PhoneIcon() {
 function ProgressLine() {
   const progressRef = useRef<HTMLSpanElement>(null);
   useEffect(() => {
+    let max = 1;
     let scheduled = false;
+    const measure = () => { max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight); };
     const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressRef.current) progressRef.current.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
       scheduled = false;
+      if (progressRef.current) progressRef.current.style.transform = `scaleX(${Math.min(1, window.scrollY / max)})`;
     };
     const onScroll = () => {
-      if (!scheduled) {
-        scheduled = true;
-        requestAnimationFrame(update);
-      }
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(update);
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    const resizeObserver = new ResizeObserver(() => { measure(); onScroll(); });
+    resizeObserver.observe(document.body);
+    measure();
     update();
+    window.addEventListener('scroll', onScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      resizeObserver.disconnect();
     };
   }, []);
   return <div className="top-progress" aria-hidden="true"><span ref={progressRef} /></div>;
@@ -446,22 +443,17 @@ function Footer() {
 function MobileActions() {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const heroActions = document.querySelector('.sbh-actions');
-      const passed = heroActions ? heroActions.getBoundingClientRect().bottom < 0 : window.scrollY > window.innerHeight * 0.6;
-      setVisible(passed);
-    };
-    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
-    update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
+    const heroActions = document.querySelector('.sbh-actions');
+    if (!heroActions) {
+      setVisible(true);
+      return;
+    }
+    // Visible when the hero buttons are off screen above (scrolled past), hidden while they are on screen.
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
+    }, { threshold: 0 });
+    observer.observe(heroActions);
+    return () => observer.disconnect();
   }, []);
   return (
     <div className={`mobile-actions${visible ? ' is-visible' : ''}`} aria-label="Quick contact" aria-hidden={!visible} inert={!visible}>

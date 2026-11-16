@@ -95,9 +95,10 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
   {
     title: 'Critical Care & Facilities',
     short: 'Critical Care',
-    text: 'Intensive care with continuous monitoring and life-support equipment.',
+    text: 'Modular operation theatre, intensive care with continuous monitoring, and life-support equipment.',
     icon: Activity,
     items: [
+      'Modular operation theatre',
       'Intensive Care Unit (ICU)',
       'Ventilator',
       'Central oxygen supply',

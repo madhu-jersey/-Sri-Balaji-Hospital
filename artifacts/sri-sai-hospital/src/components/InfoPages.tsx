@@ -24,7 +24,7 @@ const reasons = [
   },
   {
     title: 'Surgical Care',
-    text: 'General, laparoscopic, neuro and reconstructive surgery without travelling far.',
+    text: 'General, laparoscopic, neuro and reconstructive surgery in a modular operation theatre.',
     icon: Scissors,
   },
   {
