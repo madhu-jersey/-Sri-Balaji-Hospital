@@ -349,3 +349,16 @@ html, body { max-width: 100%; }
     background: rgba(255, 255, 255, .97);
   }
 }
+
+/* Phone service cards: a short, light open/close (no per-item animations; content fades, which is cheap) */
+@media (max-width: 760px) {
+  .svc-acc-panel { transition: grid-template-rows .3s cubic-bezier(.2, .8, .2, 1); }
+  .svc-acc-inner { contain: layout paint; opacity: 0; transition: opacity .18s ease; }
+  .svc-acc-item[data-open='true'] .svc-acc-inner { opacity: 1; transition: opacity .25s ease .06s; }
+  .svc-acc-item[data-open='true'] .svc-acc-list li { animation: none !important; }
+  .svc-acc-chevron { transition: transform .3s cubic-bezier(.2, .8, .2, 1), background-color .2s ease, color .2s ease; }
+  .svc-acc-icon { transition: background .2s ease, color .2s ease; }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+  .svc-acc-panel, .svc-acc-inner { transition: none; }
+}

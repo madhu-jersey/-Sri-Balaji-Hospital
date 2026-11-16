@@ -119,7 +119,13 @@ import { phone, phoneLabel } from '../data/contact';
 // Keeps every department the same footprint and shows all sub-services without tall cards.
 export function ServicesSection() {
   const [active, setActive] = useState(0);
-  const [mobileOpen, setMobileOpen] = useState<number | null>(0);
+  // Phone cards open and close independently, so opening one never shifts the page by collapsing another.
+  const [mobileOpen, setMobileOpen] = useState<Set<number>>(() => new Set([0]));
+  const toggleMobile = (index: number) => setMobileOpen((current) => {
+    const next = new Set(current);
+    if (next.has(index)) next.delete(index); else next.add(index);
+    return next;
+  });
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const department = departments[active];
   const Icon = department.icon;
@@ -206,7 +212,7 @@ export function ServicesSection() {
         {/* Phones: one tidy card per department; tap to open its full list. Shown instead of the tabs below 760px. */}
         <div className="svc-acc">
           {departments.map(({ title, text, icon: ItemIcon, items }, index) => {
-            const open = mobileOpen === index;
+            const open = mobileOpen.has(index);
             // className stays constant: the scroll-reveal observer adds is-visible to the DOM, and a re-render must not wipe it. Open state lives in data-open.
             return (
               <article className="svc-acc-item reveal" data-open={open} key={title} style={{ '--motion-delay': `${index * 50}ms` } as React.CSSProperties}>
@@ -217,7 +223,7 @@ export function ServicesSection() {
                     aria-expanded={open}
                     aria-controls={`svc-acc-panel-${index + 1}`}
                     id={`svc-acc-head-${index + 1}`}
-                    onClick={() => setMobileOpen(open ? null : index)}
+                    onClick={() => toggleMobile(index)}
                   >
                     <span className="svc-acc-icon"><ItemIcon size={22} strokeWidth={1.7} aria-hidden="true" /></span>
                     <span className="svc-acc-text">
