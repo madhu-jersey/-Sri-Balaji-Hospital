@@ -1,8 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
 import { galleryCategories, galleryItems, type GalleryItem } from '../data/gallery';
-import { useImageRatios } from '../hooks/useImageRatios';
-import { galleryRowOptions, useJustifiedLayout } from '../hooks/useJustifiedLayout';
 
 // Filters come from the photo folders that exist (see src/data/gallery.ts).
 const filters: { label: string; value: string }[] = [{ label: 'All', value: 'all' }, ...galleryCategories];
@@ -22,15 +20,11 @@ export function GalleryPage() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
   const reducedMotion = useRef(false);
-  const ratioOf = useImageRatios(galleryItems.map((item) => item.src));
-  const gridRef = useRef<HTMLDivElement>(null);
 
   const visibleItems = useMemo(
     () => galleryItems.filter((item) => displayFilter === 'all' || item.category === displayFilter),
     [displayFilter],
   );
-
-  const { boxes, gap } = useJustifiedLayout(gridRef, visibleItems.map((item) => ratioOf(item.src)), galleryRowOptions);
 
   useEffect(() => {
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -219,21 +213,21 @@ export function GalleryPage() {
         {galleryItems.some((item) => item.sample) && (
           <p className="gallery-empty-note">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>
         )}
-        <div ref={gridRef} className="gallery-page-grid gallery-rows" style={{ gap }}>
+        <div className="gallery-page-grid gallery-grid">
           {visibleItems.map((item, index) => (
             <button
               key={item.id}
               ref={(node) => setCardRef(item.id, node)}
               type="button"
-              className={`gallery-page-card gallery-tile reveal${revealedIds.has(item.id) ? ' is-visible' : ''}${exitingIds.has(item.id) ? ' is-exiting' : ''}${enteringIds.has(item.id) ? ' is-entering' : ''}`}
+              className={`gallery-page-card gallery-card reveal${revealedIds.has(item.id) ? ' is-visible' : ''}${exitingIds.has(item.id) ? ' is-exiting' : ''}${enteringIds.has(item.id) ? ' is-entering' : ''}`}
               data-gallery-card={item.id}
-              style={{ '--gallery-index': index, '--r': ratioOf(item.src), width: boxes[index]?.width || undefined, height: boxes[index]?.height || undefined } as CSSProperties}
+              style={{ '--gallery-index': index } as CSSProperties}
               disabled={exitingIds.has(item.id)}
               onClick={(event) => openLightbox(item, event.currentTarget)}
               onKeyDown={(event) => openWithKeyboard(event, item)}
               aria-label={`Open ${item.caption}`}
             >
-              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" />
+              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} />
               <span className="gallery-caption">{item.caption}</span>
               {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </button>

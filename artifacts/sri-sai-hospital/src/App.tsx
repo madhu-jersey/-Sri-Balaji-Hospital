@@ -5,10 +5,8 @@ import {
 import { DoctorsSection } from './components/DoctorsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { HomeHero } from './components/HomeHero';
-import { FaqSection, WhyChooseSection } from './components/InfoPages';
+import { FaqSection, InsuranceSection, WhyChooseSection } from './components/InfoPages';
 import { galleryItems } from './data/gallery';
-import { useImageRatios } from './hooks/useImageRatios';
-import { galleryRowOptions, useJustifiedLayout } from './hooks/useJustifiedLayout';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
@@ -216,12 +214,11 @@ function Doctors() {
   return <DoctorsSection />;
 }
 
-const homeGalleryItems = galleryItems.slice(0, 5);
+// Six photos fill two even rows of three (three rows of two on phones).
+const HOME_GALLERY_COUNT = 6;
+const homeGalleryItems = galleryItems.slice(0, HOME_GALLERY_COUNT);
 
 function Gallery() {
-  const ratioOf = useImageRatios(homeGalleryItems.map((item) => item.src));
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const { boxes, gap } = useJustifiedLayout(galleryRef, homeGalleryItems.map((item) => ratioOf(item.src)), galleryRowOptions);
   return (
     <section className="section" id="gallery" aria-labelledby="gallery-heading">
       <div className="container">
@@ -230,11 +227,11 @@ function Gallery() {
           <h2 id="gallery-heading"><span className="gallery-heading-word"><span>A place for</span></span>{' '}<em><span className="gallery-heading-word"><span>care.</span></span></em></h2>
           <p>Explore the spaces at Sri Balaji Hospital.</p>
         </div>
-        {/* Justified rows: every row is the same height and fills the width; each photo keeps its own shape, nothing is cropped. */}
-        <div ref={galleryRef} className="gallery-rows" style={{ gap }}>
+        {/* Even grid of equal 4:3 tiles; each photo fills its tile (focus point set per photo in data/gallery.ts). */}
+        <div className="gallery-grid">
           {homeGalleryItems.map((item, index) => (
-            <a className="gallery-preview-card gallery-tile reveal" href="#gallery-view" key={item.id} style={{ '--gallery-index': index, '--r': ratioOf(item.src), width: boxes[index]?.width || undefined, height: boxes[index]?.height || undefined } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
-              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" data-testid={`image-hospital-${index + 1}`} />
+            <a className="gallery-card reveal" href="#gallery-view" key={item.id} style={{ '--motion-delay': `${(index % 3) * 70}ms` } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
+              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} data-testid={`image-hospital-${index + 1}`} />
               <span className="gallery-caption">{item.caption}</span>
               {item.sample && <span className="gallery-sample-tag">Sample</span>}
             </a>
@@ -243,7 +240,7 @@ function Gallery() {
         {galleryItems.some((item) => item.sample) && <p className="gallery-soon">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>}
         <div className="gallery-view-link-row">
           <a className="gallery-view-link" href="#gallery-view">
-            {galleryItems.length > 5 ? 'View more photos' : 'View photos'} <ArrowRight size={18} aria-hidden="true" />
+            {galleryItems.length > HOME_GALLERY_COUNT ? 'View more photos' : 'View photos'} <ArrowRight size={18} aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -535,7 +532,8 @@ function App() {
           <Doctors />
           <Gallery />
           <Reviews />
-          {/* Insurance / Aarogyasri support is not confirmed for this hospital, so the section stays off the page. */}
+          <InsuranceSection />
+          {/* Insurance and cashless confirmed by the owner (Nov 2026); Aarogyasri is still not confirmed, so it is not mentioned. */}
           <Visit />
           <FaqSection />
         </main>

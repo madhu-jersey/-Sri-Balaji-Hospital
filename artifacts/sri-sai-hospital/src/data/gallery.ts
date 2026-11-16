@@ -20,6 +20,8 @@ export type GalleryItem = {
   category: string;
   categoryLabel: string;
   sample?: boolean;
+  // Which part of the photo stays in view when it is trimmed to an even tile (CSS object-position).
+  focus?: string;
 };
 
 // Folders listed here appear first, in this order; any other folder follows alphabetically.
@@ -103,6 +105,7 @@ export const galleryItems: GalleryItem[] = [
     caption: 'Hospital building',
     category: 'building',
     categoryLabel: 'Building',
+    focus: '50% 12%',
   },
   ...uploaded,
   ...(uploaded.length < 4 ? samples : []),

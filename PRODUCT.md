@@ -32,7 +32,8 @@ Visitors read in English with Telugu alongside (the building signboard is Telugu
 - Services (hospital brochure, supplied by the owner Nov 2026): General Medicine & Emergency Care, General Surgery, Neurosurgery, Plastic & Reconstructive Surgery, Laparoscopic Surgery, each with its listed sub-services (see src/components/ServicesSection.tsx).
 - Equipment and facilities (brochure): ICU, ventilator, central oxygen, cardiac and multiparameter monitors, defibrillator, infusion and syringe pumps, pulse oximeter, nebulizer, general ward. Inpatient care subject to available facilities.
 - Emergency care 24 hours, 7 days, on 08819 221778 (confirmed by the owner, Nov 2026). Outpatient (OP) hours are the hospital hours above.
-- Not confirmed, so never claimed: lab, pharmacy, insurance, Aarogyasri.
+- Insurance: all health insurance cases handled and cashless treatment available (confirmed by the owner, Nov 2026). No specific insurers named.
+- Not confirmed, so never claimed: lab, pharmacy, Aarogyasri, named insurance partners.
 
 ## Brand Commitments
 

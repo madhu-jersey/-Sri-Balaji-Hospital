@@ -362,3 +362,22 @@ html, body { max-width: 100%; }
 @media (max-width: 760px) and (prefers-reduced-motion: reduce) {
   .svc-acc-panel, .svc-acc-inner { transition: none; }
 }
+
+/* Visit us on phones: the hours card is centred and every row stacks the same way (label above, time below) */
+@media (max-width: 760px) {
+  main .visit-block:has(.hours-table) { padding: 20px 18px 10px; text-align: center; }
+  main .visit-block:has(.hours-table) .visit-label { flex-direction: column; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; }
+  main .visit-block:has(.hours-table) .hours-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 12px 0;
+    text-align: center;
+  }
+  main .visit-block:has(.hours-table) .hours-row span:first-child { color: #5B6A86; font-size: 13.5px; font-weight: 600; }
+  main .visit-block:has(.hours-table) .hours-row span:last-child { color: #0D1F45; font-size: 16px; font-weight: 700; }
+  main .visit-block:has(.hours-table) .hours-row-emergency span:first-child { justify-content: center; color: #B4232F; }
+  main .visit-block:has(.hours-table) .hours-row-emergency span:last-child { color: #B4232F; }
+}

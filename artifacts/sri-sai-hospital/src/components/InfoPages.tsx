@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react';
 import {
-  Check, ChevronDown, CreditCard, HandHeart, HeartPulse, Landmark, PhoneCall, Plus, Scissors, ShieldCheck, Siren, Stethoscope,
+  CreditCard, HandHeart, HeartPulse, PhoneCall, Plus, Scissors, ShieldCheck, Siren, Stethoscope,
 } from 'lucide-react';
 
 import { phone, phoneLabel } from '../data/contact';
@@ -34,35 +34,24 @@ const reasons = [
   },
 ];
 
-const insuranceFacilities = [
+// Insurance facts confirmed by the owner (Nov 2026): all insurance cases are handled and cashless treatment is available.
+// No specific insurers are named because none have been confirmed.
+const insurancePoints = [
   {
-    title: 'Medical Insurance Facilities',
-    text: 'Treatment for patients covered by medical insurance.',
+    title: 'All insurance cases accepted',
+    text: 'Patients covered by health insurance are treated here, and our desk handles the insurance process with you.',
     icon: ShieldCheck,
   },
   {
-    title: 'Cashless Insurance Facilities',
-    text: 'Cashless treatment with participating insurers.',
+    title: 'Cashless treatment available',
+    text: 'Eligible treatment can be cashless, so you can focus on recovery instead of arranging payment up front.',
     icon: CreditCard,
   },
   {
-    title: 'Reimbursement facility for State Government employees',
-    text: 'Support with reimbursement for State Government employees.',
-    icon: Landmark,
+    title: 'Check your policy in one call',
+    text: 'Call us with your policy details before admission and we will confirm your coverage.',
+    icon: PhoneCall,
   },
-];
-
-const insurancePartners = [
-  'Star Health',
-  'HDFC ERGO',
-  'Tata AIG',
-  'ICICI Lombard',
-  'SBI General Insurance',
-  'Royal Sundaram',
-  'ManipalCigna',
-  'ACKO',
-  'Aditya Birla Health',
-  'Future Generali',
 ];
 
 const questions = [
@@ -82,6 +71,12 @@ const questions = [
     question: 'Is the hospital open at night?',
     answer: (
       <>Yes, for emergencies. Emergency care is available 24 hours a day, every day. Call <a href={`tel:${phone}`}>{phoneLabel}</a> on the way so the team can prepare. For an ambulance, call <a href="tel:108">108</a>.</>
+    ),
+  },
+  {
+    question: 'Do you accept health insurance? Is cashless treatment available?',
+    answer: (
+      <>Yes. We handle all health insurance cases, and cashless treatment is available. Call <a href={`tel:${phone}`}>{phoneLabel}</a> with your policy details before admission and we will confirm your coverage.</>
     ),
   },
   {
@@ -155,27 +150,26 @@ export function WhyChooseSection() {
 
 export function InsuranceSection() {
   return (
-    <section className="info-page insurance-page" id="insurance" aria-labelledby="insurance-heading">
-      <div className="container info-container">
-        <div className="info-intro">
-          <Heading id="insurance-heading" label="Insurance" words={['Insurance', '&']} italic="Cashless Support" />
-        </div>
-        <div className="reason-grid insurance-grid">
-          {insuranceFacilities.map(({ title, text, icon: Icon }, index) => (
-            <article className="reason-card" key={title} style={{ '--item-index': index } as React.CSSProperties}>
-              <span className="reason-icon"><Icon size={23} strokeWidth={1.6} aria-hidden="true" /></span>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-        <div className="insurance-partners">
-          <h3>Selected empanelled partners</h3>
-          <p>Please call the hospital to confirm your insurer and policy before admission.</p>
-          <ul className="insurance-partner-list">
-            {insurancePartners.map((partner) => <li key={partner}>{partner}</li>)}
+    <section className="section ins-section" id="insurance" aria-labelledby="insurance-heading">
+      <div className="container">
+        <div className="ins-card reveal">
+          <div className="ins-intro">
+            <p className="ins-kicker">Insurance</p>
+            <h2 id="insurance-heading">Insurance &amp; cashless treatment</h2>
+            <p>We handle all health insurance cases, and cashless treatment is available at Sri Balaji Hospital, Tanuku.</p>
+            <a className="ins-call" href={`tel:${phone}`}><PhoneCall size={18} aria-hidden="true" /> Call {phoneLabel} to check your policy</a>
+          </div>
+          <ul className="ins-points">
+            {insurancePoints.map(({ title, text, icon: Icon }) => (
+              <li key={title}>
+                <span className="ins-icon"><Icon size={22} strokeWidth={1.7} aria-hidden="true" /></span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </li>
+            ))}
           </ul>
-          <a className="button button-primary insurance-call" href={`tel:${phone}`}><PhoneCall size={17} aria-hidden="true" /> Call {phoneLabel}</a>
         </div>
       </div>
     </section>

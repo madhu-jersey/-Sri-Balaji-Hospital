@@ -824,3 +824,152 @@ main .fq { background: linear-gradient(180deg, #F5F8FD 0%, #fff 100%); }
   .fq-lead { margin: 12px 0 26px; }
   .fq-list { margin-bottom: 22px; }
 }
+
+/* ---------- Gallery: even grid of equal 4:3 tiles with a caption tag (owner's reference) ---------- */
+.gallery-grid,
+.gallery-page-grid.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  columns: auto;
+}
+.gallery-grid > .gallery-card,
+.gallery-page-grid.gallery-grid > .gallery-card {
+  position: relative;
+  display: block;
+  width: auto;
+  height: auto !important;
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 0;
+  border-radius: 22px;
+  background: #E8EFF8;
+  box-shadow: 0 16px 34px -24px rgba(8, 44, 112, .45);
+  cursor: zoom-in;
+  text-decoration: none;
+  isolation: isolate;
+}
+.gallery-grid .gallery-card img {
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  max-height: none;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform .7s cubic-bezier(.16, 1, .3, 1);
+}
+/* A soft shade at the bottom so the caption tag always reads on light photos */
+.gallery-grid .gallery-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, rgba(8, 28, 64, .28));
+  pointer-events: none;
+}
+.gallery-grid .gallery-caption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 1;
+  max-width: calc(100% - 28px);
+  overflow: hidden;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .96);
+  box-shadow: 0 6px 16px -8px rgba(8, 28, 64, .45);
+  color: #0D1F45;
+  font: 600 14px/1.2 'Plus Jakarta Sans', sans-serif;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.gallery-grid .gallery-card:focus-visible { outline: 3px solid #0B4FC4; outline-offset: 3px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gallery-grid .gallery-card:hover img { transform: scale(1.05); }
+}
+@media (max-width: 900px) {
+  .gallery-grid, .gallery-page-grid.gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .gallery-grid > .gallery-card, .gallery-page-grid.gallery-grid > .gallery-card { border-radius: 16px; }
+  .gallery-grid .gallery-caption { left: 8px; bottom: 8px; max-width: calc(100% - 16px); padding: 6px 10px; font-size: 12px; }
+  .gallery-grid .gallery-sample-tag { top: 8px; right: 8px; padding: 3px 7px; font-size: 9.5px; }
+}
+
+/* ---------- Insurance & cashless (owner-confirmed): one deep-blue card ---------- */
+main .ins-section { padding: 40px 0 88px; background: #fff; }
+.ins-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 48px;
+  border-radius: 32px;
+  background:
+    radial-gradient(70% 90% at 100% 0%, rgba(92, 155, 240, .35), transparent 70%),
+    linear-gradient(160deg, #0C3C97 0%, #082C70 100%);
+  box-shadow: 0 34px 64px -34px rgba(8, 44, 112, .7);
+  color: #fff;
+}
+.ins-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  color: #BFD8FF;
+  font: 700 13px/1.2 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.ins-kicker::before { content: ''; width: 26px; height: 2px; border-radius: 2px; background: #BFD8FF; }
+.ins-intro h2 { margin: 0; color: #fff; font: 800 clamp(30px, 3.2vw, 44px)/1.12 'Plus Jakarta Sans', sans-serif; letter-spacing: -.035em; }
+.ins-intro > p:not(.ins-kicker) { max-width: 44ch; margin: 16px 0 28px; color: rgba(255, 255, 255, .82); font-size: 17px; line-height: 1.65; }
+.ins-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #082C70;
+  font: 700 16px/1.2 'Plus Jakarta Sans', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 12px 24px -12px rgba(0, 0, 0, .45);
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), background-color .25s ease;
+}
+.ins-call:hover { background: #EAF2FF; transform: translateY(-2px); }
+.ins-call:active { transform: scale(.97); }
+.ins-call:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.ins-points { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.ins-points li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, .07);
+}
+.ins-icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; background: #fff; color: #0B4FC4; }
+.ins-points h3 { margin: 2px 0 4px; color: #fff; font: 700 17px/1.3 'Plus Jakarta Sans', sans-serif; }
+.ins-points p { margin: 0; color: rgba(255, 255, 255, .78); font-size: 15px; line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .ins-card { grid-template-columns: 1fr; gap: 28px; padding: 32px 24px; border-radius: 26px; }
+}
+@media (max-width: 600px) {
+  main .ins-section { padding: 24px 0 64px; }
+  .ins-card { padding: 28px 18px 20px; border-radius: 22px; text-align: center; }
+  .ins-kicker { justify-content: center; }
+  .ins-intro > p:not(.ins-kicker) { margin: 12px auto 22px; font-size: 15.5px; }
+  .ins-call { width: 100%; font-size: 15px; }
+  .ins-points li { padding: 16px; gap: 14px; text-align: left; }
+  .ins-icon { width: 42px; height: 42px; }
+  .ins-points h3 { font-size: 16px; }
+  .ins-points p { font-size: 14.5px; }
+}
