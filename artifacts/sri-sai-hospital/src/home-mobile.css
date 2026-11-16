@@ -312,3 +312,25 @@
   .site-header .nav-links.open { align-items: stretch; justify-content: flex-start; }
   .site-header .nav-links > a { width: 100%; }
 }
+
+/*
+  No sideways movement on phones.
+  - overflow-x: clip cuts off anything wider than the screen without turning the page into a
+    separate scroll box (so sticky elements and scroll effects keep working). Older browsers get
+    overflow-x: hidden on body, which the browser applies to the window itself.
+  - touch-action lets a finger scroll up/down and pinch-zoom, but not drag the page sideways.
+*/
+html, body { max-width: 100%; }
+@supports (overflow: clip) {
+  html, body { overflow-x: clip; }
+}
+@supports not (overflow: clip) {
+  body { overflow-x: hidden; }
+}
+@media (max-width: 900px) {
+  html { touch-action: pan-y pinch-zoom; }
+  img, svg, video, iframe { max-width: 100%; }
+  main p, main li, main h1, main h2, main h3, footer p { overflow-wrap: break-word; }
+  /* The services pill row is the one place that scrolls sideways on purpose (tablets) */
+  .svc-tabs { touch-action: pan-x pan-y; }
+}
