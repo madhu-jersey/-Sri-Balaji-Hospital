@@ -1,0 +1,131 @@
+/*
+  Doctor profile (rebuilt): portrait + profile in one card, one scroll reveal, no pointer effects.
+  Uses its own dr-* class names so none of the older doctor-card animations apply.
+*/
+.dr-card {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 20px 48px 20px 20px;
+  border: 1px solid rgba(11, 79, 196, .1);
+  border-radius: 32px;
+  background: #fff;
+  box-shadow: 0 1px 0 #fff inset, 0 24px 48px -30px rgba(8, 44, 112, .35);
+}
+
+/* Portrait */
+.dr-photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 4.6;
+  overflow: hidden;
+  border-radius: 24px;
+  background: #E8EFF8;
+}
+.dr-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.dr-photo-badge {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .95);
+  box-shadow: 0 8px 20px -10px rgba(8, 44, 112, .45);
+  color: #0D1F45;
+  font: 700 13px/1.2 'Plus Jakarta Sans', sans-serif;
+}
+.dr-photo-badge span { width: 8px; height: 8px; border-radius: 50%; background: #D12C38; box-shadow: 0 0 0 3px rgba(209, 44, 56, .18); }
+
+/* Profile */
+.dr-specialty {
+  display: inline-flex;
+  margin: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #EAF1FC;
+  color: #0B4FC4;
+  font: 700 13px/1.2 'Plus Jakarta Sans', sans-serif;
+}
+.dr-name { margin: 14px 0 4px; color: #0D1F45; font: 800 clamp(30px, 3vw, 40px)/1.1 'Plus Jakarta Sans', sans-serif; letter-spacing: -.035em; }
+.dr-degree { margin: 0; color: #0B4FC4; font: 600 16px/1.4 'Plus Jakarta Sans', sans-serif; }
+.dr-intro { max-width: 56ch; margin: 16px 0 24px; color: #4A5B7A; font-size: 16px; line-height: 1.7; }
+
+.dr-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 24px;
+}
+.dr-facts > div {
+  padding: 14px 16px;
+  border: 1px solid #E3EAF5;
+  border-radius: 16px;
+  background: #F7FAFE;
+}
+.dr-facts dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 6px;
+  color: #0B4FC4;
+  font: 700 12.5px/1.2 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: .02em;
+}
+.dr-facts dd { margin: 0; color: #0D1F45; font: 600 14.5px/1.45 'Plus Jakarta Sans', sans-serif; font-variant-numeric: tabular-nums; }
+
+.dr-areas-title { margin: 0 0 10px; color: #0D1F45; font: 700 14px/1.2 'Plus Jakarta Sans', sans-serif; }
+.dr-areas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+.dr-areas li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid #DCE6F4;
+  border-radius: 999px;
+  background: #fff;
+  color: #1E2D4C;
+  font-size: 14px;
+}
+.dr-areas svg { color: #0B4FC4; }
+
+.dr-call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 26px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #1A62D8 0%, #0B4FC4 55%, #0A46B0 100%);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inset, 0 10px 22px -8px rgba(11, 79, 196, .45);
+  color: #fff;
+  font: 700 16px/1 'Plus Jakarta Sans', sans-serif;
+  text-decoration: none;
+  transition: transform .3s cubic-bezier(.16, 1, .3, 1), box-shadow .3s ease;
+}
+.dr-call:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inset, 0 14px 26px -10px rgba(8, 51, 127, .55); }
+.dr-call:active { transform: scale(.97); }
+.dr-call:focus-visible { outline: 3px solid #0B4FC4; outline-offset: 3px; }
+
+@media (max-width: 1000px) {
+  .dr-card { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 32px; padding: 18px 28px 18px 18px; }
+  .dr-facts { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px) {
+  .dr-card { grid-template-columns: 1fr; gap: 22px; padding: 12px 12px 22px; border-radius: 26px; }
+  .dr-photo { aspect-ratio: 4 / 3.6; border-radius: 18px; }
+  .dr-photo img { object-position: 50% 22%; }
+  .dr-info { padding: 0 8px; }
+  .dr-name { font-size: 28px; }
+  .dr-intro { margin: 12px 0 18px; font-size: 15px; }
+  .dr-facts { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .dr-facts > div:last-child { grid-column: 1 / -1; }
+  .dr-facts dd { font-size: 14px; }
+  .dr-areas { gap: 6px; margin-bottom: 22px; }
+  .dr-areas li { padding: 6px 10px; font-size: 13.5px; }
+  .dr-call { width: 100%; }
+}

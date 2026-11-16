@@ -334,3 +334,18 @@ html, body { max-width: 100%; }
   /* The services pill row is the one place that scrolls sideways on purpose (tablets) */
   .svc-tabs { touch-action: pan-x pan-y; }
 }
+
+/* Performance on phones: no live backdrop blur on the header or the call bar (it redraws every scroll frame). */
+@media (max-width: 900px) {
+  .site-header,
+  .site-header.scrolled {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, .97);
+  }
+  .mobile-actions {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(255, 255, 255, .97);
+  }
+}

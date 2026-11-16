@@ -17,18 +17,16 @@ main {
   main .reveal {
     opacity: 0;
     translate: 0 18px;
-    filter: blur(6px);
     transform: none !important;
     transition:
       opacity var(--motion-reveal) var(--motion-ease),
       translate var(--motion-reveal) var(--motion-ease),
-      filter calc(var(--motion-reveal) * .8) var(--motion-ease),
       box-shadow .45s var(--motion-ease),
       border-color .45s ease,
       background-color .45s ease !important;
     transition-delay: var(--motion-delay, 0ms) !important;
   }
-  main .reveal.is-visible { opacity: 1; translate: none; filter: none; }
+  main .reveal.is-visible { opacity: 1; translate: none; }
 
   /* Headings reveal as one calm block instead of word-by-word */
   main .section-heading.reveal,
@@ -37,9 +35,9 @@ main {
   main [class*='-word'] > span,
   main .info-heading-word > span { opacity: 1 !important; transform: none !important; translate: none !important; animation: none !important; }
   main .info-page .info-heading,
-  main .info-page .info-intro > p { opacity: 0; translate: 0 18px; filter: blur(6px); transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease), filter .8s var(--motion-ease); }
+  main .info-page .info-intro > p { opacity: 0; translate: 0 18px; transition: opacity var(--motion-reveal) var(--motion-ease), translate var(--motion-reveal) var(--motion-ease); }
   main .info-page.is-visible .info-heading,
-  main .info-page.is-visible .info-intro > p { opacity: 1; translate: none; filter: none; }
+  main .info-page.is-visible .info-intro > p { opacity: 1; translate: none; }
   main .info-page.is-visible .info-intro > p { transition-delay: 80ms; }
 
   /* Staggers inside grids */
@@ -52,14 +50,14 @@ main {
 
   /* Why-choose and FAQ items are revealed by their section; same entrance, staggered by index */
   main .info-page .reason-card,
-  main .info-page .faq-item { animation: none !important; opacity: 0; translate: 0 18px; filter: blur(6px); }
+  main .info-page .faq-item { animation: none !important; opacity: 0; translate: 0 18px; }
   main .info-page.is-visible .reason-card,
   main .info-page.is-visible .faq-item {
     animation: sb-motion-in var(--motion-reveal) var(--motion-ease) calc(160ms + var(--item-index, 0) * 70ms) both !important;
   }
   @keyframes sb-motion-in {
-    from { opacity: 0; translate: 0 18px; filter: blur(6px); }
-    to { opacity: 1; translate: none; filter: none; }
+    from { opacity: 0; translate: 0 18px; }
+    to { opacity: 1; translate: none; }
   }
 
   /* Hover: a gentle lift, a deeper soft shadow and the icon tile filling blue */
@@ -125,3 +123,6 @@ main {
   main .info-page .reason-card,
   main .info-page .faq-item { opacity: 1 !important; translate: none !important; filter: none !important; transform: none !important; animation: none !important; transition: none !important; }
 }
+
+/* No blur in scroll reveals: animating blur is expensive while scrolling on phones. Also neutralises older blur rules. */
+main .reveal, main .reveal.is-visible, main .info-page .info-heading, main .info-page .info-intro > p { filter: none !important; }

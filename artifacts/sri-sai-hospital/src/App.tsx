@@ -4,7 +4,6 @@ import {
 } from 'lucide-react';
 import { DoctorsSection } from './components/DoctorsSection';
 import { ServicesSection } from './components/ServicesSection';
-import { HeroDotField } from './components/HeroDotField';
 import { HomeHero } from './components/HomeHero';
 import { FaqSection, WhyChooseSection } from './components/InfoPages';
 import { galleryItems } from './data/gallery';
@@ -64,16 +63,6 @@ function getOpenState(date: Date) {
   // Mon–Sat 9:30 AM – 8:30 PM, Sun 10:00 AM – 8:00 PM, as listed in directories.
   const hours = openingHours[day ?? ''];
   return Boolean(hours) && totalMinutes >= hours[0] && totalMinutes < hours[1];
-}
-
-function useClinicStatus() {
-  const [isOpen, setIsOpen] = useState(() => getOpenState(new Date()));
-  useEffect(() => {
-    const update = () => setIsOpen(getOpenState(new Date()));
-    const timer = window.setInterval(update, 30_000);
-    return () => window.clearInterval(timer);
-  }, []);
-  return isOpen;
 }
 
 function SiteHeader() {
@@ -223,220 +212,6 @@ function useReveal(isGalleryPage: boolean) {
   }, [isGalleryPage]);
 }
 
-function useMagneticButtons(isGalleryPage: boolean) {
-  useEffect(() => {
-    if (isGalleryPage) return;
-    const finePointer = window.matchMedia('(pointer: fine) and (hover: hover)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!finePointer.matches || reducedMotion.matches) return;
-
-    const button = document.querySelector<HTMLElement>('.hero-actions .button-primary');
-    if (!button) return;
-
-    const handleMove = (event: PointerEvent) => {
-      if (reducedMotion.matches) {
-        button.style.removeProperty('--magnetic-x');
-        button.style.removeProperty('--magnetic-y');
-        return;
-      }
-      const rect = button.getBoundingClientRect();
-      const nearestX = Math.max(rect.left, Math.min(event.clientX, rect.right));
-      const nearestY = Math.max(rect.top, Math.min(event.clientY, rect.bottom));
-      const outsideDistance = Math.hypot(event.clientX - nearestX, event.clientY - nearestY);
-      const strength = Math.max(0, 1 - outsideDistance / 60);
-      const offsetX = event.clientX - (rect.left + rect.width / 2);
-      const offsetY = event.clientY - (rect.top + rect.height / 2);
-      const distance = Math.hypot(offsetX, offsetY) || 1;
-      const pull = Math.min(distance, 8) * strength;
-      if (!strength) {
-        button.style.removeProperty('--magnetic-x');
-        button.style.removeProperty('--magnetic-y');
-        return;
-      }
-      const x = offsetX / distance * pull;
-      const y = offsetY / distance * pull;
-      button.style.setProperty('--magnetic-x', `${x}px`);
-      button.style.setProperty('--magnetic-y', `${y}px`);
-    };
-    const reset = () => {
-      button.style.removeProperty('--magnetic-x');
-      button.style.removeProperty('--magnetic-y');
-    };
-    window.addEventListener('pointermove', handleMove, { passive: true });
-    window.addEventListener('blur', reset);
-
-    return () => {
-      window.removeEventListener('pointermove', handleMove);
-      window.removeEventListener('blur', reset);
-      reset();
-    };
-  }, [isGalleryPage]);
-}
-
-function usePhotoParallax(isGalleryPage: boolean) {
-  useEffect(() => {
-    if (isGalleryPage) return;
-    const finePointer = window.matchMedia('(min-width: 1024px) and (pointer: fine) and (hover: hover)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const art = document.querySelector<HTMLElement>('.hero-art');
-    const panel = document.querySelector<HTMLElement>('.hero-photo-panel');
-    if (!art || !panel) return;
-
-    const restingX = 2;
-    const restingY = -5;
-    let currentX = restingX;
-    let currentY = restingY;
-    let targetX = restingX;
-    let targetY = restingY;
-    let animationFrame = 0;
-    let isPointerActive = false;
-    let listening = false;
-
-    const animate = () => {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      panel.style.setProperty('--hero-tilt-x', `${currentX}deg`);
-      panel.style.setProperty('--hero-tilt-y', `${currentY}deg`);
-      if (isPointerActive && (Math.abs(targetX - currentX) > 0.01 || Math.abs(targetY - currentY) > 0.01)) {
-        animationFrame = window.requestAnimationFrame(animate);
-      } else {
-        animationFrame = 0;
-      }
-    };
-    const handleMove = (event: PointerEvent) => {
-      if (reducedMotion.matches) return;
-      const rect = art.getBoundingClientRect();
-      const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
-      const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
-      targetX = restingX + (0.5 - y) * 6;
-      targetY = restingY + (x - 0.5) * 6;
-      if (!isPointerActive) {
-        isPointerActive = true;
-        panel.classList.add('is-cursor-active');
-        currentX = restingX;
-        currentY = restingY;
-      }
-      if (!animationFrame) animationFrame = window.requestAnimationFrame(animate);
-    };
-    const reset = () => {
-      isPointerActive = false;
-      targetX = restingX;
-      targetY = restingY;
-      if (animationFrame) window.cancelAnimationFrame(animationFrame);
-      animationFrame = 0;
-      panel.classList.remove('is-cursor-active');
-      panel.style.removeProperty('--hero-tilt-x');
-      panel.style.removeProperty('--hero-tilt-y');
-    };
-    const updateListeners = () => {
-      const shouldListen = finePointer.matches && !reducedMotion.matches;
-      if (shouldListen === listening) return;
-      listening = shouldListen;
-      if (listening) {
-        art.addEventListener('pointermove', handleMove, { passive: true });
-        art.addEventListener('pointerleave', reset);
-      } else {
-        art.removeEventListener('pointermove', handleMove);
-        art.removeEventListener('pointerleave', reset);
-        reset();
-      }
-    };
-    finePointer.addEventListener('change', updateListeners);
-    reducedMotion.addEventListener('change', updateListeners);
-    updateListeners();
-
-    return () => {
-      finePointer.removeEventListener('change', updateListeners);
-      reducedMotion.removeEventListener('change', updateListeners);
-      if (listening) {
-        art.removeEventListener('pointermove', handleMove);
-        art.removeEventListener('pointerleave', reset);
-      }
-      if (animationFrame) window.cancelAnimationFrame(animationFrame);
-      reset();
-    };
-  }, [isGalleryPage]);
-}
-
-function Hero() {
-  const isOpen = useClinicStatus();
-  return (
-    <section className="hero" id="home" aria-labelledby="hero-title">
-      <HeroDotField />
-      <div className="container hero-inner">
-        <div className="hero-copy">
-          <span className="hero-pill"><span aria-hidden="true" /> Sri Balaji Hospital · Tanuku</span>
-          <h1 id="hero-title"><span className="word"><span>Sri Balaji</span></span><br /><span className="word"><span>Hospital</span></span></h1>
-          <p className="telugu-title font-telugu" lang="te" data-testid="text-hospital-name-telugu">శ్రీ బాలాజీ హాస్పిటల్</p>
-          <p className="hero-description">General medicine and anaesthesia care in Sajjapuram, Tanuku, open seven days a week.</p>
-          <div className="hero-actions">
-            <a className="button button-primary" href={`tel:${phone}`} data-testid="button-call-hero"><PhoneIcon /> Call now</a>
-            <a className="button button-outline" href={directions} target="_blank" rel="noreferrer" data-testid="button-directions"><MapPin size={17} /> Get directions</a>
-          </div>
-        </div>
-        <div className="hero-art">
-          <div className="hero-photo-wrap">
-            <div className="hero-photo-stage">
-              <div className="hero-photo-shadow" aria-hidden="true" />
-              <div className="hero-photo-perspective">
-                <div className="hero-photo-panel">
-                  <div className="hero-photo-frame">
-                    <img src="/assets/hero-sri-balaji-building.webp" alt="Sri Balaji Hospital building front with its Telugu signboard" width="934" height="1685" fetchPriority="high" />
-                  </div>
-                </div>
-              </div>
-              <div className="seal" aria-label="Sri Balaji Hospital logo"><img src="/assets/sri-balaji-hospital-logo.png" alt="" /></div>
-              <a className="explore-hint" href="#doctors" aria-label="Scroll to Our doctors">
-                <ChevronDown size={14} aria-hidden="true" />
-              </a>
-            </div>
-
-            <div className="status-card" aria-live="polite">
-              <div className="status-top">
-                <span className="status-label"><span className="live-dot" aria-hidden="true" /> Clinic hours</span>
-                <span className={`status-text${isOpen ? '' : ' closed'}`} data-testid="status-open">{isOpen ? 'Open now' : 'Closed now'}</span>
-              </div>
-              <div className="hours-line"><span>Mon–Sat</span><strong>9:30 AM – 8:30 PM</strong></div>
-              <div className="hours-line"><span>Sunday</span><strong>10:00 AM – 8:00 PM</strong></div>
-              <div className="hours-line"><span>Doctor consultation</span><strong>10–2 &amp; 6–9 PM</strong></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustStrip() {
-  return (
-    <div className="trust-strip" aria-label="Key facts about Sri Balaji Hospital">
-      <div className="trust-item">
-        <HeartPulse size={18} strokeWidth={1.5} aria-hidden="true" />
-        <span>General Medicine &amp; Anaesthesia</span>
-      </div>
-      <span className="trust-sep" aria-hidden="true" />
-      <div className="trust-item">
-        <Stethoscope size={18} strokeWidth={1.5} aria-hidden="true" />
-        <span>MD (General Medicine)</span>
-      </div>
-      <span className="trust-sep" aria-hidden="true" />
-      <div className="trust-item">
-        <Clock3 size={18} strokeWidth={1.5} aria-hidden="true" />
-        <span>Open 7 Days a Week</span>
-      </div>
-    </div>
-  );
-}
-
-function EmergencyStrip() {
-  return (
-    <div className="emergency-strip" data-testid="text-emergency-contact">
-      <p>Call the hospital for appointments and enquiries</p>
-      <a href={`tel:${phone}`} data-testid="button-call-emergency"><PhoneIcon /> {phoneLabel}</a>
-    </div>
-  );
-}
-
 function Doctors() {
   return <DoctorsSection />;
 }
@@ -498,60 +273,6 @@ function ReviewStar({ index, fill = 1, gradientId }: { index: number; fill?: num
 }
 
 function Reviews() {
-  const reviewButtonRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    const button = reviewButtonRef.current;
-    const finePointer = window.matchMedia('(pointer: fine)');
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (!button || !finePointer.matches || reducedMotion.matches) return;
-
-    let frame = 0;
-    let pointer: { x: number; y: number } | null = null;
-    const reset = () => {
-      pointer = null;
-      if (frame) window.cancelAnimationFrame(frame);
-      frame = 0;
-      button.style.removeProperty('--magnetic-x');
-      button.style.removeProperty('--magnetic-y');
-    };
-    const onMove = (event: PointerEvent) => {
-      pointer = { x: event.clientX, y: event.clientY };
-      if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        frame = 0;
-        if (!pointer || reducedMotion.matches) {
-          reset();
-          return;
-        }
-        const rect = button.getBoundingClientRect();
-        const nearestX = Math.max(rect.left, Math.min(pointer.x, rect.right));
-        const nearestY = Math.max(rect.top, Math.min(pointer.y, rect.bottom));
-        const outsideDistance = Math.hypot(pointer.x - nearestX, pointer.y - nearestY);
-        const strength = Math.max(0, 1 - outsideDistance / 40);
-        const offsetX = pointer.x - (rect.left + rect.width / 2);
-        const offsetY = pointer.y - (rect.top + rect.height / 2);
-        const distance = Math.hypot(offsetX, offsetY) || 1;
-        const pull = Math.min(distance, 6) * strength;
-        if (!strength) {
-          button.style.removeProperty('--magnetic-x');
-          button.style.removeProperty('--magnetic-y');
-          return;
-        }
-        button.style.setProperty('--magnetic-x', `${offsetX / distance * pull}px`);
-        button.style.setProperty('--magnetic-y', `${offsetY / distance * pull}px`);
-      });
-    };
-
-    window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('blur', reset);
-    return () => {
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('blur', reset);
-      reset();
-    };
-  }, []);
-
   return (
     <section className="section reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div className="container">
@@ -578,7 +299,7 @@ function Reviews() {
               </span>
             </div>
             <p className="sbr-note">Reviews are shown as patients wrote them on Google.</p>
-            <a ref={reviewButtonRef} className="sbr-button" href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="button-more-google-reviews">
+            <a className="sbr-button" href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="button-more-google-reviews">
               Read more reviews on Google <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           </aside>
@@ -757,8 +478,6 @@ function App() {
   const [pageRoute, setPageRoute] = useState<PageRoute>(getPageRoute);
   const isGalleryPage = pageRoute === 'gallery';
   useReveal(isGalleryPage);
-  useMagneticButtons(isGalleryPage);
-  usePhotoParallax(isGalleryPage);
   useEffect(() => {
     const legacySection = legacySectionPaths[window.location.pathname];
     if (legacySection) window.history.replaceState(null, '', `/#${legacySection}`);

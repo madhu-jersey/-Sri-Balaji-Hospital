@@ -12,6 +12,7 @@ import './home-hero.css';
 import './home-sections.css';
 import './home-motion.css';
 import './home-premium.css';
+import './home-doctor.css';
 import './home-mobile.css';
 
 createRoot(document.getElementById('root')!, {
