@@ -197,7 +197,7 @@ function useReveal(isGalleryPage: boolean) {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    }, { threshold: 0, rootMargin: '100000px 0px -8% 0px' }); // huge top margin: anything already scrolled past (e.g. by a fast fling) also counts as seen
     elements.forEach((element) => observer.observe(element));
     return () => {
       observer.disconnect();
