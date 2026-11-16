@@ -207,8 +207,9 @@ export function ServicesSection() {
         <div className="svc-acc">
           {departments.map(({ title, text, icon: ItemIcon, items }, index) => {
             const open = mobileOpen === index;
+            // className stays constant: the scroll-reveal observer adds is-visible to the DOM, and a re-render must not wipe it. Open state lives in data-open.
             return (
-              <article className={`svc-acc-item reveal${open ? ' is-open' : ''}`} key={title} style={{ '--motion-delay': `${index * 50}ms` } as React.CSSProperties}>
+              <article className="svc-acc-item reveal" data-open={open} key={title} style={{ '--motion-delay': `${index * 50}ms` } as React.CSSProperties}>
                 <h3>
                   <button
                     type="button"
