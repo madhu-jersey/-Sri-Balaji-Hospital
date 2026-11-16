@@ -67,6 +67,12 @@ const insurancePartners = [
 
 const questions = [
   {
+    question: 'Which hospital in Tanuku is open 24/7 for emergencies?',
+    answer: (
+      <>Sri Balaji Hospital in Sajjapuram, Tanuku attends emergencies 24 hours a day, every day, including accidents, snakebite, poisoning and cardiac emergencies, with an ICU and ventilator. Call <a href={`tel:${phone}`}>{phoneLabel}</a> on the way.</>
+    ),
+  },
+  {
     question: "What are the hospital's opening hours?",
     answer: (
       <>Emergency care is available 24 hours a day, 7 days a week. Outpatient (OP) timings are Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM.</>
@@ -94,7 +100,7 @@ const questions = [
   },
   {
     question: 'Where is Sri Balaji Hospital located?',
-    answer: <>Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211. Tap “Directions” for the route in Google Maps.</>,
+    answer: <>Sri Balaji Hospital, Sajjapuram, Tanuku, Andhra Pradesh 534211. Tap Directions for the route in Google Maps.</>,
   },
 ];
 

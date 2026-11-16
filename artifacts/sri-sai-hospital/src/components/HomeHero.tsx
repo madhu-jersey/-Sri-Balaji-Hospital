@@ -62,7 +62,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
     <section className="sbh-hero" id="home" aria-labelledby="hero-title">
       <div className="container sbh-inner">
         <div className="sbh-copy">
-          <p className="sbh-pill"><span aria-hidden="true" /> Sajjapuram, Tanuku</p>
+          <p className="sbh-pill"><span aria-hidden="true" /> 24/7 Emergency Hospital in Tanuku</p>
           <h1 id="hero-title">
             <span className="sbh-wordmark">Sri Balaji</span>
             <span className="sbh-subtitle">Hospital</span>
@@ -88,7 +88,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           <figure className="sbh-photo">
             <img
               src="/assets/hero-sri-balaji-building.webp"
-              alt="Sri Balaji Hospital building in Sajjapuram with its Telugu name board"
+              alt="Sri Balaji Hospital building in Sajjapuram, Tanuku, with its Telugu name board"
               width="934"
               height="1685"
               fetchPriority="high"

@@ -784,11 +784,11 @@ function App() {
   useEffect(() => {
     const pageMetadata = {
       home: {
-        title: 'Sri Balaji Hospital, Tanuku',
-        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku. Comprehensive medical care, critical care, emergency services and surgical care. Emergency 24/7. Call 98857 71197.',
+        title: 'Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku',
+        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku – 24/7 emergency hospital with ICU, ventilator and critical care, general medicine and surgery. Dr. D. Billy Graham, M.D. Call 98857 71197.',
       },
       gallery: {
-        title: 'Gallery · Sri Balaji Hospital, Tanuku',
+        title: 'Gallery · Sri Balaji Hospital Tanuku',
         description: 'Photographs of Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211.',
       },
     } satisfies Record<PageRoute, { title: string; description: string }>;
