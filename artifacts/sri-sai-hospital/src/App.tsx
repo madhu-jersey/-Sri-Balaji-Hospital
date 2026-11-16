@@ -13,7 +13,7 @@ import { galleryRowOptions, useJustifiedLayout } from './hooks/useJustifiedLayou
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
-import { landline, landlineLabel, phone, phoneLabel } from './data/contact';
+import { phone, phoneLabel } from './data/contact';
 // Use the hospital's Google Maps listing (west side of Coaxial St), not raw coordinates,
 // so the destination shows the hospital name and the pin lands on the building.
 const directions = 'https://www.google.com/maps/dir//Sri+Balaji+Hospital,+Sajjapuram,+Andhra+Pradesh+534211/@16.7576843,81.6738392,262m/data=!3m1!1e3!4m17!1m7!3m6!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2sSri+Balaji+Hospital!8m2!3d16.7576843!4d81.6738392!16s%2Fg%2F11c5480cck!4m8!1m0!1m5!1m1!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2m2!1d81.6738392!2d16.7576843!3e0!5m1!1e1?entry=ttu';
@@ -630,7 +630,6 @@ function Visit() {
               <p className="visit-label">Call</p>
               <div className="visit-actions">
                 <a className="button button-primary" href={`tel:${phone}`} data-testid="button-call-visit"><PhoneIcon /> {phoneLabel}</a>
-                <a className="visit-mobile" href={`tel:${landline}`} data-testid="button-call-landline">Landline: {landlineLabel}</a>
               </div>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 2 } as React.CSSProperties}>
@@ -785,7 +784,7 @@ function App() {
     const pageMetadata = {
       home: {
         title: 'Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku',
-        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku – 24/7 emergency hospital with ICU, ventilator and critical care, general medicine and surgery. Dr. D. Billy Graham, M.D. Call 98857 71197.',
+        description: 'Sri Balaji Hospital, Sajjapuram, Tanuku – 24/7 emergency hospital with ICU, ventilator and critical care, general medicine and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778.',
       },
       gallery: {
         title: 'Gallery · Sri Balaji Hospital Tanuku',
