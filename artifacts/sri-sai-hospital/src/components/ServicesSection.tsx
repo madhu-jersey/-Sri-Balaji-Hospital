@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { Activity, Bandage, Brain, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
+import { Activity, Bandage, Brain, BrainCircuit, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
 
 // Departments, sub-services and equipment as listed in the hospital's own brochure (supplied by the owner, Nov 2026).
 const departments: { title: string; short: string; text: string; icon: LucideIcon; items: string[] }[] = [
@@ -21,6 +21,21 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
       'High blood pressure management',
       'Asthma & respiratory care',
       'Paralysis & stroke care',
+    ],
+  },
+  {
+    // Added at the owner's request (Nov 2026).
+    title: 'Neurology',
+    short: 'Neurology',
+    text: 'Diagnosis and medical treatment of conditions affecting the brain and nerves.',
+    icon: BrainCircuit,
+    items: [
+      'Stroke and paralysis',
+      'Seizures (fits)',
+      'Meningitis',
+      'Headache and migraine',
+      'Memory loss',
+      "Parkinson's disease (shaking disorders)",
     ],
   },
   {

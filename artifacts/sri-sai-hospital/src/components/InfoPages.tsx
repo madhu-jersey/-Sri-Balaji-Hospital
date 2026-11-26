@@ -85,7 +85,7 @@ const questions = [
   },
   {
     question: 'What conditions are treated?',
-    answer: <>General medicine and emergency care (including snakebite, poisoning, cardiac, diabetes, blood pressure, asthma and stroke care), general surgery, neurosurgery, plastic and reconstructive surgery, laparoscopic surgery, and critical care with an ICU and ventilator. See Our services for the full list.</>,
+    answer: <>General medicine and emergency care (including snakebite, poisoning, cardiac, diabetes, blood pressure, asthma and stroke care), neurology (stroke and paralysis, seizures, meningitis, headache and migraine, memory loss and Parkinson's disease), general surgery, neurosurgery, plastic and reconstructive surgery, laparoscopic surgery, and critical care with an ICU and ventilator. See Our services for the full list.</>,
   },
   {
     question: 'How can I book an appointment?',

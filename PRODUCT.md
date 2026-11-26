@@ -29,7 +29,7 @@ Visitors read in English with Telugu alongside (the building signboard is Telugu
 - Phone: 08819 221778. Mobile: 98857 71197.
 - Address: Sajjapuram, Andhra Pradesh 534211 (owner-corrected; do not add street names or landmarks).
 - Hospital hours: Mon–Sat 9:30 AM – 8:30 PM, Sun 10:00 AM – 8:00 PM. Doctor consultation 10 AM – 2 PM and 6 PM – 8:30 PM (brochure).
-- Services (hospital brochure, supplied by the owner Nov 2026): General Medicine & Emergency Care, General Surgery, Neurosurgery, Plastic & Reconstructive Surgery, Laparoscopic Surgery, each with its listed sub-services (see src/components/ServicesSection.tsx).
+- Services (hospital brochure, supplied by the owner Nov 2026): General Medicine & Emergency Care, Neurology (added by the owner Nov 2026: stroke and paralysis, seizures, meningitis, headache and migraine, memory loss, Parkinson's disease), General Surgery, Neurosurgery, Plastic & Reconstructive Surgery, Laparoscopic Surgery, each with its listed sub-services (see src/components/ServicesSection.tsx).
 - Equipment and facilities (brochure): modular operation theatre (owner, Nov 2026), ICU, ventilator, central oxygen, cardiac and multiparameter monitors, defibrillator, infusion and syringe pumps, pulse oximeter, nebulizer, general ward. Inpatient care subject to available facilities.
 - Emergency care 24 hours, 7 days, on 08819 221778 (confirmed by the owner, Nov 2026). Outpatient (OP) hours are the hospital hours above.
 - Insurance: all health insurance cases handled and cashless treatment available (confirmed by the owner, Nov 2026). No specific insurers named.
