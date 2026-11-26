@@ -41,8 +41,26 @@ const reviews = [
   { quote: 'Excellent experience the doctor and staff are very competent and the care provided is 24/7', name: 'Harsh Shekhar', age: '' },
 ];
 
-const reviewRating = 3.8;
-const reviewCount = 38;
+// Built-in numbers, shown at once and kept whenever the live figures are unavailable (e.g. no API key yet).
+const fallbackRating = { rating: 3.8, count: 38 };
+
+// Live Google rating and review count from /api/google-rating (a Vercel function, cached for 6 hours).
+function useGoogleRating() {
+  const [live, setLive] = useState(fallbackRating);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch('/api/google-rating', { signal: controller.signal })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: { rating?: unknown; count?: unknown } | null) => {
+        if (data && typeof data.rating === 'number' && typeof data.count === 'number' && data.rating > 0 && data.rating <= 5 && data.count > 0) {
+          setLive({ rating: Math.round(data.rating * 10) / 10, count: data.count });
+        }
+      })
+      .catch(() => { /* keep the built-in numbers */ });
+    return () => controller.abort();
+  }, []);
+  return live;
+}
 
 // Directory-listed hours, in minutes since midnight (Asia/Kolkata).
 const openingHours: Record<string, [number, number]> = {
@@ -187,7 +205,7 @@ function useReveal(isGalleryPage: boolean) {
                 const start = performance.now();
                 const updateScore = (now: number) => {
                   const progress = Math.min(1, (now - start) / 700);
-                  score.textContent = `${(reviewRating * progress).toFixed(1)}`;
+                  score.textContent = `${(Number(score.dataset.score) * progress).toFixed(1)}`;
                   if (progress < 1) scoreFrame = window.requestAnimationFrame(updateScore);
                 };
                 scoreFrame = window.requestAnimationFrame(updateScore);
@@ -267,6 +285,7 @@ function ReviewStar({ index, fill = 1, gradientId }: { index: number; fill?: num
 }
 
 function Reviews() {
+  const { rating: reviewRating, count: reviewCount } = useGoogleRating();
   return (
     <section className="section reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div className="container">
@@ -282,7 +301,8 @@ function Reviews() {
         <div className="sbr-layout">
           <aside className="sbr-summary reveal" aria-label="Google rating">
             <div className="sbr-score-row">
-              <span className="sbr-score" aria-label={`${reviewRating} out of 5`}>{reviewRating.toFixed(1)}</span>
+              {/* Keyed by the rating: if the live figure arrives after the count-up started, React swaps in a fresh element. */}
+              <span className="sbr-score" key={reviewRating} data-score={reviewRating} aria-label={`${reviewRating} out of 5`}>{reviewRating.toFixed(1)}</span>
               <span className="sbr-score-meta">
                 <span className="review-stars" aria-label={`${reviewRating} stars`}>
                   {[0, 1, 2, 3, 4].map((star) => (
