@@ -175,8 +175,8 @@ const trustBlock = (t) => `
 function layout({ lang, slug, title, description, h1, crumb, photo, imageOverride, body, schema }) {
   const t = L[lang];
   const url = `${D}${path(lang, slug)}`;
+  // The photo is used only as the preview image when the page is shared (og:image); it is not shown on the page (owner's request).
   const image = imageOverride ?? photoUrl(photo);
-  const imageAlt = imageOverride ? '' : t.photos[photo];
   const toggle = (cls) => `<div class="pg-lang${cls}" role="group" aria-label="${esc(t.language)}">
         <a href="${path('en', slug)}" lang="en" hreflang="en"${lang === 'en' ? ' aria-current="true"' : ''} onclick="try{localStorage.setItem('sbh-lang','en')}catch(e){}">English</a>
         <a href="${path('te', slug)}" lang="te" hreflang="te"${lang === 'te' ? ' aria-current="true"' : ''} onclick="try{localStorage.setItem('sbh-lang','te')}catch(e){}">తెలుగు</a>
@@ -270,10 +270,6 @@ ${body}
         </nav>
       </aside>
     </div>
-
-    <figure class="pg-wrap pg-photo">
-      <img src="${image}" alt="${esc(imageAlt)}" loading="lazy" decoding="async" />
-    </figure>
   </main>
 
   <footer class="pg-footer">

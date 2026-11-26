@@ -60,7 +60,7 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline
 .pg-hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 
 /* Layout */
-.pg-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; padding: 44px 0 24px; }
+.pg-grid { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; align-items: start; padding: 44px 0 40px; }
 .pg-section { margin-bottom: 40px; }
 .pg-section h2 { margin: 0 0 16px; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; letter-spacing: -.02em; }
 .pg-intro p { margin: 0 0 14px; font-size: 17.5px; color: #24324F; }
@@ -95,8 +95,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline
 .pg-links a:hover { color: var(--blue); }
 .pg-links span { color: var(--blue); }
 
-.pg-photo { margin-top: 8px; margin-bottom: 56px; }
-.pg-photo img { width: 100%; max-height: 520px; object-fit: cover; border-radius: 24px; }
 
 /* Footer */
 .pg-footer { padding: 44px 0 40px; background: #082A6B; color: #DCE6F4; font-size: 15px; }
@@ -126,7 +124,6 @@ a:focus-visible, summary:focus-visible { outline: 2px solid var(--blue); outline
   .pg-hours div { grid-template-columns: 1fr; gap: 2px; }
   .pg-doctor { grid-template-columns: 1fr; }
   .pg-doctor img { max-width: 260px; }
-  .pg-photo img { border-radius: 18px; }
   .pg-callbar {
     position: fixed; inset: auto 0 0; z-index: 60;
     display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px;
