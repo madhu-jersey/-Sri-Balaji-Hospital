@@ -107,9 +107,6 @@
 }
 .sbh-note a { color: var(--sbh-blue); font-weight: 700; text-underline-offset: 3px; }
 .sbh-note-sep { color: #9AB0D3; }
-.sbh-rating { display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
-.sbh-rating svg { color: #E8A317; }
-.sbh-rating:hover { text-decoration: underline; }
 
 /* Visual: photo, logo badge, hours card */
 .sbh-visual { position: relative; padding: 36px 0 120px 44px; }

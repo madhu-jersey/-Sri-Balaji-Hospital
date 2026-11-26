@@ -18,7 +18,7 @@ Public website for Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211. Succe
 
 ## Positioning
 
-A doctor-led local hospital: Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Reg. No. 42113). Tagline: "We care for you". Offers comprehensive medical care, critical care, emergency services and surgical care. Patient reviews mention reasonable rates, no unnecessary tests or medicines, and a doctor who attends serious cases.
+A doctor-led local hospital: Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (APMC No. 42113). Tagline: "We care for you". Offers comprehensive medical care, critical care, emergency services and surgical care. Patient reviews mention reasonable rates, no unnecessary tests or medicines, and a doctor who attends serious cases.
 
 ## Operating Context
 

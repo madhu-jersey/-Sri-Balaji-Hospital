@@ -81,7 +81,7 @@ const questions = [
   },
   {
     question: 'Which doctor is available at the hospital?',
-    answer: <>Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Registration No. 42113), with 25 years of experience. Consultation hours are 10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM. Emergency cases are attended at all times.</>,
+    answer: <>Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (APMC No. 42113), with 25 years of experience. Consultation hours are 10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM. Emergency cases are attended at all times.</>,
   },
   {
     question: 'What conditions are treated?',

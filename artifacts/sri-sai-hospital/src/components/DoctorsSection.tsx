@@ -58,8 +58,8 @@ export function DoctorsSection() {
                 <dd>24 hours,<br />7 days</dd>
               </div>
               <div>
-                <dt><BadgeCheck size={17} strokeWidth={1.8} aria-hidden="true" /> Registration</dt>
-                <dd data-testid="text-doctor-registration-1">No. {doctor.registration}</dd>
+                <dt><BadgeCheck size={17} strokeWidth={1.8} aria-hidden="true" /> APMC No.</dt>
+                <dd data-testid="text-doctor-registration-1">{doctor.registration}</dd>
               </div>
             </dl>
 
