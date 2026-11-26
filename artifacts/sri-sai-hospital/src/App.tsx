@@ -7,8 +7,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { HomeHero } from './components/HomeHero';
 import { FaqSection, InsuranceSection, WhyChooseSection } from './components/InfoPages';
 import { galleryAlt, galleryItems } from './data/gallery';
-import servicesData from './data/services.json';
-import { LanguageToggle, pageHref, useLang } from './i18n';
+import { LanguageToggle, useLang } from './i18n';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
@@ -468,17 +467,6 @@ function Footer() {
             </div>
           </div>
         </div>
-        {/* Links to every service page: helps visitors and search engines find each department. */}
-        <nav className="footer-services" aria-label={t('Services in Tanuku')}>
-          <p className="footer-label">{t('Services in Tanuku')}</p>
-          <div>
-            <a href={pageHref(lang, 'emergency-hospital-tanuku')}>{t('24/7 Emergency hospital')}</a>
-            {servicesData.departments.map((department) => (
-              <a key={department.slug} href={pageHref(lang, department.slug)}>{lang === 'te' ? department.te.short : department.short}</a>
-            ))}
-            <a href={pageHref(lang, 'dr-d-billy-graham')}>{t('Dr. D. Billy Graham')}</a>
-          </div>
-        </nav>
         <div className="footer-bottom">
           <p>{t('Information only. This website does not replace a consultation or emergency care.')}</p>
           <p>{t('© Sri Balaji Hospital · Tanuku')}</p>
