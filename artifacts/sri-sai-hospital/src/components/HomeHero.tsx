@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, PhoneCall } from 'lucide-react';
 import { PhoneNumbers } from './PhoneNumbers';
+import { useLang } from '../i18n';
 
 type HomeHeroProps = {
   phone: string;
@@ -56,6 +57,7 @@ function usePointerDrift() {
 }
 
 export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroProps) {
+  const { t, lang } = useLang();
   const isOpen = isOpenAt(useNow());
   const visualRef = usePointerDrift();
   const heroRef = useRef<HTMLElement>(null);
@@ -73,28 +75,30 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
         <div className="sbh-copy">
           {/* One heading for search engines: "24/7 Emergency Hospital in Tanuku – Sri Balaji Hospital" (looks unchanged). */}
           <h1 id="hero-title">
-            <span className="sbh-pill"><span aria-hidden="true" /> 24/7 Emergency Hospital in Tanuku</span>
+            <span className="sbh-pill"><span aria-hidden="true" /> {t('24/7 Emergency Hospital in Tanuku')}</span>
             <span className="sbh-h1-sep"> – </span>
             <span className="sbh-wordmark">Sri Balaji</span>{' '}
             <span className="sbh-subtitle">Hospital</span>
           </h1>
           <p className="sbh-telugu font-telugu" lang="te" data-testid="text-hospital-name-telugu">శ్రీ బాలాజీ హాస్పిటల్</p>
-          <p className="sbh-lead">Comprehensive medical care, critical care, emergency services and surgical care, led by Dr. D. Billy Graham, M.D.</p>
+          <p className="sbh-lead">{t('Comprehensive medical care, critical care, emergency services and surgical care, led by Dr. D. Billy Graham, M.D.')}</p>
           {/* Owner-confirmed highlights (Nov 2026): established 2006, doctor has 25 years of experience. */}
           <dl className="sbh-stats" data-testid="hero-highlights">
-            <div><dt>Serving Tanuku since 2006</dt><dd>20 years</dd></div>
-            <div><dt>Doctor's experience</dt><dd>25 years</dd></div>
+            <div><dt>{t('Serving Tanuku since 2006')}</dt><dd>{t('20 years')}</dd></div>
+            <div><dt>{t("Doctor's experience")}</dt><dd>{t('25 years')}</dd></div>
           </dl>
           <div className="sbh-actions">
             <a className="sbh-button sbh-button-solid" href={`tel:${phone}`} data-testid="button-call-hero">
-              <PhoneCall size={20} strokeWidth={1.8} aria-hidden="true" /> Call now
+              <PhoneCall size={20} strokeWidth={1.8} aria-hidden="true" /> {t('Call now')}
             </a>
             <a className="sbh-button sbh-button-outline" href={directions} target="_blank" rel="noreferrer" data-testid="button-directions">
-              <MapPin size={20} strokeWidth={1.8} aria-hidden="true" /> Get directions
+              <MapPin size={20} strokeWidth={1.8} aria-hidden="true" /> {t('Get directions')}
             </a>
           </div>
           <p className="sbh-note" data-testid="text-emergency-contact">
-            <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24 hours a day.</span>
+            {lang === 'te'
+              ? <span>అత్యవసర పరిస్థితుల్లో 24 గంటలూ <PhoneNumbers testId="button-call-emergency" /> కు కాల్ చేయండి.</span>
+              : <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24 hours a day.</span>}
           </p>
         </div>
 
@@ -102,7 +106,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           <figure className="sbh-photo">
             <img
               src="/assets/hero-sri-balaji-building.webp"
-              alt="Sri Balaji Hospital building in Sajjapuram, Tanuku, with its Telugu name board"
+              alt={t('Sri Balaji Hospital building in Sajjapuram, Tanuku, with its Telugu name board')}
               width="934"
               height="1685"
               fetchPriority="high"
@@ -114,22 +118,22 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
 
           <div className="sbh-hours" aria-labelledby="sbh-hours-title">
             <div className="sbh-hours-head">
-              <h2 id="sbh-hours-title">Hospital hours</h2>
-              <span className="sbh-emergency-pill">Emergency 24/7</span>
+              <h2 id="sbh-hours-title">{t('Hospital hours')}</h2>
+              <span className="sbh-emergency-pill">{t('Emergency 24/7')}</span>
             </div>
             <dl className="sbh-hours-list">
-              <div className="sbh-emergency-row"><dt><span aria-hidden="true" />Emergency</dt><dd>24 hours, 7 days</dd></div>
+              <div className="sbh-emergency-row"><dt><span aria-hidden="true" />{t('Emergency')}</dt><dd>{t('24 hours, 7 days')}</dd></div>
             </dl>
             <p className="sbh-hours-sub">
-              OP timings
+              {t('OP timings')}
               {/* Outpatient hours only; emergencies are attended around the clock. */}
               <span className={`sbh-status${isOpen ? '' : ' is-closed'}`} data-testid="status-open">
-                <span aria-hidden="true" />{isOpen ? 'OP open now' : 'OP closed now'}
+                <span aria-hidden="true" />{isOpen ? t('OP open now') : t('OP closed now')}
               </span>
             </p>
             <dl className="sbh-hours-list sbh-hours-list-quiet">
-              <div><dt>Mon – Sat</dt><dd>9:30 AM – 8:30 PM</dd></div>
-              <div><dt>Sunday</dt><dd>10:00 AM – 8:00 PM</dd></div>
+              <div><dt>{t('Mon – Sat')}</dt><dd>{t('9:30 AM – 8:30 PM')}</dd></div>
+              <div><dt>{t('Sunday')}</dt><dd>{t('10:00 AM – 8:00 PM')}</dd></div>
             </dl>
             {/* Doctor consultation times live in Visit us and the FAQ, keeping this card compact. */}
           </div>

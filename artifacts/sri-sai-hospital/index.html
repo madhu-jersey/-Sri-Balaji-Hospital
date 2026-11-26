@@ -127,7 +127,7 @@
     }
     </script>
     <!-- Browsers that run JavaScript load the real page, so the plain-text version is hidden from the start (no flash). -->
-    <script>document.documentElement.classList.add('js');</script>
+    <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('sbh-lang')==='te')document.documentElement.lang='te'}catch(e){}</script>
     <style>
       /* Plain-text page for search engines and no-JavaScript readers; hidden in normal browsers. */
       html { background: #F4F8FD; }

@@ -1,11 +1,13 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
-import { galleryCategories, galleryItems, type GalleryItem } from '../data/gallery';
+import { galleryAlt, galleryCategories, galleryItems, type GalleryItem } from '../data/gallery';
+import { useLang } from '../i18n';
 
 // Filters come from the photo folders that exist (see src/data/gallery.ts).
 const filters: { label: string; value: string }[] = [{ label: 'All', value: 'all' }, ...galleryCategories];
 
 export function GalleryPage() {
+  const { t, lang } = useLang();
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [displayFilter, setDisplayFilter] = useState<string>('all');
   const [exitingIds, setExitingIds] = useState<Set<string>>(() => new Set());
@@ -188,14 +190,14 @@ export function GalleryPage() {
     <main className="gallery-page">
       <div className="container">
         <header className="gallery-page-heading reveal">
-          <span className="gallery-page-eyebrow">Gallery</span>
-          <h1>Inside Sri Balaji Hospital.</h1>
-          <p>Explore the spaces where patients are received and cared for.</p>
-          <a href="/" className="gallery-back-link">Back to home</a>
+          <span className="gallery-page-eyebrow">{t('Gallery')}</span>
+          <h1>{t('Inside Sri Balaji Hospital.')}</h1>
+          <p>{t('Explore the spaces where patients are received and cared for.')}</p>
+          <a href="/" className="gallery-back-link">{t('Back to home')}</a>
         </header>
 
         {filters.length > 2 && (
-        <div className="gallery-filters" role="group" aria-label="Filter photographs">
+        <div className="gallery-filters" role="group" aria-label={t('Filter photographs')}>
           {filters.map((filter) => (
             <button
               key={filter.value}
@@ -204,14 +206,14 @@ export function GalleryPage() {
               className={activeFilter === filter.value ? 'is-active' : ''}
               onClick={() => changeFilter(filter.value)}
             >
-              {filter.label}
+              {t(filter.label)}
             </button>
           ))}
         </div>
         )}
 
         {galleryItems.some((item) => item.sample) && (
-          <p className="gallery-empty-note">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>
+          <p className="gallery-empty-note">{t('Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.')}</p>
         )}
         <div className="gallery-page-grid gallery-grid">
           {visibleItems.map((item, index) => (
@@ -225,11 +227,11 @@ export function GalleryPage() {
               disabled={exitingIds.has(item.id)}
               onClick={(event) => openLightbox(item, event.currentTarget)}
               onKeyDown={(event) => openWithKeyboard(event, item)}
-              aria-label={`Open ${item.caption}`}
+              aria-label={t('Open {caption}', { caption: t(item.caption) })}
             >
-              <img src={item.src} alt={item.alt} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} />
-              <span className="gallery-caption">{item.caption}</span>
-              {item.sample && <span className="gallery-sample-tag">Sample</span>}
+              <img src={item.src} alt={galleryAlt(item, lang)} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} />
+              <span className="gallery-caption">{t(item.caption)}</span>
+              {item.sample && <span className="gallery-sample-tag">{t('Sample')}</span>}
             </button>
           ))}
         </div>
@@ -240,20 +242,20 @@ export function GalleryPage() {
           className="gallery-lightbox"
           role="dialog"
           aria-modal="true"
-          aria-label={activeItem.caption}
+          aria-label={t(activeItem.caption)}
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) closeLightbox();
           }}
         >
-          <button className="gallery-lightbox-close" ref={closeButtonRef} onClick={closeLightbox} aria-label="Close gallery image">
+          <button className="gallery-lightbox-close" ref={closeButtonRef} onClick={closeLightbox} aria-label={t('Close gallery image')}>
             <X size={24} aria-hidden="true" />
           </button>
-          <button className="gallery-lightbox-arrow previous" onClick={() => moveLightbox(-1)} aria-label="Previous photograph">‹</button>
+          <button className="gallery-lightbox-arrow previous" onClick={() => moveLightbox(-1)} aria-label={t('Previous photograph')}>‹</button>
           <figure className={`gallery-lightbox-content slide-${slideDirection}`} key={activeItem.id}>
-            <img src={activeItem.src} alt={activeItem.alt} />
-            <figcaption>{activeItem.caption}</figcaption>
+            <img src={activeItem.src} alt={galleryAlt(activeItem, lang)} />
+            <figcaption>{t(activeItem.caption)}</figcaption>
           </figure>
-          <button className="gallery-lightbox-arrow next" onClick={() => moveLightbox(1)} aria-label="Next photograph">›</button>
+          <button className="gallery-lightbox-arrow next" onClick={() => moveLightbox(1)} aria-label={t('Next photograph')}>›</button>
         </div>
       )}
     </main>

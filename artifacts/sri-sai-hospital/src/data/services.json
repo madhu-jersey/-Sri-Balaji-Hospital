@@ -1,5 +1,5 @@
 {
-  "_note": "Departments and their services (hospital brochure plus the owner's changes, Nov 2026). The home page Services section and the service pages (scripts/build-pages.mjs) both read this file. Each service appears once per department. 'page' holds the text for that department's own page.",
+  "_note": "Departments and their services (hospital brochure plus the owner's changes, Nov 2026). The home page Services section and the service pages (scripts/build-pages.mjs) both read this file. Each service appears once per department. 'page' holds the text for that department's own page. 'te' holds the Telugu for all of it, item for item in the same order.",
   "departments": [
     {
       "slug": "general-medicine-tanuku",
@@ -28,10 +28,60 @@
           "Come in for fever, viral fever, cold and cough, diabetes, high blood pressure or breathing problems during OP hours. Poisoning, snakebite, burns, accidents and cardiac emergencies are attended 24 hours a day, with an ICU and ventilator support on site."
         ],
         "faqs": [
-          { "q": "Do you treat fever and viral fever in Tanuku?", "a": "Yes. Fever, viral fever, cold and cough are treated at Sri Balaji Hospital, Sajjapuram, Tanuku. OP timings are Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM." },
-          { "q": "Is snakebite and poisoning treatment available at night?", "a": "Yes. Snakebite and poisoning are treated as emergencies 24 hours a day, every day, with an ICU and ventilator available if needed." },
-          { "q": "Do you manage diabetes and blood pressure?", "a": "Yes. Diabetes management, diabetic foot care and high blood pressure management are part of the general medicine department." }
+          {
+            "q": "Do you treat fever and viral fever in Tanuku?",
+            "a": "Yes. Fever, viral fever, cold and cough are treated at Sri Balaji Hospital, Sajjapuram, Tanuku. OP timings are Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM."
+          },
+          {
+            "q": "Is snakebite and poisoning treatment available at night?",
+            "a": "Yes. Snakebite and poisoning are treated as emergencies 24 hours a day, every day, with an ICU and ventilator available if needed."
+          },
+          {
+            "q": "Do you manage diabetes and blood pressure?",
+            "a": "Yes. Diabetes management, diabetic foot care and high blood pressure management are part of the general medicine department."
+          }
         ]
+      },
+      "te": {
+        "title": "జనరల్ మెడిసిన్ & అత్యవసర చికిత్స",
+        "short": "జనరల్ మెడిసిన్",
+        "text": "సాధారణ వ్యాధులు, ఇతర వైద్య సమస్యలు మరియు వైద్య అత్యవసర పరిస్థితులకు నిర్ధారణ మరియు చికిత్స.",
+        "items": [
+          "జనరల్ మెడిసిన్ (సాధారణ వైద్యం)",
+          "జ్వరం, వైరల్ జ్వరం, జలుబు & దగ్గు చికిత్స",
+          "విషప్రయోగ (పాయిజనింగ్) చికిత్స",
+          "పాముకాటు చికిత్స",
+          "ప్రమాదాలు & అత్యవసర చికిత్స",
+          "కాలిన గాయాల చికిత్స",
+          "గుండె సంబంధిత చికిత్స (కార్డియాక్ కేర్)",
+          "మధుమేహం (షుగర్) నియంత్రణ",
+          "డయాబెటిక్ ఫుట్ కేర్ (షుగర్ రోగుల పాదాల సంరక్షణ)",
+          "అధిక రక్తపోటు (బీపీ) నియంత్రణ",
+          "ఆస్తమా & శ్వాసకోశ వ్యాధుల చికిత్స"
+        ],
+        "page": {
+          "title": "తణుకులో జనరల్ మెడిసిన్ | జ్వరం, షుగర్, బీపీ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో జనరల్ మెడిసిన్: జ్వరం, వైరల్ జ్వరం, షుగర్, బీపీ, ఆస్తమా, గుండె సంబంధిత చికిత్స, పాముకాటు మరియు విషప్రయోగ చికిత్స. సజ్జాపురంలోని శ్రీ బాలాజీ హాస్పిటల్‌లో 24/7 అత్యవసర సేవలు.",
+          "h1": "తణుకులో జనరల్ మెడిసిన్ & అత్యవసర చికిత్స",
+          "intro": [
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో సాధారణ వ్యాధులకు, తీవ్రమైన వైద్య అత్యవసర పరిస్థితులకు ఒకే చోట చికిత్స అందుతుంది. 25 సంవత్సరాల అనుభవం ఉన్న క్రిటికల్ కేర్ స్పెషలిస్ట్ డా. డి. బిల్లీ గ్రాహం, M.B.B.S., M.D. నేతృత్వంలో చికిత్స జరుగుతుంది.",
+            "జ్వరం, వైరల్ జ్వరం, జలుబు, దగ్గు, షుగర్, అధిక బీపీ లేదా శ్వాస సమస్యలకు ఓపీ సమయాల్లో రండి. విషప్రయోగం, పాముకాటు, కాలిన గాయాలు, ప్రమాదాలు మరియు గుండె సంబంధిత అత్యవసర పరిస్థితులకు రోజుకు 24 గంటలూ చికిత్స అందుతుంది. హాస్పిటల్‌లోనే ఐసీయూ మరియు వెంటిలేటర్ సపోర్ట్ ఉన్నాయి."
+          ],
+          "faqs": [
+            {
+              "q": "తణుకులో జ్వరం, వైరల్ జ్వరానికి చికిత్స చేస్తారా?",
+              "a": "అవును. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో జ్వరం, వైరల్ జ్వరం, జలుబు, దగ్గుకు చికిత్స అందుతుంది. ఓపీ సమయాలు: సోమవారం నుండి శనివారం వరకు ఉదయం 9:30 – రాత్రి 8:30, ఆదివారం ఉదయం 10:00 – రాత్రి 8:00."
+            },
+            {
+              "q": "రాత్రి సమయంలో పాముకాటు, విషప్రయోగానికి చికిత్స అందుతుందా?",
+              "a": "అవును. పాముకాటు, విషప్రయోగం కేసులను అత్యవసర కేసులుగా ప్రతిరోజూ 24 గంటలూ చూస్తాం. అవసరమైతే ఐసీయూ మరియు వెంటిలేటర్ అందుబాటులో ఉంటాయి."
+            },
+            {
+              "q": "షుగర్, బీపీకి చికిత్స అందిస్తారా?",
+              "a": "అవును. షుగర్ నియంత్రణ, డయాబెటిక్ ఫుట్ కేర్ మరియు అధిక బీపీ నియంత్రణ జనరల్ మెడిసిన్ విభాగంలో భాగం."
+            }
+          ]
+        }
       }
     },
     {
@@ -69,10 +119,68 @@
           "Operations include hernia, appendix and gallbladder surgery, thyroid surgery, piles, fissure and fistula treatment, lipoma and breast lump removal, hysterectomy, ovarian cysts and fibroids, and diabetic foot ulcer care. Call to discuss your condition and book a consultation."
         ],
         "faqs": [
-          { "q": "Which surgeries are done at Sri Balaji Hospital, Tanuku?", "a": "Appendix, hernia, gallbladder, thyroid, piles, fissure, fistula, abscess and cyst removal, lipoma, hydrocele, breast lump, hysterectomy, vaginal hysterectomy, ovarian tumours and cysts, fibroids, diabetic foot ulcer treatment and amputation, skin grafting and wound management." },
-          { "q": "Is the operation theatre modular?", "a": "Yes. Surgery is done in a modular operation theatre, with an ICU, ventilator and central oxygen in the hospital." },
-          { "q": "Is cashless insurance available for surgery?", "a": "We handle all health insurance cases and cashless treatment is available. Call with your policy details before admission and we will confirm your coverage." }
+          {
+            "q": "Which surgeries are done at Sri Balaji Hospital, Tanuku?",
+            "a": "Appendix, hernia, gallbladder, thyroid, piles, fissure, fistula, abscess and cyst removal, lipoma, hydrocele, breast lump, hysterectomy, vaginal hysterectomy, ovarian tumours and cysts, fibroids, diabetic foot ulcer treatment and amputation, skin grafting and wound management."
+          },
+          {
+            "q": "Is the operation theatre modular?",
+            "a": "Yes. Surgery is done in a modular operation theatre, with an ICU, ventilator and central oxygen in the hospital."
+          },
+          {
+            "q": "Is cashless insurance available for surgery?",
+            "a": "We handle all health insurance cases and cashless treatment is available. Call with your policy details before admission and we will confirm your coverage."
+          }
         ]
+      },
+      "te": {
+        "title": "జనరల్ సర్జరీ",
+        "short": "జనరల్ సర్జరీ",
+        "text": "శస్త్రచికిత్స అవసరమైన సాధారణ సమస్యలకు నిర్ధారణ మరియు ఆపరేషన్.",
+        "items": [
+          "అపెండిక్స్ ఆపరేషన్ (అపెండెక్టమీ)",
+          "హెర్నియా ఆపరేషన్",
+          "పిత్తాశయం (గాల్‌బ్లాడర్) ఆపరేషన్",
+          "థైరాయిడ్ ఆపరేషన్",
+          "మొలలు (పైల్స్) ఆపరేషన్",
+          "మలద్వార పగుళ్ల (ఫిషర్) చికిత్స",
+          "భగందరం (ఫిస్టులా) చికిత్స",
+          "చీము గడ్డలు & తిత్తుల తొలగింపు",
+          "కొవ్వు గడ్డ (లైపోమా) తొలగింపు",
+          "వరిబీజం (హైడ్రోసీల్) ఆపరేషన్",
+          "రొమ్ములో గడ్డ ఆపరేషన్",
+          "గర్భసంచి తొలగింపు (హిస్టరెక్టమీ)",
+          "యోని మార్గం ద్వారా గర్భసంచి తొలగింపు (వజైనల్ హిస్టరెక్టమీ)",
+          "అండాశయ కణితులు / తిత్తులు (ఓవరియన్ సిస్ట్స్)",
+          "గర్భసంచిలో గడ్డల (ఫైబ్రాయిడ్స్) చికిత్స",
+          "షుగర్ పాదం పుండు (డయాబెటిక్ ఫుట్ అల్సర్) చికిత్స / అవయవ తొలగింపు (ఆంప్యుటేషన్)",
+          "చర్మ మార్పిడి (స్కిన్ గ్రాఫ్టింగ్)",
+          "గాయాల చికిత్స",
+          "చిన్న శస్త్రచికిత్సలు"
+        ],
+        "page": {
+          "title": "తణుకులో జనరల్ సర్జరీ | హెర్నియా, అపెండిక్స్, మొలలు, థైరాయిడ్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో జనరల్ సర్జరీ: హెర్నియా, అపెండిక్స్, పిత్తాశయం, థైరాయిడ్, మొలలు, భగందరం, ఫిషర్, కొవ్వు గడ్డలు, రొమ్ము గడ్డలు, గర్భసంచి తొలగింపు, ఫైబ్రాయిడ్స్ మరియు డయాబెటిక్ ఫుట్ ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో.",
+          "h1": "తణుకులో జనరల్ సర్జరీ",
+          "intro": [
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో సాధారణ శస్త్రచికిత్సలను మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో చేస్తాం. ఆపరేషన్ తర్వాత దగ్గరి పర్యవేక్షణ అవసరమైన రోగుల కోసం హాస్పిటల్‌లోనే ఐసీయూ ఉంది.",
+            "హెర్నియా, అపెండిక్స్, పిత్తాశయం ఆపరేషన్లు, థైరాయిడ్ ఆపరేషన్, మొలలు, ఫిషర్, భగందరం చికిత్స, కొవ్వు గడ్డలు మరియు రొమ్ము గడ్డల తొలగింపు, గర్భసంచి తొలగింపు, అండాశయ తిత్తులు, ఫైబ్రాయిడ్స్ మరియు డయాబెటిక్ ఫుట్ అల్సర్ చికిత్స అందుబాటులో ఉన్నాయి. మీ సమస్య గురించి మాట్లాడి, కన్సల్టేషన్ బుక్ చేసుకోవడానికి కాల్ చేయండి."
+          ],
+          "faqs": [
+            {
+              "q": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో ఏయే ఆపరేషన్లు చేస్తారు?",
+              "a": "అపెండిక్స్, హెర్నియా, పిత్తాశయం, థైరాయిడ్, మొలలు, ఫిషర్, భగందరం, చీము గడ్డలు మరియు తిత్తుల తొలగింపు, కొవ్వు గడ్డలు, వరిబీజం, రొమ్ము గడ్డలు, గర్భసంచి తొలగింపు, వజైనల్ హిస్టరెక్టమీ, అండాశయ కణితులు మరియు తిత్తులు, ఫైబ్రాయిడ్స్, డయాబెటిక్ ఫుట్ అల్సర్ చికిత్స మరియు అవయవ తొలగింపు, చర్మ మార్పిడి మరియు గాయాల చికిత్స."
+            },
+            {
+              "q": "ఆపరేషన్ థియేటర్ మాడ్యులర్‌దేనా?",
+              "a": "అవును. ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో జరుగుతాయి. హాస్పిటల్‌లో ఐసీయూ, వెంటిలేటర్ మరియు సెంట్రల్ ఆక్సిజన్ ఉన్నాయి."
+            },
+            {
+              "q": "ఆపరేషన్‌కు క్యాష్‌లెస్ ఇన్సూరెన్స్ ఉందా?",
+              "a": "అన్ని హెల్త్ ఇన్సూరెన్స్ కేసులను చూస్తాం, క్యాష్‌లెస్ చికిత్స అందుబాటులో ఉంది. అడ్మిషన్‌కు ముందు మీ పాలసీ వివరాలతో కాల్ చేయండి; మీ కవరేజీని నిర్ధారిస్తాం."
+            }
+          ]
+        }
       }
     },
     {
@@ -101,9 +209,51 @@
           "Neurosurgical care covers head injury and brain hemorrhage, brain tumours, spine surgery, slip disc and sciatica, spinal cord injury, nerve compression, hydrocephalus and stroke-related neurosurgical care."
         ],
         "faqs": [
-          { "q": "Are head injury patients treated at night?", "a": "Yes. Head injuries are attended as emergencies 24 hours a day. Call on the way so the team can prepare." },
-          { "q": "Do you treat slip disc and sciatica?", "a": "Yes. Slip disc treatment, sciatica treatment, spine surgery and nerve compression surgery are part of neurosurgical care at Sri Balaji Hospital." }
+          {
+            "q": "Are head injury patients treated at night?",
+            "a": "Yes. Head injuries are attended as emergencies 24 hours a day. Call on the way so the team can prepare."
+          },
+          {
+            "q": "Do you treat slip disc and sciatica?",
+            "a": "Yes. Slip disc treatment, sciatica treatment, spine surgery and nerve compression surgery are part of neurosurgical care at Sri Balaji Hospital."
+          }
         ]
+      },
+      "te": {
+        "title": "న్యూరోసర్జరీ (మెదడు & వెన్నెముక శస్త్రచికిత్స)",
+        "short": "న్యూరోసర్జరీ",
+        "text": "మెదడు, వెన్నెముక మరియు నాడీ వ్యవస్థ సమస్యలకు శస్త్రచికిత్స.",
+        "items": [
+          "మెదడు కణితి (బ్రెయిన్ ట్యూమర్) ఆపరేషన్",
+          "తలకు తగిలిన గాయాల చికిత్స",
+          "మెదడులో రక్తస్రావం (బ్రెయిన్ హెమరేజ్) ఆపరేషన్",
+          "వెన్నెముక ఆపరేషన్",
+          "డిస్క్ జారడం (స్లిప్ డిస్క్) చికిత్స",
+          "వెన్నుపాము గాయాల చికిత్స",
+          "సయాటికా (నడుము నుండి కాలికి నొప్పి) చికిత్స",
+          "నరాలపై ఒత్తిడి తగ్గించే ఆపరేషన్",
+          "మెదడులో నీరు చేరడం (హైడ్రోసెఫాలస్) చికిత్స",
+          "పక్షవాతం (స్ట్రోక్) సంబంధిత న్యూరోసర్జికల్ చికిత్స"
+        ],
+        "page": {
+          "title": "తణుకులో న్యూరోసర్జరీ | తల గాయాలు, వెన్నెముక, స్లిప్ డిస్క్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో న్యూరోసర్జరీ: తలకు గాయాలు, మెదడులో రక్తస్రావం, బ్రెయిన్ ట్యూమర్, వెన్నెముక ఆపరేషన్, స్లిప్ డిస్క్, సయాటికా మరియు వెన్నుపాము గాయాల చికిత్స. శ్రీ బాలాజీ హాస్పిటల్‌లో 24/7 అత్యవసర సేవలు, ఐసీయూ.",
+          "h1": "తణుకులో న్యూరోసర్జరీ",
+          "intro": [
+            "రోడ్డు ప్రమాదాలు, కింద పడటం వల్ల తలకు తగిలే గాయాలకు త్వరగా చికిత్స అవసరం. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో తల మరియు వెన్నెముక గాయాలకు రోజుకు 24 గంటలూ చికిత్స అందుతుంది. అదే భవనంలో ఐసీయూ, వెంటిలేటర్ సపోర్ట్ మరియు మాడ్యులర్ ఆపరేషన్ థియేటర్ ఉన్నాయి.",
+            "న్యూరోసర్జరీ సేవల్లో తల గాయాలు మరియు మెదడులో రక్తస్రావం, మెదడు కణితులు, వెన్నెముక ఆపరేషన్, స్లిప్ డిస్క్ మరియు సయాటికా, వెన్నుపాము గాయాలు, నరాలపై ఒత్తిడి, మెదడులో నీరు చేరడం (హైడ్రోసెఫాలస్) మరియు పక్షవాతం సంబంధిత న్యూరోసర్జికల్ చికిత్స ఉన్నాయి."
+          ],
+          "faqs": [
+            {
+              "q": "రాత్రి సమయంలో తల గాయాల రోగులకు చికిత్స అందుతుందా?",
+              "a": "అవును. తల గాయాలను అత్యవసర కేసులుగా రోజుకు 24 గంటలూ చూస్తాం. బృందం సిద్ధంగా ఉండేలా వచ్చే దారిలోనే కాల్ చేయండి."
+            },
+            {
+              "q": "స్లిప్ డిస్క్, సయాటికాకు చికిత్స చేస్తారా?",
+              "a": "అవును. స్లిప్ డిస్క్ చికిత్స, సయాటికా చికిత్స, వెన్నెముక ఆపరేషన్ మరియు నరాలపై ఒత్తిడి తగ్గించే ఆపరేషన్ శ్రీ బాలాజీ హాస్పిటల్ న్యూరోసర్జరీ సేవల్లో భాగం."
+            }
+          ]
+        }
       }
     },
     {
@@ -128,9 +278,47 @@
           "For ongoing problems such as headache and migraine, memory loss or Parkinson's disease and shaking, visit during OP hours for assessment and treatment."
         ],
         "faqs": [
-          { "q": "What should I do if someone has a stroke or sudden paralysis?", "a": "Treat it as an emergency. Come to Sri Balaji Hospital, Sajjapuram straight away and call on the way. For an ambulance, call 108." },
-          { "q": "Do you treat fits (seizures) and migraine?", "a": "Yes. Seizures (fits), meningitis, headache and migraine, memory loss and Parkinson's disease are treated in the neurology department." }
+          {
+            "q": "What should I do if someone has a stroke or sudden paralysis?",
+            "a": "Treat it as an emergency. Come to Sri Balaji Hospital, Sajjapuram straight away and call on the way. For an ambulance, call 108."
+          },
+          {
+            "q": "Do you treat fits (seizures) and migraine?",
+            "a": "Yes. Seizures (fits), meningitis, headache and migraine, memory loss and Parkinson's disease are treated in the neurology department."
+          }
         ]
+      },
+      "te": {
+        "title": "న్యూరాలజీ (నరాల వ్యాధులు)",
+        "short": "న్యూరాలజీ",
+        "text": "మెదడు మరియు నరాలకు సంబంధించిన వ్యాధుల నిర్ధారణ మరియు మందులతో చికిత్స.",
+        "items": [
+          "స్ట్రోక్ మరియు పక్షవాతం",
+          "మూర్ఛ (ఫిట్స్)",
+          "మెదడు పొరల వాపు (మెనింజైటిస్)",
+          "తలనొప్పి మరియు మైగ్రేన్ (పార్శ్వపు నొప్పి)",
+          "జ్ఞాపకశక్తి తగ్గడం (మతిమరుపు)",
+          "పార్కిన్సన్స్ వ్యాధి (వణుకు సమస్యలు)"
+        ],
+        "page": {
+          "title": "తణుకులో న్యూరాలజీ | స్ట్రోక్, పక్షవాతం, ఫిట్స్, మైగ్రేన్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో స్ట్రోక్ మరియు పక్షవాతం, మూర్ఛ (ఫిట్స్), మెదడు పొరల వాపు, తలనొప్పి మరియు మైగ్రేన్, మతిమరుపు, పార్కిన్సన్స్ వ్యాధికి న్యూరాలజీ చికిత్స. శ్రీ బాలాజీ హాస్పిటల్‌లో 24/7 అత్యవసర సేవలు.",
+          "h1": "తణుకులో న్యూరాలజీ చికిత్స",
+          "intro": [
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో మెదడు మరియు నరాల వ్యాధులను నిర్ధారించి చికిత్స చేస్తాం. స్ట్రోక్, అకస్మాత్తుగా వచ్చే పక్షవాతం, మూర్ఛ (ఫిట్స్) అత్యవసర పరిస్థితులు. వీటికి రోజుకు 24 గంటలూ చికిత్స అందుతుంది; హాస్పిటల్‌లోనే ఐసీయూ మరియు వెంటిలేటర్ సపోర్ట్ ఉన్నాయి.",
+            "తలనొప్పి మరియు మైగ్రేన్, మతిమరుపు, పార్కిన్సన్స్ వ్యాధి మరియు వణుకు వంటి దీర్ఘకాలిక సమస్యలకు పరీక్ష మరియు చికిత్స కోసం ఓపీ సమయాల్లో రండి."
+          ],
+          "faqs": [
+            {
+              "q": "ఎవరికైనా స్ట్రోక్ లేదా అకస్మాత్తుగా పక్షవాతం వస్తే ఏం చేయాలి?",
+              "a": "దీన్ని అత్యవసర పరిస్థితిగా భావించండి. వెంటనే సజ్జాపురంలోని శ్రీ బాలాజీ హాస్పిటల్‌కు రండి, వచ్చే దారిలోనే కాల్ చేయండి. అంబులెన్స్ కోసం 108 కు కాల్ చేయండి."
+            },
+            {
+              "q": "మూర్ఛ (ఫిట్స్), మైగ్రేన్‌కు చికిత్స చేస్తారా?",
+              "a": "అవును. మూర్ఛ (ఫిట్స్), మెదడు పొరల వాపు, తలనొప్పి మరియు మైగ్రేన్, మతిమరుపు, పార్కిన్సన్స్ వ్యాధికి న్యూరాలజీ విభాగంలో చికిత్స అందుతుంది."
+            }
+          ]
+        }
       }
     },
     {
@@ -159,9 +347,51 @@
           "Procedures include burn treatment and reconstruction, skin grafting, scar revision, wound and soft tissue reconstruction, facial injury and hand reconstruction, cleft lip and palate surgery, congenital deformity correction and cosmetic surgery."
         ],
         "faqs": [
-          { "q": "Are burns treated as an emergency?", "a": "Yes. Burns are attended 24 hours a day. Reconstruction and skin grafting follow once the wound is ready." },
-          { "q": "Do you do scar revision and cosmetic surgery?", "a": "Yes. Scar revision surgery and cosmetic surgery are part of plastic and reconstructive surgery at Sri Balaji Hospital." }
+          {
+            "q": "Are burns treated as an emergency?",
+            "a": "Yes. Burns are attended 24 hours a day. Reconstruction and skin grafting follow once the wound is ready."
+          },
+          {
+            "q": "Do you do scar revision and cosmetic surgery?",
+            "a": "Yes. Scar revision surgery and cosmetic surgery are part of plastic and reconstructive surgery at Sri Balaji Hospital."
+          }
         ]
+      },
+      "te": {
+        "title": "ప్లాస్టిక్ & రీకన్‌స్ట్రక్టివ్ సర్జరీ",
+        "short": "ప్లాస్టిక్ సర్జరీ",
+        "text": "దెబ్బతిన్న కణజాలాలు మరియు శరీర భాగాలను సరిచేసి, తిరిగి రూపొందించే శస్త్రచికిత్సలు.",
+        "items": [
+          "కాలిన గాయాల చికిత్స & పునర్నిర్మాణం",
+          "చర్మ మార్పిడి (స్కిన్ గ్రాఫ్టింగ్)",
+          "మచ్చలను సరిచేసే ఆపరేషన్",
+          "గాయాల పునర్నిర్మాణం",
+          "ముఖ గాయాల పునర్నిర్మాణం",
+          "గ్రహణం మొర్రి & అంగిలి చీలిక (క్లెఫ్ట్ లిప్ & పాలెట్) ఆపరేషన్",
+          "కాస్మెటిక్ సర్జరీ (సౌందర్య శస్త్రచికిత్స)",
+          "చేతి పునర్నిర్మాణ ఆపరేషన్",
+          "పుట్టుకతో వచ్చిన లోపాల సవరణ",
+          "మృదు కణజాల పునర్నిర్మాణం"
+        ],
+        "page": {
+          "title": "తణుకులో ప్లాస్టిక్ సర్జరీ | కాలిన గాయాలు, మచ్చలు, గ్రహణం మొర్రి | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో ప్లాస్టిక్ & రీకన్‌స్ట్రక్టివ్ సర్జరీ: కాలిన గాయాల చికిత్స మరియు పునర్నిర్మాణం, చర్మ మార్పిడి, మచ్చల సవరణ, ముఖ మరియు చేతి గాయాల పునర్నిర్మాణం, గ్రహణం మొర్రి, కాస్మెటిక్ సర్జరీ.",
+          "h1": "తణుకులో ప్లాస్టిక్ & రీకన్‌స్ట్రక్టివ్ సర్జరీ",
+          "intro": [
+            "కాలిన గాయాలు, ప్రమాదాలు లేదా పుట్టుకతో వచ్చిన సమస్యల వల్ల దెబ్బతిన్న చర్మం మరియు కణజాలాలను సరిచేయడానికి సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో ప్లాస్టిక్ & రీకన్‌స్ట్రక్టివ్ సర్జరీ అందుబాటులో ఉంది.",
+            "కాలిన గాయాల చికిత్స మరియు పునర్నిర్మాణం, చర్మ మార్పిడి, మచ్చల సవరణ, గాయాలు మరియు మృదు కణజాల పునర్నిర్మాణం, ముఖ మరియు చేతి గాయాల పునర్నిర్మాణం, గ్రహణం మొర్రి & అంగిలి చీలిక ఆపరేషన్, పుట్టుకతో వచ్చిన లోపాల సవరణ మరియు కాస్మెటిక్ సర్జరీ ఈ సేవల్లో ఉన్నాయి."
+          ],
+          "faqs": [
+            {
+              "q": "కాలిన గాయాలను అత్యవసర కేసులుగా చూస్తారా?",
+              "a": "అవును. కాలిన గాయాలకు రోజుకు 24 గంటలూ చికిత్స అందుతుంది. గాయం సిద్ధమైన తర్వాత పునర్నిర్మాణం మరియు చర్మ మార్పిడి చేస్తారు."
+            },
+            {
+              "q": "మచ్చల సవరణ, కాస్మెటిక్ సర్జరీ చేస్తారా?",
+              "a": "అవును. మచ్చలను సరిచేసే ఆపరేషన్ మరియు కాస్మెటిక్ సర్జరీ శ్రీ బాలాజీ హాస్పిటల్ ప్లాస్టిక్ & రీకన్‌స్ట్రక్టివ్ సర్జరీ సేవల్లో భాగం."
+            }
+          ]
+        }
       }
     },
     {
@@ -188,9 +418,49 @@
           "Procedures include laparoscopic gallbladder surgery (Lap Chole), appendix and hernia surgery, total laparoscopic hysterectomy, ovarian cyst surgery, intestinal surgery and diagnostic laparoscopy."
         ],
         "faqs": [
-          { "q": "Is laparoscopic gallbladder surgery (Lap Chole) done in Tanuku?", "a": "Yes. Laparoscopic gallbladder surgery (Lap Chole) is done at Sri Balaji Hospital, Sajjapuram, Tanuku." },
-          { "q": "Which laparoscopic surgeries are available?", "a": "Appendix, gallbladder (Lap Chole), hernia, total laparoscopic hysterectomy, ovarian cyst, intestinal and other minimally invasive abdominal surgery, and diagnostic laparoscopy." }
+          {
+            "q": "Is laparoscopic gallbladder surgery (Lap Chole) done in Tanuku?",
+            "a": "Yes. Laparoscopic gallbladder surgery (Lap Chole) is done at Sri Balaji Hospital, Sajjapuram, Tanuku."
+          },
+          {
+            "q": "Which laparoscopic surgeries are available?",
+            "a": "Appendix, gallbladder (Lap Chole), hernia, total laparoscopic hysterectomy, ovarian cyst, intestinal and other minimally invasive abdominal surgery, and diagnostic laparoscopy."
+          }
         ]
+      },
+      "te": {
+        "title": "లాపరోస్కోపిక్ సర్జరీ (కీహోల్ సర్జరీ)",
+        "short": "లాపరోస్కోపీ",
+        "text": "ప్రత్యేక పరికరాలతో చిన్న కోతల ద్వారా చేసే శస్త్రచికిత్స.",
+        "items": [
+          "లాపరోస్కోపిక్ అపెండిక్స్ ఆపరేషన్",
+          "లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి)",
+          "లాపరోస్కోపిక్ హెర్నియా ఆపరేషన్",
+          "టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ (గర్భసంచి తొలగింపు)",
+          "వ్యాధి నిర్ధారణ లాపరోస్కోపీ",
+          "లాపరోస్కోపిక్ అండాశయ తిత్తి ఆపరేషన్",
+          "లాపరోస్కోపిక్ పేగుల ఆపరేషన్",
+          "చిన్న కోతలతో పొట్ట ఆపరేషన్లు"
+        ],
+        "page": {
+          "title": "తణుకులో లాపరోస్కోపిక్ సర్జరీ | ల్యాప్ కోలి, హెర్నియా, అపెండిక్స్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో లాపరోస్కోపిక్ (కీహోల్) సర్జరీ: పిత్తాశయం (ల్యాప్ కోలి), అపెండిక్స్, హెర్నియా, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి మరియు పేగుల ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో.",
+          "h1": "తణుకులో లాపరోస్కోపిక్ సర్జరీ",
+          "intro": [
+            "లాపరోస్కోపిక్ సర్జరీని కెమెరా మరియు సన్నని పరికరాలతో చిన్న కోతల ద్వారా చేస్తారు. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో లాపరోస్కోపిక్ ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో జరుగుతాయి.",
+            "లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి), అపెండిక్స్ మరియు హెర్నియా ఆపరేషన్లు, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి ఆపరేషన్, పేగుల ఆపరేషన్ మరియు వ్యాధి నిర్ధారణ లాపరోస్కోపీ ఈ సేవల్లో ఉన్నాయి."
+          ],
+          "faqs": [
+            {
+              "q": "తణుకులో లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి) చేస్తారా?",
+              "a": "అవును. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి) చేస్తారు."
+            },
+            {
+              "q": "ఏయే లాపరోస్కోపిక్ ఆపరేషన్లు అందుబాటులో ఉన్నాయి?",
+              "a": "అపెండిక్స్, పిత్తాశయం (ల్యాప్ కోలి), హెర్నియా, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి, పేగులు మరియు ఇతర చిన్న కోతలతో పొట్ట ఆపరేషన్లు, వ్యాధి నిర్ధారణ లాపరోస్కోపీ."
+            }
+          ]
+        }
       }
     },
     {
@@ -223,9 +493,55 @@
           "The ICU has ventilator, BiPAP and CPAP support, cardiac and multiparameter monitors, a defibrillator, infusion and syringe pumps and central oxygen. A ventilator ambulance is available, and the hospital has a modular operation theatre."
         ],
         "faqs": [
-          { "q": "Is there an ICU with a ventilator in Tanuku?", "a": "Yes. Sri Balaji Hospital in Sajjapuram, Tanuku has an ICU with ventilator, BiPAP and CPAP support, open 24 hours a day." },
-          { "q": "Do you have a ventilator ambulance?", "a": "Yes. A ventilator ambulance is available. Call 98857 71197 or 08819 221778." }
+          {
+            "q": "Is there an ICU with a ventilator in Tanuku?",
+            "a": "Yes. Sri Balaji Hospital in Sajjapuram, Tanuku has an ICU with ventilator, BiPAP and CPAP support, open 24 hours a day."
+          },
+          {
+            "q": "Do you have a ventilator ambulance?",
+            "a": "Yes. A ventilator ambulance is available. Call 98857 71197 or 08819 221778."
+          }
         ]
+      },
+      "te": {
+        "title": "క్రిటికల్ కేర్ & సౌకర్యాలు",
+        "short": "క్రిటికల్ కేర్",
+        "text": "వెంటిలేటర్, బైపాప్ మరియు సీపాప్ సపోర్ట్, మాడ్యులర్ ఆపరేషన్ థియేటర్, నిరంతర పర్యవేక్షణతో ఇంటెన్సివ్ కేర్.",
+        "items": [
+          "వెంటిలేటర్ సపోర్ట్",
+          "బైపాప్ (BiPAP) సపోర్ట్",
+          "సీపాప్ (CPAP) సపోర్ట్",
+          "వెంటిలేటర్ అంబులెన్స్",
+          "మాడ్యులర్ ఆపరేషన్ థియేటర్",
+          "ఇంటెన్సివ్ కేర్ యూనిట్ (ఐసీయూ)",
+          "సెంట్రల్ ఆక్సిజన్ సరఫరా",
+          "కార్డియాక్ మానిటర్ (గుండె పర్యవేక్షణ)",
+          "మల్టీపారామీటర్ మానిటర్",
+          "డీఫిబ్రిలేటర్ (గుండె షాక్ యంత్రం)",
+          "ఇన్ఫ్యూజన్ & సిరంజ్ పంపులు",
+          "పల్స్ ఆక్సిమీటర్",
+          "నెబ్యులైజర్",
+          "జనరల్ వార్డు"
+        ],
+        "page": {
+          "title": "తణుకులో ఐసీయూ & క్రిటికల్ కేర్ | వెంటిలేటర్, బైపాప్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో వెంటిలేటర్, బైపాప్ మరియు సీపాప్ సపోర్ట్, వెంటిలేటర్ అంబులెన్స్, కార్డియాక్ మానిటర్లు, డీఫిబ్రిలేటర్ మరియు సెంట్రల్ ఆక్సిజన్‌తో ఐసీయూ మరియు క్రిటికల్ కేర్. క్రిటికల్ కేర్ స్పెషలిస్ట్ నేతృత్వంలో, 24/7.",
+          "h1": "తణుకులో ఐసీయూ & క్రిటికల్ కేర్",
+          "intro": [
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్ ఇంటెన్సివ్ కేర్ యూనిట్ (ఐసీయూ)కు 25 సంవత్సరాల అనుభవం ఉన్న క్రిటికల్ కేర్ స్పెషలిస్ట్ డా. డి. బిల్లీ గ్రాహం, M.B.B.S., M.D. నేతృత్వం వహిస్తారు. తీవ్రమైన మరియు క్లిష్టమైన కేసులను స్వయంగా చూస్తారు.",
+            "ఐసీయూలో వెంటిలేటర్, బైపాప్ మరియు సీపాప్ సపోర్ట్, కార్డియాక్ మరియు మల్టీపారామీటర్ మానిటర్లు, డీఫిబ్రిలేటర్, ఇన్ఫ్యూజన్ మరియు సిరంజ్ పంపులు, సెంట్రల్ ఆక్సిజన్ ఉన్నాయి. వెంటిలేటర్ అంబులెన్స్ అందుబాటులో ఉంది; హాస్పిటల్‌లో మాడ్యులర్ ఆపరేషన్ థియేటర్ కూడా ఉంది."
+          ],
+          "faqs": [
+            {
+              "q": "తణుకులో వెంటిలేటర్‌తో ఐసీయూ ఉందా?",
+              "a": "అవును. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో వెంటిలేటర్, బైపాప్ మరియు సీపాప్ సపోర్ట్‌తో ఐసీయూ రోజుకు 24 గంటలూ పనిచేస్తుంది."
+            },
+            {
+              "q": "వెంటిలేటర్ అంబులెన్స్ ఉందా?",
+              "a": "అవును. వెంటిలేటర్ అంబులెన్స్ అందుబాటులో ఉంది. 98857 71197 లేదా 08819 221778 కు కాల్ చేయండి."
+            }
+          ]
+        }
       }
     },
     {
@@ -253,9 +569,49 @@
           "The hospital has single and AC rooms, a lift, generator backup, continuous RO drinking water, a spacious parking area, an ambulance service, and wheelchairs and stretchers for patients who need them."
         ],
         "faqs": [
-          { "q": "Are AC rooms available?", "a": "Yes. Single and AC rooms are available at Sri Balaji Hospital, Tanuku." },
-          { "q": "Is there parking at the hospital?", "a": "Yes. The hospital has a spacious parking area." }
+          {
+            "q": "Are AC rooms available?",
+            "a": "Yes. Single and AC rooms are available at Sri Balaji Hospital, Tanuku."
+          },
+          {
+            "q": "Is there parking at the hospital?",
+            "a": "Yes. The hospital has a spacious parking area."
+          }
         ]
+      },
+      "te": {
+        "title": "సాధారణ సౌకర్యాలు",
+        "short": "సౌకర్యాలు",
+        "text": "చికిత్స సమయంలో రోగులకు మరియు వారి కుటుంబాలకు సౌకర్యం మరియు సహాయం.",
+        "items": [
+          "లిఫ్ట్ సౌకర్యం",
+          "జనరేటర్ బ్యాకప్",
+          "నిరంతర ఆర్‌ఓ (RO) తాగునీరు",
+          "విశాలమైన పార్కింగ్ స్థలం",
+          "సింగిల్ & ఏసీ గదులు",
+          "అంబులెన్స్ సేవ",
+          "వీల్‌చైర్ సౌకర్యం",
+          "స్ట్రెచర్ సౌకర్యం"
+        ],
+        "page": {
+          "title": "తణుకులో హాస్పిటల్ సౌకర్యాలు | ఏసీ గదులు, అంబులెన్స్, పార్కింగ్ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సౌకర్యాలు: సింగిల్ మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్, అంబులెన్స్ సేవ, వీల్‌చైర్లు మరియు స్ట్రెచర్లు.",
+          "h1": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సౌకర్యాలు",
+          "intro": [
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్ రోగులకు మరియు వారితో ఉండే కుటుంబ సభ్యులకు సౌకర్యంగా ఉండేలా నిర్మించబడింది.",
+            "హాస్పిటల్‌లో సింగిల్ మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, నిరంతర ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్ స్థలం, అంబులెన్స్ సేవ, అవసరమైన రోగుల కోసం వీల్‌చైర్లు మరియు స్ట్రెచర్లు ఉన్నాయి."
+          ],
+          "faqs": [
+            {
+              "q": "ఏసీ గదులు అందుబాటులో ఉన్నాయా?",
+              "a": "అవును. శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సింగిల్ మరియు ఏసీ గదులు అందుబాటులో ఉన్నాయి."
+            },
+            {
+              "q": "హాస్పిటల్‌లో పార్కింగ్ ఉందా?",
+              "a": "అవును. హాస్పిటల్‌లో విశాలమైన పార్కింగ్ స్థలం ఉంది."
+            }
+          ]
+        }
       }
     }
   ]

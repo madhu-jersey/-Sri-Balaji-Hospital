@@ -14,6 +14,8 @@
   Supported: .jpg .jpeg .png .webp .avif
 */
 
+import { translate, type Lang } from '../i18n';
+
 export type GalleryItem = {
   id: string;
   src: string;
@@ -125,3 +127,9 @@ export const galleryCategories: { value: string; label: string }[] = Array.from(
   new Map(galleryItems.map((item) => [item.category, item.categoryLabel])),
   ([value, label]) => ({ value, label }),
 );
+
+// Image description in the chosen language. Captions are stored in English and translated through src/i18n/te.json.
+export function galleryAlt(item: GalleryItem, lang: Lang) {
+  if (item.id === 'building' || item.sample) return translate(lang, item.alt);
+  return translate(lang, '{caption}, Sri Balaji Hospital', { caption: translate(lang, item.caption) });
+}

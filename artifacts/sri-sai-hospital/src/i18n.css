@@ -1,0 +1,77 @@
+/*
+  English | Telugu switch, and Telugu typography.
+  Imported last in main.tsx so it can adjust spacing for the longer Telugu words.
+*/
+
+/* ---------- The switch ---------- */
+.lang-toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid #DCE6F4;
+  border-radius: 999px;
+  background: #fff;
+}
+.lang-toggle > span { color: #B7C5DC; font-size: 13px; line-height: 1; }
+.lang-toggle button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #34466B;
+  font: 600 13.5px/1 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease;
+}
+.lang-toggle button[lang='te'] { font-family: 'Noto Sans Telugu', sans-serif; font-size: 14px; }
+.lang-toggle button:hover { color: #0B4FC4; }
+.lang-toggle button[aria-pressed='true'] { background: #0B4FC4; color: #fff; }
+.lang-toggle button:focus-visible { outline: 2px solid #0B4FC4; outline-offset: 2px; }
+.lang-toggle-header { margin-left: auto; }
+
+@media (max-width: 900px) {
+  /* Phones and tablets: the switch sits between the logo and the menu button, always visible. */
+  .site-header .lang-toggle-header { order: 2; margin-left: auto; }
+  .site-header .nav-toggle { order: 3; }
+}
+@media (max-width: 420px) {
+  .lang-toggle { padding: 2px; }
+  .lang-toggle > span { display: none; }
+  .lang-toggle button { min-height: 32px; padding: 0 8px; font-size: 12.5px; }
+  .lang-toggle button[lang='te'] { font-size: 13px; }
+  .site-header .brand-name { font-size: 13px; }
+  .site-header .nav-inner { gap: 8px; }
+}
+
+/* ---------- Telugu text ----------
+   Latin letters keep Plus Jakarta Sans; Telugu letters use Noto Sans Telugu (loaded in index.css).
+   The "SRI BALAJI" wordmark keeps its display font. */
+html[lang='te'] body :where(*:not(svg, svg *, .sbh-wordmark, .lang-toggle button[lang='en'])) {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif !important;
+}
+/* Telugu letters sit taller than Latin ones: give headings and body text a little more line height. */
+html[lang='te'] :where(h1, h2, h3) { line-height: 1.35 !important; letter-spacing: 0 !important; }
+html[lang='te'] :where(p, li, dd, dt, summary, blockquote) { line-height: 1.75; }
+html[lang='te'] .sbh-pill { line-height: 1.4; }
+
+/* Desktop navigation: the Telugu labels are longer, so tighten spacing to keep one line. */
+@media (min-width: 901px) {
+  html[lang='te'] .nav-links { gap: 18px; }
+  html[lang='te'] .nav-links > a { font-size: 14px; white-space: nowrap; }
+}
+@media (min-width: 901px) and (max-width: 1180px) {
+  html[lang='te'] .nav-links { gap: 12px; }
+  html[lang='te'] .nav-links > a { font-size: 13px; }
+}
+
+/* ---------- Services panel: every department stacked in one grid cell (see ServicesSection) ---------- */
+.svc-panel-stack { display: grid; min-width: 0; }
+.svc-panel-stack > .svc-panel { grid-area: 1 / 1; min-width: 0; }
+.svc-panel-ghost { visibility: hidden; pointer-events: none; }
+.svc-panel-ghost * { animation: none !important; }
+/* The stack now sets the height, so the old fixed minimum is no longer needed. */
+.svc-panel-stack .svc-list { min-height: 0; }
+.svc-panel-stack .svc-panel-head p { min-height: 0; }

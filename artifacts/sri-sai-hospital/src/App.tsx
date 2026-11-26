@@ -6,8 +6,9 @@ import { DoctorsSection } from './components/DoctorsSection';
 import { ServicesSection } from './components/ServicesSection';
 import { HomeHero } from './components/HomeHero';
 import { FaqSection, InsuranceSection, WhyChooseSection } from './components/InfoPages';
-import { galleryItems } from './data/gallery';
+import { galleryAlt, galleryItems } from './data/gallery';
 import servicesData from './data/services.json';
+import { LanguageToggle, pageHref, useLang } from './i18n';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
@@ -83,6 +84,7 @@ function getOpenState(date: Date) {
 }
 
 function SiteHeader() {
+  const { t } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -124,28 +126,29 @@ function SiteHeader() {
   return (
     <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
       <div className="container nav-inner">
-        <a className="brand" href={navLink('home')} aria-label="Sri Balaji Hospital home" data-testid="link-brand-home" onClick={closeMenu}>
-          <img src="/icon-192.png" alt="Sri Balaji Hospital logo" width="192" height="192" />
-          <span className="brand-name">Sri Balaji Hospital<small>Sajjapuram · Tanuku</small></span>
+        <a className="brand" href={navLink('home')} aria-label={t('Sri Balaji Hospital home')} data-testid="link-brand-home" onClick={closeMenu}>
+          <img src="/icon-192.png" alt={t('Sri Balaji Hospital logo')} width="192" height="192" />
+          <span className="brand-name">{t('Sri Balaji Hospital')}<small>{t('Sajjapuram · Tanuku')}</small></span>
         </a>
-        <nav className={`nav-links${menuOpen ? ' open' : ''}`} aria-label="Main navigation">
-          <a href={navLink('services')} aria-current={activeSection === 'services' ? 'location' : undefined} data-testid="link-nav-services" onClick={closeMenu}>Services</a>
-          <a href={navLink('why-choose')} aria-current={activeSection === 'why-choose' ? 'location' : undefined} data-testid="link-nav-why-choose" onClick={closeMenu}>Why choose us</a>
-          <a href={navLink('doctors')} aria-current={activeSection === 'doctors' ? 'location' : undefined} data-testid="link-nav-doctors" onClick={closeMenu}>Our doctors</a>
-          <a href={navLink('gallery')} aria-current={activeSection === 'gallery' ? 'location' : undefined} data-testid="link-nav-hospital" onClick={closeMenu}>Hospital</a>
-          <a href={navLink('reviews')} aria-current={activeSection === 'reviews' ? 'location' : undefined} data-testid="link-nav-reviews" onClick={closeMenu}>Reviews</a>
-          <a href={navLink('faq')} aria-current={activeSection === 'faq' ? 'location' : undefined} data-testid="link-nav-faq" onClick={closeMenu}>FAQ</a>
-          <a href={navLink('visit')} aria-current={activeSection === 'visit' ? 'location' : undefined} data-testid="link-nav-visit" onClick={closeMenu}>Visit us</a>
+        <nav className={`nav-links${menuOpen ? ' open' : ''}`} aria-label={t('Main navigation')}>
+          <a href={navLink('services')} aria-current={activeSection === 'services' ? 'location' : undefined} data-testid="link-nav-services" onClick={closeMenu}>{t('Services')}</a>
+          <a href={navLink('why-choose')} aria-current={activeSection === 'why-choose' ? 'location' : undefined} data-testid="link-nav-why-choose" onClick={closeMenu}>{t('Why choose us')}</a>
+          <a href={navLink('doctors')} aria-current={activeSection === 'doctors' ? 'location' : undefined} data-testid="link-nav-doctors" onClick={closeMenu}>{t('Our doctors')}</a>
+          <a href={navLink('gallery')} aria-current={activeSection === 'gallery' ? 'location' : undefined} data-testid="link-nav-hospital" onClick={closeMenu}>{t('Hospital')}</a>
+          <a href={navLink('reviews')} aria-current={activeSection === 'reviews' ? 'location' : undefined} data-testid="link-nav-reviews" onClick={closeMenu}>{t('Reviews')}</a>
+          <a href={navLink('faq')} aria-current={activeSection === 'faq' ? 'location' : undefined} data-testid="link-nav-faq" onClick={closeMenu}>{t('FAQ')}</a>
+          <a href={navLink('visit')} aria-current={activeSection === 'visit' ? 'location' : undefined} data-testid="link-nav-visit" onClick={closeMenu}>{t('Visit us')}</a>
           <div className="nav-mobile-actions">
-            <a className="nav-mobile-call" href={`tel:${phone}`} onClick={closeMenu}><PhoneIcon /> Call {phoneLabel}</a>
-            <a className="nav-mobile-call-alt" href={`tel:${phone2}`} onClick={closeMenu}><PhoneIcon /> Call {phone2Label}</a>
-            <a className="nav-mobile-directions" href={directions} target="_blank" rel="noreferrer" onClick={closeMenu}><MapPin size={17} aria-hidden="true" /> Get directions</a>
+            <a className="nav-mobile-call" href={`tel:${phone}`} onClick={closeMenu}><PhoneIcon /> {t('Call {n}', { n: phoneLabel })}</a>
+            <a className="nav-mobile-call-alt" href={`tel:${phone2}`} onClick={closeMenu}><PhoneIcon /> {t('Call {n}', { n: phone2Label })}</a>
+            <a className="nav-mobile-directions" href={directions} target="_blank" rel="noreferrer" onClick={closeMenu}><MapPin size={17} aria-hidden="true" /> {t('Get directions')}</a>
           </div>
         </nav>
+        <LanguageToggle className="lang-toggle-header" />
         <div className="header-contact-actions">
-          <a className="nav-call" href={`tel:${phone}`} data-testid="button-call-header"><PhoneIcon /> Call now</a>
+          <a className="nav-call" href={`tel:${phone}`} data-testid="button-call-header"><PhoneIcon /> {t('Call now')}</a>
         </div>
-        <button className="nav-toggle" type="button" data-testid="button-toggle-navigation" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="nav-toggle" type="button" data-testid="button-toggle-navigation" aria-label={menuOpen ? t('Close navigation') : t('Open navigation')} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
       </div>
@@ -236,28 +239,29 @@ const HOME_GALLERY_COUNT = 6;
 const homeGalleryItems = galleryItems.slice(0, HOME_GALLERY_COUNT);
 
 function Gallery() {
+  const { t, lang } = useLang();
   return (
     <section className="section" id="gallery" aria-labelledby="gallery-heading">
       <div className="container">
         <div className="section-heading gallery-section-heading reveal">
-          <span className="eyebrow">A look around</span>
-          <h2 id="gallery-heading"><span className="gallery-heading-word"><span>A place for</span></span>{' '}<em><span className="gallery-heading-word"><span>care.</span></span></em></h2>
-          <p>Explore the spaces at Sri Balaji Hospital.</p>
+          <span className="eyebrow">{t('A look around')}</span>
+          <h2 id="gallery-heading"><span className="gallery-heading-word"><span>{t('A place for')}</span></span>{' '}<em><span className="gallery-heading-word"><span>{t('care.')}</span></span></em></h2>
+          <p>{t('Explore the spaces at Sri Balaji Hospital.')}</p>
         </div>
         {/* Even grid of equal 4:3 tiles; each photo fills its tile (focus point set per photo in data/gallery.ts). */}
         <div className="gallery-grid">
           {homeGalleryItems.map((item, index) => (
-            <a className="gallery-card reveal" href="#gallery-view" key={item.id} style={{ '--motion-delay': `${(index % 3) * 70}ms` } as React.CSSProperties} aria-label={`${item.caption}: open the gallery`}>
-              <img src={item.src} alt={item.alt} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} data-testid={`image-hospital-${index + 1}`} />
-              <span className="gallery-caption">{item.caption}</span>
-              {item.sample && <span className="gallery-sample-tag">Sample</span>}
+            <a className="gallery-card reveal" href="#gallery-view" key={item.id} style={{ '--motion-delay': `${(index % 3) * 70}ms` } as React.CSSProperties} aria-label={t('{caption}: open the gallery', { caption: t(item.caption) })}>
+              <img src={item.src} alt={galleryAlt(item, lang)} width={1200} height={900} loading="lazy" decoding="async" style={{ objectPosition: item.focus ?? '50% 50%' }} data-testid={`image-hospital-${index + 1}`} />
+              <span className="gallery-caption">{t(item.caption)}</span>
+              {item.sample && <span className="gallery-sample-tag">{t('Sample')}</span>}
             </a>
           ))}
         </div>
-        {galleryItems.some((item) => item.sample) && <p className="gallery-soon">Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.</p>}
+        {galleryItems.some((item) => item.sample) && <p className="gallery-soon">{t('Images marked "Sample" are illustrations; photographs of the hospital will replace them soon.')}</p>}
         <div className="gallery-view-link-row">
           <a className="gallery-view-link" href="#gallery-view">
-            {galleryItems.length > HOME_GALLERY_COUNT ? 'View more photos' : 'View photos'} <ArrowRight size={18} aria-hidden="true" />
+            {galleryItems.length > HOME_GALLERY_COUNT ? t('View more photos') : t('View photos')} <ArrowRight size={18} aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -287,49 +291,53 @@ function ReviewStar({ index, fill = 1, gradientId }: { index: number; fill?: num
 }
 
 function Reviews() {
+  const { t, lang } = useLang();
   const { rating: reviewRating, count: reviewCount } = useGoogleRating();
   return (
     <section className="section reviews-section" id="reviews" aria-labelledby="reviews-heading">
       <div className="container">
         <div className="section-heading review-heading reveal">
-          <span className="eyebrow">Patient experiences</span>
+          <span className="eyebrow">{t('Patient experiences')}</span>
           <h2 id="reviews-heading">
-            <span className="review-word"><span>What</span></span>{' '}
-            <span className="review-word"><span>patients</span></span>{' '}
-            <em><span className="review-word"><span>say</span></span></em>
+            {lang === 'te' ? (
+              <><span className="review-word"><span>రోగులు</span></span>{' '}<em><span className="review-word"><span>ఏమంటున్నారు</span></span></em></>
+            ) : (
+              <><span className="review-word"><span>What</span></span>{' '}<span className="review-word"><span>patients</span></span>{' '}<em><span className="review-word"><span>say</span></span></em></>
+            )}
           </h2>
-          <p>Real experiences shared by patients and their families on Google.</p>
+          <p>{t('Real experiences shared by patients and their families on Google.')}</p>
         </div>
         <div className="sbr-layout">
-          <aside className="sbr-summary reveal" aria-label="Google rating">
+          <aside className="sbr-summary reveal" aria-label={t('Google rating')}>
             <div className="sbr-score-row">
               {/* Keyed by the rating: if the live figure arrives after the count-up started, React swaps in a fresh element. */}
-              <span className="sbr-score" key={reviewRating} data-score={reviewRating} aria-label={`${reviewRating} out of 5`}>{reviewRating.toFixed(1)}</span>
+              <span className="sbr-score" key={reviewRating} data-score={reviewRating} aria-label={t('{r} out of 5', { r: reviewRating })}>{reviewRating.toFixed(1)}</span>
               <span className="sbr-score-meta">
-                <span className="review-stars" aria-label={`${reviewRating} stars`}>
+                <span className="review-stars" aria-label={t('{r} stars', { r: reviewRating })}>
                   {[0, 1, 2, 3, 4].map((star) => (
                     <ReviewStar key={star} index={star} fill={Math.max(0, Math.min(1, reviewRating - star))} gradientId={`review-star-partial-${star}`} />
                   ))}
                 </span>
-                <span className="sbr-count">{reviewCount} Google reviews</span>
+                <span className="sbr-count">{t('{c} Google reviews', { c: reviewCount })}</span>
               </span>
             </div>
-            <p className="sbr-note">Reviews are shown as patients wrote them on Google.</p>
+            <p className="sbr-note">{t('Reviews are shown as patients wrote them on Google.')}</p>
             <a className="sbr-button" href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="button-more-google-reviews">
-              Read more reviews on Google <ArrowUpRight size={18} aria-hidden="true" />
+              {t('Read more reviews on Google')} <ArrowUpRight size={18} aria-hidden="true" />
             </a>
           </aside>
           <div className="sbr-grid">
             {reviews.map((review, index) => (
               <article className={`sbr-card reveal${index === 0 ? ' sbr-card-wide' : ''}`} key={review.name} data-testid={`card-review-${index + 1}`}>
                 {/* Each review was supplied with a 5/5 rating. */}
-                <span className="sbr-stars review-stars" aria-label="Rated 5 out of 5">
+                <span className="sbr-stars review-stars" aria-label={t('Rated 5 out of 5')}>
                   {[0, 1, 2, 3, 4].map((star) => <ReviewStar key={star} index={star} />)}
                 </span>
-                <blockquote>{review.quote}</blockquote>
+                {/* Patients' own words stay exactly as written on Google, in either language. */}
+                <blockquote lang="en">{review.quote}</blockquote>
                 <footer className="sbr-card-foot">
                   <span className="sbr-name">{review.name}</span>
-                  <span className="sbr-source">Google review</span>
+                  <span className="sbr-source">{t('Google review')}</span>
                 </footer>
               </article>
             ))}
@@ -341,6 +349,7 @@ function Reviews() {
 }
 
 function Visit() {
+  const { t, lang } = useLang();
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapInteractive, setMapInteractive] = useState(false);
   const [mapView, setMapView] = useState<'map' | 'street'>('map');
@@ -348,40 +357,41 @@ function Visit() {
     <section className="section section-white visit-section" id="visit" aria-labelledby="visit-heading">
       <div className="container">
         <div className="section-heading reveal">
-          <span className="eyebrow">Visit us</span>
+          <span className="eyebrow">{t('Visit us')}</span>
           <h2 id="visit-heading">
-            <span className="visit-heading-word"><span>We’re</span></span>{' '}
-            <span className="visit-heading-word"><span>here</span></span>{' '}
-            <span className="visit-heading-word"><span>when</span></span>{' '}
-            <em><span className="visit-heading-word"><span>you need us.</span></span></em>
+            {lang === 'te' ? (
+              <><span className="visit-heading-word"><span>అవసరమైన</span></span>{' '}<span className="visit-heading-word"><span>ప్రతిసారీ</span></span>{' '}<em><span className="visit-heading-word"><span>మీకు అండగా ఉంటాం.</span></span></em></>
+            ) : (
+              <><span className="visit-heading-word"><span>We’re</span></span>{' '}<span className="visit-heading-word"><span>here</span></span>{' '}<span className="visit-heading-word"><span>when</span></span>{' '}<em><span className="visit-heading-word"><span>you need us.</span></span></em></>
+            )}
           </h2>
-          <p>Plan your visit or call the hospital for assistance.</p>
+          <p>{t('Plan your visit or call the hospital for assistance.')}</p>
         </div>
         <div className="visit-grid">
           <div className="visit-panel">
             <div className="visit-block reveal" style={{ '--visit-index': 0 } as React.CSSProperties}>
-              <p className="visit-label">Address</p>
-              <p className="visit-value address">Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211</p>
+              <p className="visit-label">{t('Address')}</p>
+              <p className="visit-value address">{t('Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211')}</p>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 1 } as React.CSSProperties}>
-              <p className="visit-label">Call</p>
+              <p className="visit-label">{t('Call')}</p>
               <div className="visit-actions">
                 <a className="button button-primary" href={`tel:${phone}`} data-testid="button-call-visit"><PhoneIcon /> {phoneLabel}</a>
                 <a className="button visit-call-alt" href={`tel:${phone2}`} data-testid="button-call-visit-2"><PhoneIcon /> {phone2Label}</a>
               </div>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 2 } as React.CSSProperties}>
-              <p className="visit-label">Hospital hours <span className="visit-emergency-pill">Emergency 24/7</span></p>
+              <p className="visit-label">{t('Hospital hours')} <span className="visit-emergency-pill">{t('Emergency 24/7')}</span></p>
               <div className="hours-table">
-                <div className="hours-row hours-row-emergency"><span>Emergency</span><span>24 hours, 7 days</span></div>
-                <div className="hours-row reveal" style={{ '--hours-index': 0 } as React.CSSProperties}><span>OP · Monday–Saturday</span><span>9:30 AM – 8:30 PM</span></div>
-                <div className="hours-row reveal" style={{ '--hours-index': 1 } as React.CSSProperties}><span>OP · Sunday</span><span>10:00 AM – 8:00 PM</span></div>
-                <div className="hours-row reveal" style={{ '--hours-index': 2 } as React.CSSProperties}><span>Doctor consultation</span><span>10 AM – 2 PM, 6 PM – 8:30 PM</span></div>
+                <div className="hours-row hours-row-emergency"><span>{t('Emergency')}</span><span>{t('24 hours, 7 days')}</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 0 } as React.CSSProperties}><span>{t('OP · Monday–Saturday')}</span><span>{t('9:30 AM – 8:30 PM')}</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 1 } as React.CSSProperties}><span>{t('OP · Sunday')}</span><span>{t('10:00 AM – 8:00 PM')}</span></div>
+                <div className="hours-row reveal" style={{ '--hours-index': 2 } as React.CSSProperties}><span>{t('Doctor consultation')}</span><span>{t('10 AM – 2 PM, 6 PM – 8:30 PM')}</span></div>
               </div>
             </div>
             <div className="visit-block casualty-block reveal" style={{ '--visit-index': 3 } as React.CSSProperties}>
-              <p className="visit-label">Accessibility</p>
-              <p className="visit-value"><span className="casualty-dot" aria-hidden="true" />Wheelchair-accessible parking &amp; entrance</p>
+              <p className="visit-label">{t('Accessibility')}</p>
+              <p className="visit-value"><span className="casualty-dot" aria-hidden="true" />{t('Wheelchair-accessible parking & entrance')}</p>
             </div>
           </div>
           <div
@@ -392,16 +402,16 @@ function Visit() {
             data-testid="card-hospital-map"
           >
             <div className="map-shimmer" aria-hidden="true" />
-            <a className="map-directions" href={directions} target="_blank" rel="noopener noreferrer" aria-label="Go to Sri Balaji Hospital location in Google Maps" data-testid="link-go-to-location">
-              <MapPin size={17} strokeWidth={1.8} aria-hidden="true" /> Go to location
+            <a className="map-directions" href={directions} target="_blank" rel="noopener noreferrer" aria-label={t('Go to Sri Balaji Hospital location in Google Maps')} data-testid="link-go-to-location">
+              <MapPin size={17} strokeWidth={1.8} aria-hidden="true" /> {t('Go to location')}
             </a>
-            <div className="map-view-toggle" role="group" aria-label="Map view">
-              <button type="button" aria-pressed={mapView === 'map'} onClick={() => setMapView('map')}>Map</button>
-              <button type="button" aria-pressed={mapView === 'street'} onClick={() => { setMapView('street'); setMapInteractive(true); }}>Street view</button>
+            <div className="map-view-toggle" role="group" aria-label={t('Map view')}>
+              <button type="button" aria-pressed={mapView === 'map'} onClick={() => setMapView('map')}>{t('Map')}</button>
+              <button type="button" aria-pressed={mapView === 'street'} onClick={() => { setMapView('street'); setMapInteractive(true); }}>{t('Street view')}</button>
             </div>
             <iframe
               key={mapView}
-              title={mapView === 'map' ? 'Map: Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211' : 'Street View of Sri Balaji Hospital'}
+              title={mapView === 'map' ? t('Map: Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211') : t('Street View of Sri Balaji Hospital')}
               data-testid="frame-hospital-map"
               src={mapView === 'map' ? mapPinUrl : streetViewUrl}
               referrerPolicy="strict-origin-when-cross-origin"
@@ -412,7 +422,7 @@ function Visit() {
               <button
                 className="map-interaction-enable"
                 type="button"
-                aria-label="Enable map interaction"
+                aria-label={t('Enable map interaction')}
                 onClick={() => setMapInteractive(true)}
               />
             )}
@@ -424,49 +434,54 @@ function Visit() {
 }
 
 function Footer() {
+  const { t, lang } = useLang();
   const homePrefix = isStandaloneRoute() ? '/' : '';
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand reveal" style={{ '--footer-index': 0 } as React.CSSProperties}>
-            <img src="/icon-192.png" alt="Sri Balaji Hospital logo" width="192" height="192" />
-            <h2>Sri Balaji Hospital</h2>
-            <p className="font-telugu" lang="te">శ్రీ బాలాజీ హాస్పిటల్</p>
-            <p className="footer-location">Sajjapuram, Andhra Pradesh 534211</p>
+            <img src="/icon-192.png" alt={t('Sri Balaji Hospital logo')} width="192" height="192" />
+            {/* Both names always show; the selected language leads. */}
+            {lang === 'te' ? (
+              <><h2 lang="te">శ్రీ బాలాజీ హాస్పిటల్</h2><p lang="en">Sri Balaji Hospital</p></>
+            ) : (
+              <><h2>Sri Balaji Hospital</h2><p className="font-telugu" lang="te">శ్రీ బాలాజీ హాస్పిటల్</p></>
+            )}
+            <p className="footer-location">{t('Sajjapuram, Andhra Pradesh 534211')}</p>
           </div>
           <div className="footer-explore-column reveal" style={{ '--footer-index': 1 } as React.CSSProperties}>
-            <p className="footer-label">Explore</p>
-            <nav className="footer-nav" aria-label="Footer navigation">
-              <a href={`${homePrefix}#services`} data-testid="link-footer-services">Services</a><a href={`${homePrefix}#why-choose`} data-testid="link-footer-why-choose">Why choose us</a>
-              <a href={`${homePrefix}#doctors`} data-testid="link-footer-doctors">Our doctors</a><a href={`${homePrefix}#gallery`} data-testid="link-footer-hospital">Hospital</a>
-              <a href={`${homePrefix}#reviews`} data-testid="link-footer-reviews">Reviews</a><a href={`${homePrefix}#faq`} data-testid="link-footer-faq">FAQ</a>
-              <a href={`${homePrefix}#visit`} data-testid="link-footer-visit">Visit us</a>
+            <p className="footer-label">{t('Explore')}</p>
+            <nav className="footer-nav" aria-label={t('Footer navigation')}>
+              <a href={`${homePrefix}#services`} data-testid="link-footer-services">{t('Services')}</a><a href={`${homePrefix}#why-choose`} data-testid="link-footer-why-choose">{t('Why choose us')}</a>
+              <a href={`${homePrefix}#doctors`} data-testid="link-footer-doctors">{t('Our doctors')}</a><a href={`${homePrefix}#gallery`} data-testid="link-footer-hospital">{t('Hospital')}</a>
+              <a href={`${homePrefix}#reviews`} data-testid="link-footer-reviews">{t('Reviews')}</a><a href={`${homePrefix}#faq`} data-testid="link-footer-faq">{t('FAQ')}</a>
+              <a href={`${homePrefix}#visit`} data-testid="link-footer-visit">{t('Visit us')}</a>
             </nav>
           </div>
           <div className="footer-connect-column reveal" style={{ '--footer-index': 2 } as React.CSSProperties}>
-            <p className="footer-label">Connect</p>
+            <p className="footer-label">{t('Connect')}</p>
             <div className="footer-social">
-              <a href={`tel:${phone}`} data-testid="link-footer-call"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />Call {phoneLabel}</a>
-              <a href={`tel:${phone2}`} data-testid="link-footer-call-2"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />Call {phone2Label}</a>
-              <a href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="link-footer-google"><MapPin size={18} strokeWidth={1.6} aria-hidden="true" />Google Maps reviews</a>
+              <a href={`tel:${phone}`} data-testid="link-footer-call"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />{t('Call {n}', { n: phoneLabel })}</a>
+              <a href={`tel:${phone2}`} data-testid="link-footer-call-2"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />{t('Call {n}', { n: phone2Label })}</a>
+              <a href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="link-footer-google"><MapPin size={18} strokeWidth={1.6} aria-hidden="true" />{t('Google Maps reviews')}</a>
             </div>
           </div>
         </div>
         {/* Links to every service page: helps visitors and search engines find each department. */}
-        <nav className="footer-services" aria-label="Services in Tanuku">
-          <p className="footer-label">Services in Tanuku</p>
+        <nav className="footer-services" aria-label={t('Services in Tanuku')}>
+          <p className="footer-label">{t('Services in Tanuku')}</p>
           <div>
-            <a href="/emergency-hospital-tanuku">24/7 Emergency hospital</a>
+            <a href={pageHref(lang, 'emergency-hospital-tanuku')}>{t('24/7 Emergency hospital')}</a>
             {servicesData.departments.map((department) => (
-              <a key={department.slug} href={`/${department.slug}`}>{department.short}</a>
+              <a key={department.slug} href={pageHref(lang, department.slug)}>{lang === 'te' ? department.te.short : department.short}</a>
             ))}
-            <a href="/dr-d-billy-graham">Dr. D. Billy Graham</a>
+            <a href={pageHref(lang, 'dr-d-billy-graham')}>{t('Dr. D. Billy Graham')}</a>
           </div>
         </nav>
         <div className="footer-bottom">
-          <p>Information only. This website does not replace a consultation or emergency care.</p>
-          <p>© Sri Balaji Hospital · Tanuku</p>
+          <p>{t('Information only. This website does not replace a consultation or emergency care.')}</p>
+          <p>{t('© Sri Balaji Hospital · Tanuku')}</p>
         </div>
       </div>
     </footer>
@@ -476,6 +491,7 @@ function Footer() {
 // The floating Call / Directions bar stays hidden while the hero's own buttons are on screen,
 // and slides up once the visitor scrolls past them.
 function MobileActions() {
+  const { t } = useLang();
   const [visible, setVisible] = useState(false);
   useEffect(() => {
     const heroActions = document.querySelector('.sbh-actions');
@@ -491,14 +507,15 @@ function MobileActions() {
     return () => observer.disconnect();
   }, []);
   return (
-    <div className={`mobile-actions${visible ? ' is-visible' : ''}`} aria-label="Quick contact" aria-hidden={!visible} inert={!visible}>
-      <a className="call" href={`tel:${phone}`} data-testid="button-call-mobile"><PhoneIcon /> Call</a>
-      <a className="directions" href={directions} target="_blank" rel="noreferrer" data-testid="button-directions-mobile"><MapPin size={17} aria-hidden="true" /> Directions</a>
+    <div className={`mobile-actions${visible ? ' is-visible' : ''}`} aria-label={t('Quick contact')} aria-hidden={!visible} inert={!visible}>
+      <a className="call" href={`tel:${phone}`} data-testid="button-call-mobile"><PhoneIcon /> {t('Call')}</a>
+      <a className="directions" href={directions} target="_blank" rel="noreferrer" data-testid="button-directions-mobile"><MapPin size={17} aria-hidden="true" /> {t('Directions')}</a>
     </div>
   );
 }
 
 function App() {
+  const { t } = useLang();
   const [pageRoute, setPageRoute] = useState<PageRoute>(getPageRoute);
   const isGalleryPage = pageRoute === 'gallery';
   useReveal(isGalleryPage);
@@ -534,10 +551,10 @@ function App() {
         description: 'Photographs of Sri Balaji Hospital, Sajjapuram, Andhra Pradesh 534211.',
       },
     } satisfies Record<PageRoute, { title: string; description: string }>;
-    document.title = pageMetadata[pageRoute].title;
+    document.title = t(pageMetadata[pageRoute].title);
     const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    if (description) description.content = pageMetadata[pageRoute].description;
-  }, [pageRoute]);
+    if (description) description.content = t(pageMetadata[pageRoute].description);
+  }, [pageRoute, t]);
   useEffect(() => {
     if (!isGalleryPage) return;
     const frame = window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: 'instant' }));
