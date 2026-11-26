@@ -9,6 +9,8 @@
   - The folder becomes the filter on the gallery page ("icu" -> "ICU", "waiting-area" -> "Waiting area").
   - The file name becomes the caption ("front-desk.jpg" -> "Front desk"; trailing numbers are dropped).
   - Photos are shown in folder order below, then alphabetically by file name.
+  - A leading number sets the order inside a folder and is not shown ("1-reception-counter.jpg" -> "Reception counter").
+  - Captions that need capitals or punctuation ("OP", "Dr.") are set in captionOverrides below.
   Supported: .jpg .jpeg .png .webp .avif
 */
 
@@ -25,7 +27,15 @@ export type GalleryItem = {
 };
 
 // Folders listed here appear first, in this order; any other folder follows alphabetically.
-const categoryOrder = ['building', 'reception', 'consultation', 'waiting-area', 'ward', 'icu', 'operation-theatre'];
+const categoryOrder = ['building', 'operation-theatre', 'icu', 'consultation', 'reception', 'waiting-area', 'rooms', 'ward', 'laboratory', 'facilities'];
+
+// Captions that plain capitalisation would get wrong, keyed by file name (without its order number).
+const captionOverrides: Record<string, string> = {
+  'doctors-consultation-room': 'Dr. D. Billy Graham in the consultation room',
+  'reception-and-op-waiting-hall': 'Reception and OP waiting hall',
+  'op-waiting-hall': 'OP waiting hall',
+  'patients-in-op-waiting-hall': 'Patients in the OP waiting hall',
+};
 
 // Labels that plain capitalisation would get wrong.
 const labelOverrides: Record<string, string> = {
@@ -54,9 +64,9 @@ function categoryRank(category: string) {
 const uploaded: GalleryItem[] = Object.entries(files)
   .map(([path, src]) => {
     const parts = path.split('/');
-    const fileName = parts[parts.length - 1].replace(/\.[^.]+$/, '');
+    const fileName = parts[parts.length - 1].replace(/\.[^.]+$/, '').replace(/^\d+[-_ ]+/, '').toLowerCase();
     const folder = parts.length > 4 ? parts[parts.length - 2].toLowerCase() : 'other';
-    const caption = toLabel(fileName.toLowerCase());
+    const caption = captionOverrides[fileName] ?? toLabel(fileName);
     return {
       id: path,
       src,
