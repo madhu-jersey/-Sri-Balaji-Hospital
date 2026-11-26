@@ -4,6 +4,7 @@ import {
 } from 'lucide-react';
 
 import { phone, phoneLabel } from '../data/contact';
+import { PhoneNumbers } from './PhoneNumbers';
 
 // Five reasons to trust the hospital, each resting on the brochure or on patients' own Google reviews.
 const reasons = [
@@ -58,7 +59,7 @@ const questions = [
   {
     question: 'Which hospital in Tanuku is open 24/7 for emergencies?',
     answer: (
-      <>Sri Balaji Hospital in Sajjapuram, Tanuku attends emergencies 24 hours a day, every day, including accidents, snakebite, poisoning and cardiac emergencies, with an ICU and ventilator. Call <a href={`tel:${phone}`}>{phoneLabel}</a> on the way.</>
+      <>Sri Balaji Hospital in Sajjapuram, Tanuku attends emergencies 24 hours a day, every day, including accidents, snakebite, poisoning and cardiac emergencies, with an ICU and ventilator. Call <PhoneNumbers /> on the way.</>
     ),
   },
   {
@@ -70,13 +71,13 @@ const questions = [
   {
     question: 'Is the hospital open at night?',
     answer: (
-      <>Yes, for emergencies. Emergency care is available 24 hours a day, every day. Call <a href={`tel:${phone}`}>{phoneLabel}</a> on the way so the team can prepare. For an ambulance, call <a href="tel:108">108</a>.</>
+      <>Yes, for emergencies. Emergency care is available 24 hours a day, every day. Call <PhoneNumbers /> on the way so the team can prepare. For an ambulance, call <a href="tel:108">108</a>.</>
     ),
   },
   {
     question: 'Do you accept health insurance? Is cashless treatment available?',
     answer: (
-      <>Yes. We handle all health insurance cases, and cashless treatment is available. Call <a href={`tel:${phone}`}>{phoneLabel}</a> with your policy details before admission and we will confirm your coverage.</>
+      <>Yes. We handle all health insurance cases, and cashless treatment is available. Call <PhoneNumbers /> with your policy details before admission and we will confirm your coverage.</>
     ),
   },
   {
@@ -90,7 +91,7 @@ const questions = [
   {
     question: 'How can I book an appointment?',
     answer: (
-      <>Call <a href={`tel:${phone}`}>{phoneLabel}</a> to ask about appointments and doctor availability.</>
+      <>Call <PhoneNumbers /> to ask about appointments and doctor availability.</>
     ),
   },
   {

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { MapPin, PhoneCall } from 'lucide-react';
+import { PhoneNumbers } from './PhoneNumbers';
 
 type HomeHeroProps = {
   phone: string;
@@ -93,7 +94,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
             </a>
           </div>
           <p className="sbh-note" data-testid="text-emergency-contact">
-            <span>For emergencies, call <a href={`tel:${phone}`} data-testid="button-call-emergency">{phoneLabel}</a>, 24 hours a day.</span>
+            <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24 hours a day.</span>
           </p>
         </div>
 

@@ -10,7 +10,7 @@ import { galleryItems } from './data/gallery';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
-import { phone, phoneLabel } from './data/contact';
+import { phone, phone2, phone2Label, phoneLabel } from './data/contact';
 // Use the hospital's Google Maps listing (west side of Coaxial St), not raw coordinates,
 // so the destination shows the hospital name and the pin lands on the building.
 const directions = 'https://www.google.com/maps/dir//Sri+Balaji+Hospital,+Sajjapuram,+Andhra+Pradesh+534211/@16.7576843,81.6738392,262m/data=!3m1!1e3!4m17!1m7!3m6!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2sSri+Balaji+Hospital!8m2!3d16.7576843!4d81.6738392!16s%2Fg%2F11c5480cck!4m8!1m0!1m5!1m1!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2m2!1d81.6738392!2d16.7576843!3e0!5m1!1e1?entry=ttu';
@@ -137,6 +137,7 @@ function SiteHeader() {
           <a href={navLink('visit')} aria-current={activeSection === 'visit' ? 'location' : undefined} data-testid="link-nav-visit" onClick={closeMenu}>Visit us</a>
           <div className="nav-mobile-actions">
             <a className="nav-mobile-call" href={`tel:${phone}`} onClick={closeMenu}><PhoneIcon /> Call {phoneLabel}</a>
+            <a className="nav-mobile-call-alt" href={`tel:${phone2}`} onClick={closeMenu}><PhoneIcon /> Call {phone2Label}</a>
             <a className="nav-mobile-directions" href={directions} target="_blank" rel="noreferrer" onClick={closeMenu}><MapPin size={17} aria-hidden="true" /> Get directions</a>
           </div>
         </nav>
@@ -365,6 +366,7 @@ function Visit() {
               <p className="visit-label">Call</p>
               <div className="visit-actions">
                 <a className="button button-primary" href={`tel:${phone}`} data-testid="button-call-visit"><PhoneIcon /> {phoneLabel}</a>
+                <a className="button visit-call-alt" href={`tel:${phone2}`} data-testid="button-call-visit-2"><PhoneIcon /> {phone2Label}</a>
               </div>
             </div>
             <div className="visit-block reveal" style={{ '--visit-index': 2 } as React.CSSProperties}>
@@ -445,6 +447,7 @@ function Footer() {
             <p className="footer-label">Connect</p>
             <div className="footer-social">
               <a href={`tel:${phone}`} data-testid="link-footer-call"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />Call {phoneLabel}</a>
+              <a href={`tel:${phone2}`} data-testid="link-footer-call-2"><PhoneCall size={18} strokeWidth={1.6} aria-hidden="true" />Call {phone2Label}</a>
               <a href={reviewsUrl} target="_blank" rel="noreferrer" data-testid="link-footer-google"><MapPin size={18} strokeWidth={1.6} aria-hidden="true" />Google Maps reviews</a>
             </div>
           </div>
@@ -512,7 +515,7 @@ function App() {
     const pageMetadata = {
       home: {
         title: 'Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku',
-        description: 'Sri Balaji Hospital, Tanuku – 24/7 emergency hospital with ICU, critical care and surgery. Dr. D. Billy Graham, M.D. Call 08819 221778.',
+        description: 'Sri Balaji Hospital, Tanuku – 24/7 emergency hospital with ICU, critical care and surgery. Dr. D. Billy Graham, M.D. Call 98857 71197 or 08819 221778.',
       },
       gallery: {
         title: 'Gallery · Sri Balaji Hospital Tanuku',

@@ -211,3 +211,11 @@ main .visit-block:has(.hours-table) .visit-label { display: flex; align-items: c
 main .hours-row-emergency span:first-child { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
 main .hours-row-emergency span:first-child::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #D12C38; }
 main .hours-row-emergency span:last-child { color: #B4232F; font-weight: 600; }
+
+/* Visit us: the landline sits under the main number as a quieter outline button (owner's request, Nov 2026) */
+main .visit-actions .visit-call-alt { min-height: 52px; padding: 0 26px; border: 1.5px solid rgba(11, 79, 196, .3); background: #fff; color: #082C70; font: 700 17px/1 'Plus Jakarta Sans', sans-serif; }
+main .visit-actions .visit-call-alt:hover { border-color: #0B4FC4; background: #F4F8FD; }
+main .visit-actions .visit-call-alt svg { width: 18px; height: 18px; }
+@media (max-width: 760px) {
+  main .visit-actions .visit-call-alt { width: 100%; justify-content: center; }
+}
