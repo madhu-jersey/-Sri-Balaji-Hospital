@@ -11,9 +11,9 @@
 
 const HOSPITAL = { name: 'Sri Balaji Hospital, Sajjapuram, Tanuku', latitude: 16.7576843, longitude: 81.6738392 };
 
-type Place = { id?: string; displayName?: { text?: string }; rating?: number; userRatingCount?: number };
+/** @typedef {{ id?: string, displayName?: { text?: string }, rating?: number, userRatingCount?: number }} Place */
 
-function json(body: unknown, cacheSeconds: number, status = 200) {
+function json(body, cacheSeconds, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
@@ -24,14 +24,15 @@ function json(body: unknown, cacheSeconds: number, status = 200) {
   });
 }
 
-async function findPlace(key: string): Promise<Place | undefined> {
+/** @returns {Promise<Place | undefined>} */
+async function findPlace(key) {
   const placeId = process.env.GOOGLE_PLACE_ID;
   if (placeId) {
     const response = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`, {
       headers: { 'X-Goog-Api-Key': key, 'X-Goog-FieldMask': 'id,displayName,rating,userRatingCount' },
     });
     if (!response.ok) throw new Error(`Place Details returned ${response.status}`);
-    return (await response.json()) as Place;
+    return response.json();
   }
 
   const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
@@ -48,7 +49,8 @@ async function findPlace(key: string): Promise<Place | undefined> {
     }),
   });
   if (!response.ok) throw new Error(`Text Search returned ${response.status}`);
-  const { places = [] } = (await response.json()) as { places?: Place[] };
+  /** @type {{ places?: Place[] }} */
+  const { places = [] } = await response.json();
   // Only accept the hospital itself, never a similarly named place.
   return places.find((place) => /balaji/i.test(place.displayName?.text ?? '') && /hospital/i.test(place.displayName?.text ?? ''));
 }
