@@ -7,6 +7,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { HomeHero } from './components/HomeHero';
 import { FaqSection, InsuranceSection, WhyChooseSection } from './components/InfoPages';
 import { galleryItems } from './data/gallery';
+import servicesData from './data/services.json';
 
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
@@ -452,6 +453,17 @@ function Footer() {
             </div>
           </div>
         </div>
+        {/* Links to every service page: helps visitors and search engines find each department. */}
+        <nav className="footer-services" aria-label="Services in Tanuku">
+          <p className="footer-label">Services in Tanuku</p>
+          <div>
+            <a href="/emergency-hospital-tanuku">24/7 Emergency hospital</a>
+            {servicesData.departments.map((department) => (
+              <a key={department.slug} href={`/${department.slug}`}>{department.short}</a>
+            ))}
+            <a href="/dr-d-billy-graham">Dr. D. Billy Graham</a>
+          </div>
+        </nav>
         <div className="footer-bottom">
           <p>Information only. This website does not replace a consultation or emergency care.</p>
           <p>© Sri Balaji Hospital · Tanuku</p>

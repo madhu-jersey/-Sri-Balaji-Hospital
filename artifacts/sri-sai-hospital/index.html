@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--
       Search targets: "sri balaji hospital tanuku", "balaji hospital tanuku", "emergency hospital in tanuku".
-      When the domain is bought, add:  <link rel="canonical" href="https://YOUR-DOMAIN/" />
-      and the matching og:url, then fill public/sitemap.xml and submit it in Google Search Console.
+      Each department also has its own page (scripts/build-pages.mjs), listed in /sitemap.xml.
     -->
     <title>Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital in Tanuku</title>
     <meta name="description" content="Sri Balaji Hospital, Tanuku – 24/7 emergency hospital with ICU, critical care and surgery. Dr. D. Billy Graham, M.D. Call 98857 71197 or 08819 221778." />
+    <link rel="canonical" href="https://sribalajihospitaltanuku.com/" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="geo.region" content="IN-AP" />
     <meta name="geo.placename" content="Tanuku" />
@@ -19,8 +19,9 @@
     <meta property="og:title" content="Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital" />
     <meta property="og:description" content="24/7 emergency and critical care hospital in Sajjapuram, Tanuku. ICU, ventilator, general medicine and surgery. Call 98857 71197 or 08819 221778." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sribalajihospitaltanuku.com/" />
     <meta property="og:locale" content="en_IN" />
-    <meta property="og:image" content="/assets/hero-sri-balaji-building.webp" />
+    <meta property="og:image" content="https://sribalajihospitaltanuku.com/assets/hero-sri-balaji-building.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Sri Balaji Hospital Tanuku | 24/7 Emergency Hospital" />
     <meta name="twitter:description" content="24/7 emergency and critical care hospital in Sajjapuram, Tanuku. Call 98857 71197 or 08819 221778." />
@@ -41,13 +42,15 @@
     {
       "@context": "https://schema.org",
       "@type": "Hospital",
+      "@id": "https://sribalajihospitaltanuku.com/#hospital",
+      "url": "https://sribalajihospitaltanuku.com/",
       "name": "Sri Balaji Hospital",
       "alternateName": ["Sri Balaji Hospital Tanuku", "Balaji Hospital Tanuku", "శ్రీ బాలాజీ హాస్పిటల్"],
       "slogan": "We care for you",
       "foundingDate": "2006",
       "description": "24/7 emergency hospital in Sajjapuram, Tanuku, serving patients since 2006, with a modular operation theatre, an ICU, ventilator, BiPAP and CPAP support, a ventilator ambulance and critical care, general medicine and emergency care, general, laparoscopic, neuro and plastic and reconstructive surgery.",
-      "image": "/assets/hero-sri-balaji-building.webp",
-      "logo": "/assets/sri-balaji-hospital-logo.png",
+      "image": "https://sribalajihospitaltanuku.com/assets/hero-sri-balaji-building.webp",
+      "logo": "https://sribalajihospitaltanuku.com/assets/sri-balaji-hospital-logo.png",
       "telephone": "+91-98857-71197",
       "contactPoint": [
         { "@type": "ContactPoint", "telephone": "+91-98857-71197", "contactType": "emergency", "areaServed": "Tanuku", "availableLanguage": ["Telugu", "English"], "hoursAvailable": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59" } },
@@ -97,6 +100,8 @@
       ],
       "employee": {
         "@type": "Physician",
+        "@id": "https://sribalajihospitaltanuku.com/dr-d-billy-graham#physician",
+        "url": "https://sribalajihospitaltanuku.com/dr-d-billy-graham",
         "name": "Dr. D. Billy Graham",
         "honorificSuffix": "M.B.B.S., M.D.",
         "medicalSpecialty": "Emergency",
@@ -104,6 +109,9 @@
       },
       "sameAs": ["https://www.google.com/maps/place/Sri+Balaji+Hospital/@16.7576843,81.6738392,17z/data=!4m6!3m5!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!8m2!3d16.7576843!4d81.6738392"]
     }
+    </script>
+    <script type="application/ld+json">
+    { "@context": "https://schema.org", "@type": "WebSite", "@id": "https://sribalajihospitaltanuku.com/#website", "url": "https://sribalajihospitaltanuku.com/", "name": "Sri Balaji Hospital, Tanuku", "inLanguage": "en-IN", "publisher": { "@id": "https://sribalajihospitaltanuku.com/#hospital" } }
     </script>
     <!-- Mirrors the FAQ section on the page; the answers must stay identical to what visitors see. -->
     <script type="application/ld+json">
@@ -138,17 +146,19 @@
         <p><strong>Emergency, any time:</strong> <a href="tel:+919885771197">Call 98857 71197</a> or <a href="tel:+918819221778">08819 221778</a></p>
         <h2>Emergency and critical care in Tanuku</h2>
         <p>Accidents, snakebite, poisoning, cardiac emergencies, stroke and breathing problems are attended day and night. Modular operation theatre. Ventilator, BiPAP and CPAP support, and a ventilator ambulance. Intensive Care Unit (ICU) with cardiac and multiparameter monitors, defibrillator and central oxygen.</p>
+        <p><a href="/emergency-hospital-tanuku">24/7 Emergency hospital in Tanuku</a></p>
         <h2>Departments</h2>
         <ul>
-          <li>General Medicine &amp; Emergency Care</li>
-          <li>General Surgery</li>
-          <li>Neurosurgery</li>
-          <li>Neurology</li>
-          <li>Plastic &amp; Reconstructive Surgery</li>
-          <li>Laparoscopic Surgery</li>
-          <li>Critical Care &amp; ICU</li>
-          <li>General Facilities: lift, generator backup, RO drinking water, parking, single and AC rooms, ambulance, wheelchair and stretcher</li>
+          <li><a href="/general-medicine-tanuku">General Medicine &amp; Emergency Care</a></li>
+          <li><a href="/general-surgery-tanuku">General Surgery</a></li>
+          <li><a href="/neurosurgery-tanuku">Neurosurgery</a></li>
+          <li><a href="/neurology-tanuku">Neurology</a></li>
+          <li><a href="/plastic-surgery-tanuku">Plastic &amp; Reconstructive Surgery</a></li>
+          <li><a href="/laparoscopic-surgery-tanuku">Laparoscopic Surgery</a></li>
+          <li><a href="/icu-critical-care-tanuku">Critical Care &amp; ICU</a></li>
+          <li><a href="/hospital-facilities-tanuku">General Facilities</a>: lift, generator backup, RO drinking water, parking, single and AC rooms, ambulance, wheelchair and stretcher</li>
         </ul>
+        <p>Doctor: <a href="/dr-d-billy-graham">Dr. D. Billy Graham, M.B.B.S., M.D.</a>, Critical Care Specialist.</p>
         <h2>Timings</h2>
         <p>Emergency: 24 hours, 7 days. OP: Monday–Saturday 9:30 AM – 8:30 PM, Sunday 10:00 AM – 8:00 PM. Doctor consultation 10 AM – 2 PM and 6 PM – 8:30 PM.</p>
         <h2>Address</h2>

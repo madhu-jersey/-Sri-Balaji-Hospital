@@ -1,162 +1,24 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { Activity, Bandage, Brain, BrainCircuit, Building2, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
+import { Activity, ArrowRight, Bandage, Brain, BrainCircuit, Building2, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
+import servicesData from '../data/services.json';
 
-// Departments, sub-services and equipment as listed in the hospital's own brochure (supplied by the owner, Nov 2026).
-// Order and lists follow the owner's later changes: Neurology after Neurosurgery, and a separate General Facilities section.
-// Each service appears once per section.
-const departments: { title: string; short: string; text: string; icon: LucideIcon; items: string[]; unit?: string }[] = [
-  {
-    title: 'General Medicine & Emergency Care',
-    short: 'General Medicine',
-    text: 'Diagnosis and treatment for common illnesses, general medical conditions and medical emergencies.',
-    icon: Stethoscope,
-    items: [
-      'General medicine',
-      'Fever, viral fever, cold & cough treatment',
-      'Poisoning treatment',
-      'Snakebite management',
-      'Accidents & emergency care',
-      'Burns treatment',
-      'Cardiac care',
-      'Diabetes management',
-      'Diabetic foot care',
-      'High blood pressure management',
-      'Asthma & respiratory care',
-    ],
-  },
-  {
-    title: 'General Surgery',
-    short: 'General Surgery',
-    text: 'Diagnosis and surgical management of common surgical conditions.',
-    icon: Scissors,
-    items: [
-      'Appendix surgery (appendectomy)',
-      'Hernia surgery',
-      'Gallbladder surgery',
-      'Thyroid surgery',
-      'Piles (hemorrhoids) surgery',
-      'Anal fissure treatment',
-      'Fistula treatment',
-      'Abscess & cyst removal',
-      'Lipoma removal',
-      'Hydrocele surgery',
-      'Breast lump surgery',
-      'Hysterectomy',
-      'Vaginal hysterectomy',
-      'Ovarian tumours / cysts',
-      'Fibroid treatment',
-      'Diabetic foot ulcer treatment / amputation',
-      'Skin grafting',
-      'Wound management',
-      'Minor surgical procedures',
-    ],
-  },
-  {
-    title: 'Neurosurgery',
-    short: 'Neurosurgery',
-    text: 'Surgical care for conditions of the brain, spine and nervous system.',
-    icon: Brain,
-    items: [
-      'Brain tumour surgery',
-      'Head injury management',
-      'Brain hemorrhage surgery',
-      'Spine surgery',
-      'Slip disc treatment',
-      'Spinal cord injury management',
-      'Sciatica treatment',
-      'Nerve compression surgery',
-      'Hydrocephalus treatment',
-      'Stroke-related neurosurgical care',
-    ],
-  },
-  {
-    title: 'Neurology',
-    short: 'Neurology',
-    text: 'Diagnosis and medical treatment of conditions affecting the brain and nerves.',
-    icon: BrainCircuit,
-    items: [
-      'Stroke and paralysis',
-      'Seizures (fits)',
-      'Meningitis',
-      'Headache and migraine',
-      'Memory loss',
-      "Parkinson's disease (shaking disorders)",
-    ],
-  },
-  {
-    title: 'Plastic & Reconstructive Surgery',
-    short: 'Plastic Surgery',
-    text: 'Procedures to restore, improve or reconstruct damaged tissue and body structures.',
-    icon: Bandage,
-    items: [
-      'Burn treatment & reconstruction',
-      'Skin grafting',
-      'Scar revision surgery',
-      'Wound reconstruction',
-      'Facial injury reconstruction',
-      'Cleft lip & palate surgery',
-      'Cosmetic surgery',
-      'Hand reconstruction surgery',
-      'Congenital deformity correction',
-      'Soft tissue reconstruction',
-    ],
-  },
-  {
-    title: 'Laparoscopic Surgery',
-    short: 'Laparoscopy',
-    text: 'Minimally invasive surgery through small incisions with specialised instruments.',
-    icon: Microscope,
-    items: [
-      'Laparoscopic appendix surgery',
-      'Laparoscopic gallbladder surgery (Lap Chole)',
-      'Laparoscopic hernia surgery',
-      'Total laparoscopic hysterectomy',
-      'Diagnostic laparoscopy',
-      'Laparoscopic ovarian cyst surgery',
-      'Laparoscopic intestinal surgery',
-      'Minimally invasive abdominal surgery',
-    ],
-  },
-  {
-    title: 'Critical Care & Facilities',
-    short: 'Critical Care',
-    text: 'Ventilator, BiPAP and CPAP support, a modular operation theatre, and intensive care with continuous monitoring.',
-    icon: Activity,
-    items: [
-      'Ventilator support',
-      'BiPAP support',
-      'CPAP support',
-      'Ventilator ambulance',
-      'Modular operation theatre',
-      'Intensive Care Unit (ICU)',
-      'Central oxygen supply',
-      'Cardiac monitor',
-      'Multiparameter monitor',
-      'Defibrillator',
-      'Infusion & syringe pumps',
-      'Pulse oximeter',
-      'Nebulizer',
-      'General ward',
-    ],
-  },
-  {
-    title: 'General Facilities',
-    short: 'Facilities',
-    text: 'Comfort and support for patients and families throughout their stay.',
-    icon: Building2,
-    unit: 'facilities',
-    items: [
-      'Lift facility',
-      'Generator backup',
-      'Continuous RO drinking water',
-      'Spacious parking area',
-      'Single and AC rooms',
-      'Ambulance service',
-      'Wheelchair facility',
-      'Stretcher facility',
-    ],
-  },
-];
+// Departments and services live in src/data/services.json, shared with the service pages (scripts/build-pages.mjs).
+const icons: Record<string, LucideIcon> = {
+  'general-medicine-tanuku': Stethoscope,
+  'general-surgery-tanuku': Scissors,
+  'neurosurgery-tanuku': Brain,
+  'neurology-tanuku': BrainCircuit,
+  'plastic-surgery-tanuku': Bandage,
+  'laparoscopic-surgery-tanuku': Microscope,
+  'icu-critical-care-tanuku': Activity,
+  'hospital-facilities-tanuku': Building2,
+};
+const departments = servicesData.departments.map((department) => ({
+  ...department,
+  unit: (department as { unit?: string }).unit,
+  icon: icons[department.slug] ?? Stethoscope,
+  href: `/${department.slug}`,
+}));
 
 
 import { phone, phoneLabel } from '../data/contact';
@@ -249,15 +111,18 @@ export function ServicesSection() {
                 </li>
               ))}
             </ul>
-            <a className="svc-call" href={`tel:${phone}`}>
-              <PhoneCall size={17} aria-hidden="true" /> Call {phoneLabel} to ask about {department.title.toLowerCase()}
-            </a>
+            <div className="svc-panel-foot">
+              <a className="svc-call" href={`tel:${phone}`}>
+                <PhoneCall size={17} aria-hidden="true" /> Call {phoneLabel}
+              </a>
+              <a className="svc-more" href={department.href}>About {department.short.toLowerCase()} in Tanuku <ArrowRight size={16} aria-hidden="true" /></a>
+            </div>
           </div>
         </div>
 
         {/* Phones: one tidy card per department; tap to open its full list. Shown instead of the tabs below 760px. */}
         <div className="svc-acc">
-          {departments.map(({ title, text, icon: ItemIcon, items, unit = 'services' }, index) => {
+          {departments.map(({ title, short, text, icon: ItemIcon, items, href, unit = 'services' }, index) => {
             const open = mobileOpen.has(index);
             // className stays constant: the scroll-reveal observer adds is-visible to the DOM, and a re-render must not wipe it. Open state lives in data-open.
             return (
@@ -288,6 +153,7 @@ export function ServicesSection() {
                       ))}
                     </ul>
                     <a className="svc-acc-call" href={`tel:${phone}`}><PhoneCall size={16} aria-hidden="true" /> Call {phoneLabel}</a>
+                    <a className="svc-acc-more" href={href}>About {short.toLowerCase()} in Tanuku <ArrowRight size={15} aria-hidden="true" /></a>
                   </div>
                 </div>
               </article>

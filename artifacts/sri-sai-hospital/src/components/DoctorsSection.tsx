@@ -11,7 +11,7 @@ const doctor = {
   experience: '25 years',
   intro: 'With 25 years of experience, leads emergency, critical care and general medicine at Sri Balaji Hospital, and personally attends serious and critical cases.',
   image: '/assets/dr-billygraham-deepati.webp',
-  alt: 'Dr. D. Billy Graham at his consultation desk',
+  alt: 'Dr. D. Billy Graham at the consultation desk',
   areas: [
     'Emergency care',
     'Critical care & ICU',

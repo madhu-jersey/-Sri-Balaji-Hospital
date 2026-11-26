@@ -1,0 +1,262 @@
+{
+  "_note": "Departments and their services (hospital brochure plus the owner's changes, Nov 2026). The home page Services section and the service pages (scripts/build-pages.mjs) both read this file. Each service appears once per department. 'page' holds the text for that department's own page.",
+  "departments": [
+    {
+      "slug": "general-medicine-tanuku",
+      "title": "General Medicine & Emergency Care",
+      "short": "General Medicine",
+      "text": "Diagnosis and treatment for common illnesses, general medical conditions and medical emergencies.",
+      "items": [
+        "General medicine",
+        "Fever, viral fever, cold & cough treatment",
+        "Poisoning treatment",
+        "Snakebite management",
+        "Accidents & emergency care",
+        "Burns treatment",
+        "Cardiac care",
+        "Diabetes management",
+        "Diabetic foot care",
+        "High blood pressure management",
+        "Asthma & respiratory care"
+      ],
+      "page": {
+        "title": "General Medicine Hospital in Tanuku | Fever, Diabetes, BP | Sri Balaji Hospital",
+        "description": "General medicine in Tanuku: fever and viral fever, diabetes, blood pressure, asthma, cardiac care, snakebite and poisoning treatment. 24/7 emergency care at Sri Balaji Hospital, Sajjapuram.",
+        "h1": "General Medicine & Emergency Care in Tanuku",
+        "intro": [
+          "Sri Balaji Hospital in Sajjapuram, Tanuku treats everyday illnesses and serious medical emergencies under one roof. Care is led by Dr. D. Billy Graham, M.B.B.S., M.D., a Critical Care Specialist with 25 years of experience.",
+          "Come in for fever, viral fever, cold and cough, diabetes, high blood pressure or breathing problems during OP hours. Poisoning, snakebite, burns, accidents and cardiac emergencies are attended 24 hours a day, with an ICU and ventilator support on site."
+        ],
+        "faqs": [
+          { "q": "Do you treat fever and viral fever in Tanuku?", "a": "Yes. Fever, viral fever, cold and cough are treated at Sri Balaji Hospital, Sajjapuram, Tanuku. OP timings are Monday to Saturday, 9:30 AM – 8:30 PM, and Sunday, 10:00 AM – 8:00 PM." },
+          { "q": "Is snakebite and poisoning treatment available at night?", "a": "Yes. Snakebite and poisoning are treated as emergencies 24 hours a day, every day, with an ICU and ventilator available if needed." },
+          { "q": "Do you manage diabetes and blood pressure?", "a": "Yes. Diabetes management, diabetic foot care and high blood pressure management are part of the general medicine department." }
+        ]
+      }
+    },
+    {
+      "slug": "general-surgery-tanuku",
+      "title": "General Surgery",
+      "short": "General Surgery",
+      "text": "Diagnosis and surgical management of common surgical conditions.",
+      "items": [
+        "Appendix surgery (appendectomy)",
+        "Hernia surgery",
+        "Gallbladder surgery",
+        "Thyroid surgery",
+        "Piles (hemorrhoids) surgery",
+        "Anal fissure treatment",
+        "Fistula treatment",
+        "Abscess & cyst removal",
+        "Lipoma removal",
+        "Hydrocele surgery",
+        "Breast lump surgery",
+        "Hysterectomy",
+        "Vaginal hysterectomy",
+        "Ovarian tumours / cysts",
+        "Fibroid treatment",
+        "Diabetic foot ulcer treatment / amputation",
+        "Skin grafting",
+        "Wound management",
+        "Minor surgical procedures"
+      ],
+      "page": {
+        "title": "General Surgery in Tanuku | Hernia, Appendix, Piles, Thyroid | Sri Balaji Hospital",
+        "description": "General surgery in Tanuku: hernia, appendix, gallbladder, thyroid, piles, fistula, fissure, lipoma, breast lump, hysterectomy, fibroids and diabetic foot surgery in a modular operation theatre.",
+        "h1": "General Surgery in Tanuku",
+        "intro": [
+          "Sri Balaji Hospital performs common general surgeries in its modular operation theatre in Sajjapuram, Tanuku, with an ICU on site for patients who need close monitoring after surgery.",
+          "Operations include hernia, appendix and gallbladder surgery, thyroid surgery, piles, fissure and fistula treatment, lipoma and breast lump removal, hysterectomy, ovarian cysts and fibroids, and diabetic foot ulcer care. Call to discuss your condition and book a consultation."
+        ],
+        "faqs": [
+          { "q": "Which surgeries are done at Sri Balaji Hospital, Tanuku?", "a": "Appendix, hernia, gallbladder, thyroid, piles, fissure, fistula, abscess and cyst removal, lipoma, hydrocele, breast lump, hysterectomy, vaginal hysterectomy, ovarian tumours and cysts, fibroids, diabetic foot ulcer treatment and amputation, skin grafting and wound management." },
+          { "q": "Is the operation theatre modular?", "a": "Yes. Surgery is done in a modular operation theatre, with an ICU, ventilator and central oxygen in the hospital." },
+          { "q": "Is cashless insurance available for surgery?", "a": "We handle all health insurance cases and cashless treatment is available. Call with your policy details before admission and we will confirm your coverage." }
+        ]
+      }
+    },
+    {
+      "slug": "neurosurgery-tanuku",
+      "title": "Neurosurgery",
+      "short": "Neurosurgery",
+      "text": "Surgical care for conditions of the brain, spine and nervous system.",
+      "items": [
+        "Brain tumour surgery",
+        "Head injury management",
+        "Brain hemorrhage surgery",
+        "Spine surgery",
+        "Slip disc treatment",
+        "Spinal cord injury management",
+        "Sciatica treatment",
+        "Nerve compression surgery",
+        "Hydrocephalus treatment",
+        "Stroke-related neurosurgical care"
+      ],
+      "page": {
+        "title": "Neurosurgery in Tanuku | Head Injury, Spine, Slip Disc | Sri Balaji Hospital",
+        "description": "Neurosurgery in Tanuku: head injury, brain hemorrhage, brain tumour, spine surgery, slip disc, sciatica and spinal cord injury care, with a 24/7 emergency and ICU at Sri Balaji Hospital.",
+        "h1": "Neurosurgery in Tanuku",
+        "intro": [
+          "Head injuries from road accidents and falls need fast care. Sri Balaji Hospital in Sajjapuram, Tanuku attends head and spine injuries 24 hours a day, with an ICU, ventilator support and a modular operation theatre in the same building.",
+          "Neurosurgical care covers head injury and brain hemorrhage, brain tumours, spine surgery, slip disc and sciatica, spinal cord injury, nerve compression, hydrocephalus and stroke-related neurosurgical care."
+        ],
+        "faqs": [
+          { "q": "Are head injury patients treated at night?", "a": "Yes. Head injuries are attended as emergencies 24 hours a day. Call on the way so the team can prepare." },
+          { "q": "Do you treat slip disc and sciatica?", "a": "Yes. Slip disc treatment, sciatica treatment, spine surgery and nerve compression surgery are part of neurosurgical care at Sri Balaji Hospital." }
+        ]
+      }
+    },
+    {
+      "slug": "neurology-tanuku",
+      "title": "Neurology",
+      "short": "Neurology",
+      "text": "Diagnosis and medical treatment of conditions affecting the brain and nerves.",
+      "items": [
+        "Stroke and paralysis",
+        "Seizures (fits)",
+        "Meningitis",
+        "Headache and migraine",
+        "Memory loss",
+        "Parkinson's disease (shaking disorders)"
+      ],
+      "page": {
+        "title": "Neurology in Tanuku | Stroke, Paralysis, Fits, Migraine | Sri Balaji Hospital",
+        "description": "Neurology care in Tanuku for stroke and paralysis, seizures (fits), meningitis, headache and migraine, memory loss and Parkinson's disease. 24/7 emergency care at Sri Balaji Hospital.",
+        "h1": "Neurology Care in Tanuku",
+        "intro": [
+          "Sri Balaji Hospital in Sajjapuram, Tanuku diagnoses and treats conditions of the brain and nerves. Stroke, sudden paralysis and seizures (fits) are emergencies and are attended 24 hours a day, with an ICU and ventilator support on site.",
+          "For ongoing problems such as headache and migraine, memory loss or Parkinson's disease and shaking, visit during OP hours for assessment and treatment."
+        ],
+        "faqs": [
+          { "q": "What should I do if someone has a stroke or sudden paralysis?", "a": "Treat it as an emergency. Come to Sri Balaji Hospital, Sajjapuram straight away and call on the way. For an ambulance, call 108." },
+          { "q": "Do you treat fits (seizures) and migraine?", "a": "Yes. Seizures (fits), meningitis, headache and migraine, memory loss and Parkinson's disease are treated in the neurology department." }
+        ]
+      }
+    },
+    {
+      "slug": "plastic-surgery-tanuku",
+      "title": "Plastic & Reconstructive Surgery",
+      "short": "Plastic Surgery",
+      "text": "Procedures to restore, improve or reconstruct damaged tissue and body structures.",
+      "items": [
+        "Burn treatment & reconstruction",
+        "Skin grafting",
+        "Scar revision surgery",
+        "Wound reconstruction",
+        "Facial injury reconstruction",
+        "Cleft lip & palate surgery",
+        "Cosmetic surgery",
+        "Hand reconstruction surgery",
+        "Congenital deformity correction",
+        "Soft tissue reconstruction"
+      ],
+      "page": {
+        "title": "Plastic Surgery in Tanuku | Burns, Scars, Cleft Lip | Sri Balaji Hospital",
+        "description": "Plastic and reconstructive surgery in Tanuku: burn treatment and reconstruction, skin grafting, scar revision, facial injury and hand reconstruction, cleft lip and palate, and cosmetic surgery.",
+        "h1": "Plastic & Reconstructive Surgery in Tanuku",
+        "intro": [
+          "Sri Balaji Hospital in Sajjapuram, Tanuku offers plastic and reconstructive surgery to restore skin and tissue damaged by burns, injuries or conditions present from birth.",
+          "Procedures include burn treatment and reconstruction, skin grafting, scar revision, wound and soft tissue reconstruction, facial injury and hand reconstruction, cleft lip and palate surgery, congenital deformity correction and cosmetic surgery."
+        ],
+        "faqs": [
+          { "q": "Are burns treated as an emergency?", "a": "Yes. Burns are attended 24 hours a day. Reconstruction and skin grafting follow once the wound is ready." },
+          { "q": "Do you do scar revision and cosmetic surgery?", "a": "Yes. Scar revision surgery and cosmetic surgery are part of plastic and reconstructive surgery at Sri Balaji Hospital." }
+        ]
+      }
+    },
+    {
+      "slug": "laparoscopic-surgery-tanuku",
+      "title": "Laparoscopic Surgery",
+      "short": "Laparoscopy",
+      "text": "Minimally invasive surgery through small incisions with specialised instruments.",
+      "items": [
+        "Laparoscopic appendix surgery",
+        "Laparoscopic gallbladder surgery (Lap Chole)",
+        "Laparoscopic hernia surgery",
+        "Total laparoscopic hysterectomy",
+        "Diagnostic laparoscopy",
+        "Laparoscopic ovarian cyst surgery",
+        "Laparoscopic intestinal surgery",
+        "Minimally invasive abdominal surgery"
+      ],
+      "page": {
+        "title": "Laparoscopic Surgery in Tanuku | Lap Chole, Hernia, Appendix | Sri Balaji Hospital",
+        "description": "Laparoscopic (keyhole) surgery in Tanuku: gallbladder (Lap Chole), appendix, hernia, total laparoscopic hysterectomy, ovarian cyst and intestinal surgery in a modular operation theatre.",
+        "h1": "Laparoscopic Surgery in Tanuku",
+        "intro": [
+          "Laparoscopic surgery is done through small incisions using a camera and fine instruments. Sri Balaji Hospital in Sajjapuram, Tanuku performs laparoscopic procedures in its modular operation theatre.",
+          "Procedures include laparoscopic gallbladder surgery (Lap Chole), appendix and hernia surgery, total laparoscopic hysterectomy, ovarian cyst surgery, intestinal surgery and diagnostic laparoscopy."
+        ],
+        "faqs": [
+          { "q": "Is laparoscopic gallbladder surgery (Lap Chole) done in Tanuku?", "a": "Yes. Laparoscopic gallbladder surgery (Lap Chole) is done at Sri Balaji Hospital, Sajjapuram, Tanuku." },
+          { "q": "Which laparoscopic surgeries are available?", "a": "Appendix, gallbladder (Lap Chole), hernia, total laparoscopic hysterectomy, ovarian cyst, intestinal and other minimally invasive abdominal surgery, and diagnostic laparoscopy." }
+        ]
+      }
+    },
+    {
+      "slug": "icu-critical-care-tanuku",
+      "title": "Critical Care & Facilities",
+      "short": "Critical Care",
+      "text": "Ventilator, BiPAP and CPAP support, a modular operation theatre, and intensive care with continuous monitoring.",
+      "items": [
+        "Ventilator support",
+        "BiPAP support",
+        "CPAP support",
+        "Ventilator ambulance",
+        "Modular operation theatre",
+        "Intensive Care Unit (ICU)",
+        "Central oxygen supply",
+        "Cardiac monitor",
+        "Multiparameter monitor",
+        "Defibrillator",
+        "Infusion & syringe pumps",
+        "Pulse oximeter",
+        "Nebulizer",
+        "General ward"
+      ],
+      "page": {
+        "title": "ICU & Critical Care in Tanuku | Ventilator, BiPAP | Sri Balaji Hospital",
+        "description": "ICU and critical care in Tanuku with ventilator, BiPAP and CPAP support, a ventilator ambulance, cardiac monitors, defibrillator and central oxygen. Led by a Critical Care Specialist, 24/7.",
+        "h1": "ICU & Critical Care in Tanuku",
+        "intro": [
+          "Sri Balaji Hospital's Intensive Care Unit in Sajjapuram, Tanuku is led by Dr. D. Billy Graham, M.B.B.S., M.D., a Critical Care Specialist with 25 years of experience, who personally attends serious and critical cases.",
+          "The ICU has ventilator, BiPAP and CPAP support, cardiac and multiparameter monitors, a defibrillator, infusion and syringe pumps and central oxygen. A ventilator ambulance is available, and the hospital has a modular operation theatre."
+        ],
+        "faqs": [
+          { "q": "Is there an ICU with a ventilator in Tanuku?", "a": "Yes. Sri Balaji Hospital in Sajjapuram, Tanuku has an ICU with ventilator, BiPAP and CPAP support, open 24 hours a day." },
+          { "q": "Do you have a ventilator ambulance?", "a": "Yes. A ventilator ambulance is available. Call 98857 71197 or 08819 221778." }
+        ]
+      }
+    },
+    {
+      "slug": "hospital-facilities-tanuku",
+      "title": "General Facilities",
+      "short": "Facilities",
+      "text": "Comfort and support for patients and families throughout their stay.",
+      "unit": "facilities",
+      "items": [
+        "Lift facility",
+        "Generator backup",
+        "Continuous RO drinking water",
+        "Spacious parking area",
+        "Single and AC rooms",
+        "Ambulance service",
+        "Wheelchair facility",
+        "Stretcher facility"
+      ],
+      "page": {
+        "title": "Hospital Facilities in Tanuku | AC Rooms, Ambulance, Parking | Sri Balaji Hospital",
+        "description": "Facilities at Sri Balaji Hospital, Tanuku: single and AC rooms, lift, generator backup, RO drinking water, spacious parking, ambulance service, wheelchairs and stretchers.",
+        "h1": "Hospital Facilities at Sri Balaji Hospital, Tanuku",
+        "intro": [
+          "Sri Balaji Hospital in Sajjapuram, Tanuku is built for the comfort of patients and the families who stay with them.",
+          "The hospital has single and AC rooms, a lift, generator backup, continuous RO drinking water, a spacious parking area, an ambulance service, and wheelchairs and stretchers for patients who need them."
+        ],
+        "faqs": [
+          { "q": "Are AC rooms available?", "a": "Yes. Single and AC rooms are available at Sri Balaji Hospital, Tanuku." },
+          { "q": "Is there parking at the hospital?", "a": "Yes. The hospital has a spacious parking area." }
+        ]
+      }
+    }
+  ]
+}

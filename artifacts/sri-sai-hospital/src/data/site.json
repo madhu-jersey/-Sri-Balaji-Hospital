@@ -1,0 +1,35 @@
+{
+  "_note": "One source for the hospital's details. Used by the React site (src/data/contact.ts) and by scripts/build-pages.mjs, which writes the service pages and sitemap. Keep in sync with PRODUCT.md.",
+  "domain": "https://sribalajihospitaltanuku.com",
+  "name": "Sri Balaji Hospital",
+  "nameTelugu": "శ్రీ బాలాజీ హాస్పిటల్",
+  "phone": "+919885771197",
+  "phoneLabel": "98857 71197",
+  "phone2": "+918819221778",
+  "phone2Label": "08819 221778",
+  "address": {
+    "locality": "Sajjapuram",
+    "city": "Tanuku",
+    "district": "West Godavari",
+    "region": "Andhra Pradesh",
+    "postalCode": "534211",
+    "full": "Sri Balaji Hospital, Sajjapuram, Tanuku, Andhra Pradesh 534211"
+  },
+  "geo": { "latitude": 16.7576843, "longitude": 81.6738392 },
+  "directions": "https://www.google.com/maps/dir/?api=1&destination=Sri+Balaji+Hospital%2C+Sajjapuram%2C+Tanuku",
+  "maps": "https://www.google.com/maps/place/Sri+Balaji+Hospital/@16.7576843,81.6738392,17z/data=!4m6!3m5!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!8m2!3d16.7576843!4d81.6738392",
+  "founded": "2006",
+  "hours": {
+    "emergency": "24 hours, 7 days",
+    "opWeekdays": "Monday – Saturday, 9:30 AM – 8:30 PM",
+    "opSunday": "Sunday, 10:00 AM – 8:00 PM",
+    "consultation": "10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM"
+  },
+  "doctor": {
+    "name": "Dr. D. Billy Graham",
+    "degree": "M.B.B.S., M.D.",
+    "specialty": "Critical Care Specialist",
+    "registration": "APMC No. 42113",
+    "experience": "25 years"
+  }
+}

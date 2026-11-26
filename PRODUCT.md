@@ -53,3 +53,5 @@ Visitors read in English with Telugu alongside (the building signboard is Telugu
 - Call and directions are never more than one tap away.
 - Say only what is confirmed; mark the rest as "call to confirm".
 - Show the doctor and real reviews as the trust, not adjectives.
+
+- Domain: https://sribalajihospitaltanuku.com (Nov 2026). Service pages (one per department, plus /emergency-hospital-tanuku and /dr-d-billy-graham) are generated at build time by artifacts/sri-sai-hospital/scripts/build-pages.mjs from src/data/services.json and src/data/site.json, together with sitemap.xml.
