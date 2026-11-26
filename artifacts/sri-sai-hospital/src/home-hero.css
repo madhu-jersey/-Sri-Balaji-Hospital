@@ -293,3 +293,20 @@
 /* The tag line now sits inside the h1 (for search); keep it looking like the tag above the name. */
 .sbh-hero h1 .sbh-pill { display: flex; width: max-content; max-width: 100%; }
 .sbh-h1-sep { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Highlights: years serving Tanuku and the doctor's experience (owner-confirmed Nov 2026) */
+.sbh-stats { display: flex; gap: 0; margin: 22px 0 0; padding: 0; }
+.sbh-stats > div { display: flex; flex-direction: column; justify-content: flex-start; gap: 2px; padding: 0 24px; border-left: 1px solid #D5E1F3; }
+.sbh-stats > div:first-child { padding-left: 0; border-left: 0; }
+.sbh-stats dd { order: -1; margin: 0; color: var(--sbh-blue); font: 800 clamp(24px, 2.2vw, 30px)/1.1 'Plus Jakarta Sans', sans-serif; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.sbh-stats dt { color: var(--sbh-muted); font-size: 14px; line-height: 1.35; }
+@media (min-width: 901px) and (max-height: 780px) {
+  .sbh-stats { margin-top: 14px; }
+  .sbh-actions { margin-top: 16px; }
+}
+@media (max-width: 600px) {
+  .sbh-stats { margin-top: 18px; }
+  .sbh-stats > div { flex: 1 1 0; padding: 0 16px; }
+  .sbh-stats dd { font-size: 24px; }
+  .sbh-stats dt { font-size: 13px; }
+}

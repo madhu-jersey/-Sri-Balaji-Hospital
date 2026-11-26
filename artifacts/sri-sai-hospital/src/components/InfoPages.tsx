@@ -9,7 +9,7 @@ import { phone, phoneLabel } from '../data/contact';
 const reasons = [
   {
     title: 'Specialist Doctor',
-    text: 'Led by Dr. D. Billy Graham, M.B.B.S., M.D., who personally attends serious and critical cases.',
+    text: 'Led by Dr. D. Billy Graham, M.B.B.S., M.D., with 25 years of experience, who personally attends serious and critical cases.',
     icon: Stethoscope,
   },
   {
@@ -81,11 +81,11 @@ const questions = [
   },
   {
     question: 'Which doctor is available at the hospital?',
-    answer: <>Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Registration No. 42113). Consultation hours are 10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM. Emergency cases are attended at all times.</>,
+    answer: <>Dr. D. Billy Graham, M.B.B.S., M.D., Critical Care Specialist (Registration No. 42113), with 25 years of experience. Consultation hours are 10:00 AM – 2:00 PM and 6:00 PM – 8:30 PM. Emergency cases are attended at all times.</>,
   },
   {
     question: 'What conditions are treated?',
-    answer: <>General medicine and emergency care (including snakebite, poisoning, cardiac, diabetes, blood pressure, asthma and stroke care), neurology (stroke and paralysis, seizures, meningitis, headache and migraine, memory loss and Parkinson's disease), general surgery, neurosurgery, plastic and reconstructive surgery, laparoscopic surgery, and critical care with an ICU and ventilator. See Our services for the full list.</>,
+    answer: <>General medicine and emergency care (including snakebite, poisoning, cardiac, diabetes, blood pressure, asthma care), general surgery (including thyroid, hernia, gallbladder, piles, fistula, lipoma, breast lump, hysterectomy, ovarian cysts, fibroids and diabetic foot), neurosurgery, neurology (stroke and paralysis, seizures, meningitis, headache and migraine, memory loss and Parkinson's disease), plastic and reconstructive surgery, laparoscopic surgery, and critical care with an ICU, ventilator, BiPAP and CPAP support. See Our services for the full list.</>,
   },
   {
     question: 'How can I book an appointment?',
@@ -131,7 +131,7 @@ export function WhyChooseSection() {
             <p className="why-kicker">Why choose Sri Balaji</p>
             <h2 id="why-choose-heading">Why families choose <span className="why-name">Sri Balaji</span></h2>
           </header>
-          <p>Care designed around your family's needs in Sajjapuram, Tanuku.</p>
+          <p>Caring for families in Sajjapuram, Tanuku since 2006.</p>
         </div>
         <ol className="why-grid">
           {reasons.map(({ title, text, icon: Icon }, index) => (

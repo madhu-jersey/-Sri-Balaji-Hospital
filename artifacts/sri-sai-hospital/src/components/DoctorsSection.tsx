@@ -1,4 +1,4 @@
-import { BadgeCheck, Check, Clock3, PhoneCall, Siren } from 'lucide-react';
+import { Award, BadgeCheck, Check, Clock3, PhoneCall, Siren } from 'lucide-react';
 import { phone, phoneLabel } from '../data/contact';
 
 // Details from the hospital's brochure (supplied by the owner, Nov 2026).
@@ -8,7 +8,8 @@ const doctor = {
   specialty: 'Critical Care Specialist',
   degree: 'M.B.B.S., M.D.',
   registration: '42113',
-  intro: 'Leads emergency, critical care and general medicine at Sri Balaji Hospital, and personally attends serious and critical cases.',
+  experience: '25 years',
+  intro: 'With 25 years of experience, leads emergency, critical care and general medicine at Sri Balaji Hospital, and personally attends serious and critical cases.',
   image: '/assets/dr-billygraham-deepati.webp',
   alt: 'Dr. D. Billy Graham at his consultation desk',
   areas: [
@@ -44,6 +45,10 @@ export function DoctorsSection() {
             <p className="dr-intro">{doctor.intro}</p>
 
             <dl className="dr-facts">
+              <div>
+                <dt><Award size={17} strokeWidth={1.8} aria-hidden="true" /> Experience</dt>
+                <dd data-testid="text-doctor-experience-1">{doctor.experience}</dd>
+              </div>
               <div>
                 <dt><Clock3 size={17} strokeWidth={1.8} aria-hidden="true" /> Consultation</dt>
                 <dd>10 AM – 2 PM<br />6 PM – 8:30 PM</dd>

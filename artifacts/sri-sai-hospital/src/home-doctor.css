@@ -56,7 +56,7 @@
 
 .dr-facts {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   margin: 0 0 24px;
 }
@@ -123,7 +123,6 @@
   .dr-name { font-size: 28px; }
   .dr-intro { margin: 12px 0 18px; font-size: 15px; }
   .dr-facts { grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
-  .dr-facts > div:last-child { grid-column: 1 / -1; }
   .dr-facts dd { font-size: 14px; }
   .dr-areas { gap: 6px; margin-bottom: 22px; }
   .dr-areas li { padding: 6px 10px; font-size: 13.5px; }

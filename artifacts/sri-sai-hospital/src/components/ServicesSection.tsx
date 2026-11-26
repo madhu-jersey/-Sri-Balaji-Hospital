@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { Activity, Bandage, Brain, BrainCircuit, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
+import { Activity, Bandage, Brain, BrainCircuit, Building2, Check, ChevronDown, Microscope, PhoneCall, Scissors, Stethoscope, type LucideIcon } from 'lucide-react';
 
 // Departments, sub-services and equipment as listed in the hospital's own brochure (supplied by the owner, Nov 2026).
-const departments: { title: string; short: string; text: string; icon: LucideIcon; items: string[] }[] = [
+// Order and lists follow the owner's later changes: Neurology after Neurosurgery, and a separate General Facilities section.
+// Each service appears once per section.
+const departments: { title: string; short: string; text: string; icon: LucideIcon; items: string[]; unit?: string }[] = [
   {
     title: 'General Medicine & Emergency Care',
     short: 'General Medicine',
@@ -20,22 +22,6 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
       'Diabetic foot care',
       'High blood pressure management',
       'Asthma & respiratory care',
-      'Paralysis & stroke care',
-    ],
-  },
-  {
-    // Added at the owner's request (Nov 2026).
-    title: 'Neurology',
-    short: 'Neurology',
-    text: 'Diagnosis and medical treatment of conditions affecting the brain and nerves.',
-    icon: BrainCircuit,
-    items: [
-      'Stroke and paralysis',
-      'Seizures (fits)',
-      'Meningitis',
-      'Headache and migraine',
-      'Memory loss',
-      "Parkinson's disease (shaking disorders)",
     ],
   },
   {
@@ -47,14 +33,22 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
       'Appendix surgery (appendectomy)',
       'Hernia surgery',
       'Gallbladder surgery',
+      'Thyroid surgery',
       'Piles (hemorrhoids) surgery',
       'Anal fissure treatment',
       'Fistula treatment',
       'Abscess & cyst removal',
+      'Lipoma removal',
       'Hydrocele surgery',
-      'Minor surgical procedures',
+      'Breast lump surgery',
+      'Hysterectomy',
+      'Vaginal hysterectomy',
+      'Ovarian tumours / cysts',
+      'Fibroid treatment',
+      'Diabetic foot ulcer treatment / amputation',
+      'Skin grafting',
       'Wound management',
-      'Diabetic foot surgery',
+      'Minor surgical procedures',
     ],
   },
   {
@@ -73,6 +67,20 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
       'Nerve compression surgery',
       'Hydrocephalus treatment',
       'Stroke-related neurosurgical care',
+    ],
+  },
+  {
+    title: 'Neurology',
+    short: 'Neurology',
+    text: 'Diagnosis and medical treatment of conditions affecting the brain and nerves.',
+    icon: BrainCircuit,
+    items: [
+      'Stroke and paralysis',
+      'Seizures (fits)',
+      'Meningitis',
+      'Headache and migraine',
+      'Memory loss',
+      "Parkinson's disease (shaking disorders)",
     ],
   },
   {
@@ -100,9 +108,9 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
     icon: Microscope,
     items: [
       'Laparoscopic appendix surgery',
-      'Laparoscopic gallbladder surgery',
+      'Laparoscopic gallbladder surgery (Lap Chole)',
       'Laparoscopic hernia surgery',
-      'Laparoscopic hysterectomy',
+      'Total laparoscopic hysterectomy',
       'Diagnostic laparoscopy',
       'Laparoscopic ovarian cyst surgery',
       'Laparoscopic intestinal surgery',
@@ -112,12 +120,15 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
   {
     title: 'Critical Care & Facilities',
     short: 'Critical Care',
-    text: 'Modular operation theatre, intensive care with continuous monitoring, and life-support equipment.',
+    text: 'Ventilator, BiPAP and CPAP support, a modular operation theatre, and intensive care with continuous monitoring.',
     icon: Activity,
     items: [
+      'Ventilator support',
+      'BiPAP support',
+      'CPAP support',
+      'Ventilator ambulance',
       'Modular operation theatre',
       'Intensive Care Unit (ICU)',
-      'Ventilator',
       'Central oxygen supply',
       'Cardiac monitor',
       'Multiparameter monitor',
@@ -126,6 +137,23 @@ const departments: { title: string; short: string; text: string; icon: LucideIco
       'Pulse oximeter',
       'Nebulizer',
       'General ward',
+    ],
+  },
+  {
+    title: 'General Facilities',
+    short: 'Facilities',
+    text: 'Comfort and support for patients and families throughout their stay.',
+    icon: Building2,
+    unit: 'facilities',
+    items: [
+      'Lift facility',
+      'Generator backup',
+      'Continuous RO drinking water',
+      'Spacious parking area',
+      'Single and AC rooms',
+      'Ambulance service',
+      'Wheelchair facility',
+      'Stretcher facility',
     ],
   },
 ];
@@ -176,12 +204,12 @@ export function ServicesSection() {
       <div className="container">
         <div className="section-heading reveal">
           <h2 id="services-heading">Our <em>services</em></h2>
-          <p>Comprehensive medical care, critical care, emergency services and surgical care in Sajjapuram, Tanuku.</p>
+          <p>Comprehensive medical care, critical care, emergency services, surgical care and patient facilities in Sajjapuram, Tanuku.</p>
         </div>
 
         <div className="svc reveal">
           <div className="svc-tabs" role="tablist" aria-label="Departments" aria-orientation="vertical">
-            {departments.map(({ title, short, icon: TabIcon, items }, index) => (
+            {departments.map(({ title, short, icon: TabIcon, items, unit = 'services' }, index) => (
               <button
                 key={title}
                 ref={(element) => { tabRefs.current[index] = element; }}
@@ -199,7 +227,7 @@ export function ServicesSection() {
                 <span className="svc-tab-icon"><TabIcon size={20} strokeWidth={1.7} aria-hidden="true" /></span>
                 <span className="svc-tab-text">
                   <span className="svc-tab-title"><span className="svc-tab-full">{title}</span><span className="svc-tab-short" aria-hidden="true">{short}</span></span>
-                  <span className="svc-tab-count">{items.length} services</span>
+                  <span className="svc-tab-count">{items.length} {unit}</span>
                 </span>
               </button>
             ))}
@@ -229,7 +257,7 @@ export function ServicesSection() {
 
         {/* Phones: one tidy card per department; tap to open its full list. Shown instead of the tabs below 760px. */}
         <div className="svc-acc">
-          {departments.map(({ title, text, icon: ItemIcon, items }, index) => {
+          {departments.map(({ title, text, icon: ItemIcon, items, unit = 'services' }, index) => {
             const open = mobileOpen.has(index);
             // className stays constant: the scroll-reveal observer adds is-visible to the DOM, and a re-render must not wipe it. Open state lives in data-open.
             return (
@@ -246,7 +274,7 @@ export function ServicesSection() {
                     <span className="svc-acc-icon"><ItemIcon size={22} strokeWidth={1.7} aria-hidden="true" /></span>
                     <span className="svc-acc-text">
                       <span className="svc-acc-title">{title}</span>
-                      <span className="svc-acc-count">{items.length} services</span>
+                      <span className="svc-acc-count">{items.length} {unit}</span>
                     </span>
                     <span className="svc-acc-chevron" aria-hidden="true"><ChevronDown size={18} strokeWidth={2.2} /></span>
                   </button>

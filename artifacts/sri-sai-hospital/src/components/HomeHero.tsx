@@ -79,6 +79,11 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           </h1>
           <p className="sbh-telugu font-telugu" lang="te" data-testid="text-hospital-name-telugu">శ్రీ బాలాజీ హాస్పిటల్</p>
           <p className="sbh-lead">Comprehensive medical care, critical care, emergency services and surgical care, led by Dr. D. Billy Graham, M.D.</p>
+          {/* Owner-confirmed highlights (Nov 2026): established 2006, doctor has 25 years of experience. */}
+          <dl className="sbh-stats" data-testid="hero-highlights">
+            <div><dt>Serving Tanuku since 2006</dt><dd>20 years</dd></div>
+            <div><dt>Doctor's experience</dt><dd>25 years</dd></div>
+          </dl>
           <div className="sbh-actions">
             <a className="sbh-button sbh-button-solid" href={`tel:${phone}`} data-testid="button-call-hero">
               <PhoneCall size={20} strokeWidth={1.8} aria-hidden="true" /> Call now
