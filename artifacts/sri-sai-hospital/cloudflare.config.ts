@@ -17,6 +17,8 @@ export default defineConfig({
   worker: {
     name: 'sri-balaji-hospital',
     compatibilityDate: '2026-11-20',
+    // The hospital domain (Cloudflare manages its DNS and HTTPS certificate). www redirects to the main address.
+    domains: ['sribalajihospitaltanuku.com', 'www.sribalajihospitaltanuku.com'],
     assets: {
       htmlHandling: 'auto-trailing-slash',
       notFoundHandling: 'single-page-application',
