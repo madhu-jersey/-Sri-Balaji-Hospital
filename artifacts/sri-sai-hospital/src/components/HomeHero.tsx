@@ -85,7 +85,7 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           {/* Owner-confirmed highlights (Nov 2026): established 2006, doctor has 25 years of experience. */}
           <dl className="sbh-stats" data-testid="hero-highlights">
             <div><dt>{t('Running Sri Balaji Hospital since 2006')}</dt><dd>{t('20 years')}</dd></div>
-            <div><dt>{t('of experience as a doctor')}</dt><dd>{t('25 years')}</dd></div>
+            <div><dt>{t('of experience as a General and Critical Care Specialist')}</dt><dd>{t('25 years')}</dd></div>
           </dl>
           <div className="sbh-actions">
             <a className="sbh-button sbh-button-solid" href={`tel:${phone}`} data-testid="button-call-hero">
@@ -97,8 +97,8 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           </div>
           <p className="sbh-note" data-testid="text-emergency-contact">
             {lang === 'te'
-              ? <span>అత్యవసర పరిస్థితుల్లో 24/7 <PhoneNumbers testId="button-call-emergency" /> కు కాల్ చేయండి.</span>
-              : <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24/7.</span>}
+              ? <span>అత్యవసర పరిస్థితులు మరియు సందేహాల కోసం 24/7 <PhoneNumbers testId="button-call-emergency" /> కు కాల్ చేయండి.</span>
+              : <span>For emergencies and enquiries, call <PhoneNumbers testId="button-call-emergency" />, 24/7.</span>}
           </p>
         </div>
 
