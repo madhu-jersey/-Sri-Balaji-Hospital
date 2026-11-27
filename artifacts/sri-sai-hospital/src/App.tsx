@@ -12,6 +12,7 @@ import { LanguageToggle, useLang } from './i18n';
 const GalleryPage = lazy(() => import('./components/GalleryPage').then((module) => ({ default: module.GalleryPage })));
 
 import { phone, phone2, phone2Label, phoneLabel } from './data/contact';
+import site from './data/site.json';
 // Use the hospital's Google Maps listing (west side of Coaxial St), not raw coordinates,
 // so the destination shows the hospital name and the pin lands on the building.
 const directions = 'https://www.google.com/maps/dir//Sri+Balaji+Hospital,+Sajjapuram,+Andhra+Pradesh+534211/@16.7576843,81.6738392,262m/data=!3m1!1e3!4m17!1m7!3m6!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2sSri+Balaji+Hospital!8m2!3d16.7576843!4d81.6738392!16s%2Fg%2F11c5480cck!4m8!1m0!1m5!1m1!1s0x3a37b7eff274126f:0x8c3bfa541f70b6fc!2m2!1d81.6738392!2d16.7576843!3e0!5m1!1e1?entry=ttu';
@@ -465,7 +466,16 @@ function Footer() {
         </div>
         <div className="footer-bottom">
           <p>{t('Information only. This website does not replace a consultation or emergency care.')}</p>
-          <p>{t('© Sri Balaji Hospital · Tanuku')}</p>
+          <div className="footer-meta">
+            <p>{t('© Sri Balaji Hospital · Tanuku')}</p>
+            {/* Website credit; the name becomes a link once site.json has the address. */}
+            <p className="footer-credit">
+              {t('Designed & Developed by')}{' '}
+              {site.credit.url
+                ? <a href={site.credit.url} target="_blank" rel="noopener" lang="en">{site.credit.name}</a>
+                : <span lang="en">{site.credit.name}</span>}
+            </p>
+          </div>
         </div>
       </div>
     </footer>

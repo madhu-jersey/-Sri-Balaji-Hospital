@@ -52,6 +52,7 @@ const L = {
       ['Doctor consultation', site.hours.consultation],
       ['Address', esc(site.address.full)],
     ],
+    creditLead: 'Designed & Developed by',
     phoneLabel: 'Phone', directionsLong: 'Get directions in Google Maps', directionsShort: 'Directions', faqTitle: 'Questions',
     allPages: 'All pages', faqLink: 'FAQ', copyright: `© ${year} Sri Balaji Hospital, Tanuku. Serving Tanuku since ${site.founded}.`,
     footerName: 'Sri Balaji Hospital', footerAlt: site.nameTelugu, footerAltLang: 'te', address: site.address.full,
@@ -89,6 +90,7 @@ const L = {
       ['డాక్టర్ కన్సల్టేషన్', 'ఉదయం 10:00 – మధ్యాహ్నం 2:00, సాయంత్రం 6:00 – రాత్రి 8:30'],
       ['చిరునామా', 'శ్రీ బాలాజీ హాస్పిటల్, సజ్జాపురం, తణుకు, ఆంధ్రప్రదేశ్ 534211'],
     ],
+    creditLead: 'డిజైన్ & డెవలప్‌మెంట్:',
     phoneLabel: 'ఫోన్', directionsLong: 'Google Maps లో దారి చూడండి', directionsShort: 'దారి', faqTitle: 'ప్రశ్నలు',
     allPages: 'అన్ని పేజీలు', faqLink: 'సందేహాలు', copyright: `© ${year} శ్రీ బాలాజీ హాస్పిటల్, తణుకు. ${site.founded} నుండి తణుకు ప్రజల సేవలో.`,
     footerName: 'శ్రీ బాలాజీ హాస్పిటల్', footerAlt: 'Sri Balaji Hospital', footerAltLang: 'en', address: 'శ్రీ బాలాజీ హాస్పిటల్, సజ్జాపురం, తణుకు, ఆంధ్రప్రదేశ్ 534211',
@@ -131,6 +133,10 @@ const hospitalRef = { '@id': `${D}/#hospital` };
 const postalAddress = { '@type': 'PostalAddress', streetAddress: site.address.locality, addressLocality: site.address.city, addressRegion: site.address.region, postalCode: site.address.postalCode, addressCountry: 'IN' };
 
 const tel = (number, label, cls = '') => `<a${cls ? ` class="${cls}"` : ''} href="tel:${number}">${esc(label)}</a>`;
+// Website credit (site.json); the name becomes a link once its address is filled in.
+const credit = site.credit.url
+  ? `<a href="${esc(site.credit.url)}" target="_blank" rel="noopener" lang="en">${esc(site.credit.name)}</a>`
+  : `<span lang="en">${esc(site.credit.name)}</span>`;
 const bothNumbers = (t) => `${tel(site.phone, site.phoneLabel)} ${t.or} ${tel(site.phone2, site.phone2Label)}`;
 
 function pageList(lang) {
@@ -283,6 +289,7 @@ ${body}
       </nav>
       ${toggle(' pg-lang-footer')}
       <p class="pg-small">${esc(t.copyright)}</p>
+      <p class="pg-small pg-credit">${esc(t.creditLead)} ${credit}</p>
     </div>
   </footer>
 

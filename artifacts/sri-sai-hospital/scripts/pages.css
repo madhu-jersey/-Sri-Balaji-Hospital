@@ -164,3 +164,8 @@ html[lang='te'] .pg-nav a { font-size: 14px; }
   .pg-lang a { min-height: 32px; padding: 0 9px; font-size: 12.5px; }
   html[lang='te'] .pg-hours div { grid-template-columns: 1fr; }
 }
+
+/* Website credit under the copyright line */
+.pg-credit { margin-top: -6px; }
+.pg-credit a, .pg-credit span { color: #fff; font-weight: 600; text-decoration: none; }
+.pg-credit a:hover { text-decoration: underline; text-underline-offset: 3px; }
