@@ -55,7 +55,7 @@
           "కాలిన గాయాల చికిత్స",
           "గుండె సంబంధిత చికిత్స (కార్డియాక్ కేర్)",
           "మధుమేహం (షుగర్) నియంత్రణ",
-          "డయాబెటిక్ ఫుట్ కేర్ (షుగర్ రోగుల పాదాల సంరక్షణ)",
+          "డయాబెటిక్ ఫుట్ కేర్ (షుగర్ పేషెంట్ల పాదాల సంరక్షణ)",
           "అధిక రక్తపోటు (బీపీ) నియంత్రణ",
           "ఆస్తమా & శ్వాసకోశ వ్యాధుల చికిత్స"
         ],
@@ -163,7 +163,7 @@
           "description": "తణుకులో జనరల్ సర్జరీ: హెర్నియా, అపెండిక్స్, పిత్తాశయం, థైరాయిడ్, మొలలు, భగందరం, ఫిషర్, కొవ్వు గడ్డలు, రొమ్ము గడ్డలు, గర్భసంచి తొలగింపు, ఫైబ్రాయిడ్స్ మరియు డయాబెటిక్ ఫుట్ ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో.",
           "h1": "తణుకులో జనరల్ సర్జరీ",
           "intro": [
-            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో సాధారణ శస్త్రచికిత్సలను మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో చేస్తాం. ఆపరేషన్ తర్వాత దగ్గరి పర్యవేక్షణ అవసరమైన రోగుల కోసం హాస్పిటల్‌లోనే ఐసీయూ ఉంది.",
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో సాధారణ శస్త్రచికిత్సలను మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో చేస్తాం. ఆపరేషన్ తర్వాత దగ్గరి పర్యవేక్షణ అవసరమైన పేషెంట్ల కోసం హాస్పిటల్‌లోనే ఐసీయూ ఉంది.",
             "హెర్నియా, అపెండిక్స్, పిత్తాశయం ఆపరేషన్లు, థైరాయిడ్ ఆపరేషన్, మొలలు, ఫిషర్, భగందరం చికిత్స, కొవ్వు గడ్డలు మరియు రొమ్ము గడ్డల తొలగింపు, గర్భసంచి తొలగింపు, అండాశయ తిత్తులు, ఫైబ్రాయిడ్స్ మరియు డయాబెటిక్ ఫుట్ అల్సర్ చికిత్స అందుబాటులో ఉన్నాయి. మీ సమస్య గురించి మాట్లాడి, కన్సల్టేషన్ బుక్ చేసుకోవడానికి కాల్ చేయండి."
           ],
           "faqs": [
@@ -245,7 +245,7 @@
           ],
           "faqs": [
             {
-              "q": "రాత్రి సమయంలో తల గాయాల రోగులకు చికిత్స అందుతుందా?",
+              "q": "రాత్రి సమయంలో తల గాయాల పేషెంట్లకు చికిత్స అందుతుందా?",
               "a": "అవును. తల గాయాలను అత్యవసర కేసులుగా రోజుకు 24 గంటలూ చూస్తాం. బృందం సిద్ధంగా ఉండేలా వచ్చే దారిలోనే కాల్ చేయండి."
             },
             {
@@ -402,7 +402,6 @@
       "items": [
         "Laparoscopic appendix surgery",
         "Laparoscopic gallbladder surgery (Lap Chole)",
-        "Laparoscopic hernia surgery",
         "Total laparoscopic hysterectomy",
         "Diagnostic laparoscopy",
         "Laparoscopic ovarian cyst surgery",
@@ -410,12 +409,12 @@
         "Minimally invasive abdominal surgery"
       ],
       "page": {
-        "title": "Laparoscopic Surgery in Tanuku | Lap Chole, Hernia, Appendix | Sri Balaji Hospital",
-        "description": "Laparoscopic (keyhole) surgery in Tanuku: gallbladder (Lap Chole), appendix, hernia, total laparoscopic hysterectomy, ovarian cyst and intestinal surgery in a modular operation theatre.",
+        "title": "Laparoscopic Surgery in Tanuku | Lap Chole, Appendix, Hysterectomy | Sri Balaji Hospital",
+        "description": "Laparoscopic (keyhole) surgery in Tanuku: gallbladder (Lap Chole), appendix, total laparoscopic hysterectomy, ovarian cyst and intestinal surgery in a modular operation theatre.",
         "h1": "Laparoscopic Surgery in Tanuku",
         "intro": [
           "Laparoscopic surgery is done through small incisions using a camera and fine instruments. Sri Balaji Hospital in Sajjapuram, Tanuku performs laparoscopic procedures in its modular operation theatre.",
-          "Procedures include laparoscopic gallbladder surgery (Lap Chole), appendix and hernia surgery, total laparoscopic hysterectomy, ovarian cyst surgery, intestinal surgery and diagnostic laparoscopy."
+          "Procedures include laparoscopic gallbladder surgery (Lap Chole), appendix surgery, total laparoscopic hysterectomy, ovarian cyst surgery, intestinal surgery and diagnostic laparoscopy."
         ],
         "faqs": [
           {
@@ -424,7 +423,7 @@
           },
           {
             "q": "Which laparoscopic surgeries are available?",
-            "a": "Appendix, gallbladder (Lap Chole), hernia, total laparoscopic hysterectomy, ovarian cyst, intestinal and other minimally invasive abdominal surgery, and diagnostic laparoscopy."
+            "a": "Appendix, gallbladder (Lap Chole), total laparoscopic hysterectomy, ovarian cyst, intestinal and other minimally invasive abdominal surgery, and diagnostic laparoscopy."
           }
         ]
       },
@@ -435,7 +434,6 @@
         "items": [
           "లాపరోస్కోపిక్ అపెండిక్స్ ఆపరేషన్",
           "లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి)",
-          "లాపరోస్కోపిక్ హెర్నియా ఆపరేషన్",
           "టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ (గర్భసంచి తొలగింపు)",
           "వ్యాధి నిర్ధారణ లాపరోస్కోపీ",
           "లాపరోస్కోపిక్ అండాశయ తిత్తి ఆపరేషన్",
@@ -443,12 +441,12 @@
           "చిన్న కోతలతో పొట్ట ఆపరేషన్లు"
         ],
         "page": {
-          "title": "తణుకులో లాపరోస్కోపిక్ సర్జరీ | ల్యాప్ కోలి, హెర్నియా, అపెండిక్స్ | శ్రీ బాలాజీ హాస్పిటల్",
-          "description": "తణుకులో లాపరోస్కోపిక్ (కీహోల్) సర్జరీ: పిత్తాశయం (ల్యాప్ కోలి), అపెండిక్స్, హెర్నియా, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి మరియు పేగుల ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో.",
+          "title": "తణుకులో లాపరోస్కోపిక్ సర్జరీ | ల్యాప్ కోలి, అపెండిక్స్, హిస్టరెక్టమీ | శ్రీ బాలాజీ హాస్పిటల్",
+          "description": "తణుకులో లాపరోస్కోపిక్ (కీహోల్) సర్జరీ: పిత్తాశయం (ల్యాప్ కోలి), అపెండిక్స్, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి మరియు పేగుల ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో.",
           "h1": "తణుకులో లాపరోస్కోపిక్ సర్జరీ",
           "intro": [
             "లాపరోస్కోపిక్ సర్జరీని కెమెరా మరియు సన్నని పరికరాలతో చిన్న కోతల ద్వారా చేస్తారు. సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్‌లో లాపరోస్కోపిక్ ఆపరేషన్లు మాడ్యులర్ ఆపరేషన్ థియేటర్‌లో జరుగుతాయి.",
-            "లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి), అపెండిక్స్ మరియు హెర్నియా ఆపరేషన్లు, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి ఆపరేషన్, పేగుల ఆపరేషన్ మరియు వ్యాధి నిర్ధారణ లాపరోస్కోపీ ఈ సేవల్లో ఉన్నాయి."
+            "లాపరోస్కోపిక్ పిత్తాశయం ఆపరేషన్ (ల్యాప్ కోలి), అపెండిక్స్ ఆపరేషన్, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి ఆపరేషన్, పేగుల ఆపరేషన్ మరియు వ్యాధి నిర్ధారణ లాపరోస్కోపీ ఈ సేవల్లో ఉన్నాయి."
           ],
           "faqs": [
             {
@@ -457,7 +455,7 @@
             },
             {
               "q": "ఏయే లాపరోస్కోపిక్ ఆపరేషన్లు అందుబాటులో ఉన్నాయి?",
-              "a": "అపెండిక్స్, పిత్తాశయం (ల్యాప్ కోలి), హెర్నియా, టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి, పేగులు మరియు ఇతర చిన్న కోతలతో పొట్ట ఆపరేషన్లు, వ్యాధి నిర్ధారణ లాపరోస్కోపీ."
+              "a": "అపెండిక్స్, పిత్తాశయం (ల్యాప్ కోలి), టోటల్ లాపరోస్కోపిక్ హిస్టరెక్టమీ, అండాశయ తిత్తి, పేగులు మరియు ఇతర చిన్న కోతలతో పొట్ట ఆపరేషన్లు, వ్యాధి నిర్ధారణ లాపరోస్కోపీ."
             }
           ]
         }
@@ -555,23 +553,23 @@
         "Generator backup",
         "Continuous RO drinking water",
         "Spacious parking area",
-        "Single and AC rooms",
+        "Single rooms and AC rooms",
         "Ambulance service",
         "Wheelchair facility",
         "Stretcher facility"
       ],
       "page": {
         "title": "Hospital Facilities in Tanuku | AC Rooms, Ambulance, Parking | Sri Balaji Hospital",
-        "description": "Facilities at Sri Balaji Hospital, Tanuku: single and AC rooms, lift, generator backup, RO drinking water, spacious parking, ambulance service, wheelchairs and stretchers.",
+        "description": "Facilities at Sri Balaji Hospital, Tanuku: single rooms and AC rooms, lift, generator backup, RO drinking water, spacious parking, ambulance service, wheelchairs and stretchers.",
         "h1": "Hospital Facilities at Sri Balaji Hospital, Tanuku",
         "intro": [
           "Sri Balaji Hospital in Sajjapuram, Tanuku is built for the comfort of patients and the families who stay with them.",
-          "The hospital has single and AC rooms, a lift, generator backup, continuous RO drinking water, a spacious parking area, an ambulance service, and wheelchairs and stretchers for patients who need them."
+          "The hospital has single rooms and AC rooms, a lift, generator backup, continuous RO drinking water, a spacious parking area, an ambulance service, and wheelchairs and stretchers for patients who need them."
         ],
         "faqs": [
           {
             "q": "Are AC rooms available?",
-            "a": "Yes. Single and AC rooms are available at Sri Balaji Hospital, Tanuku."
+            "a": "Yes. Single rooms and AC rooms are available at Sri Balaji Hospital, Tanuku."
           },
           {
             "q": "Is there parking at the hospital?",
@@ -582,29 +580,29 @@
       "te": {
         "title": "సాధారణ సౌకర్యాలు",
         "short": "సౌకర్యాలు",
-        "text": "చికిత్స సమయంలో రోగులకు మరియు వారి కుటుంబాలకు సౌకర్యం మరియు సహాయం.",
+        "text": "చికిత్స సమయంలో పేషెంట్లకు మరియు వారి కుటుంబాలకు సౌకర్యం మరియు సహాయం.",
         "items": [
           "లిఫ్ట్ సౌకర్యం",
           "జనరేటర్ బ్యాకప్",
           "నిరంతర ఆర్‌ఓ (RO) తాగునీరు",
           "విశాలమైన పార్కింగ్ స్థలం",
-          "సింగిల్ & ఏసీ గదులు",
+          "సింగిల్ గదులు మరియు ఏసీ గదులు",
           "అంబులెన్స్ సేవ",
           "వీల్‌చైర్ సౌకర్యం",
           "స్ట్రెచర్ సౌకర్యం"
         ],
         "page": {
           "title": "తణుకులో హాస్పిటల్ సౌకర్యాలు | ఏసీ గదులు, అంబులెన్స్, పార్కింగ్ | శ్రీ బాలాజీ హాస్పిటల్",
-          "description": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సౌకర్యాలు: సింగిల్ మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్, అంబులెన్స్ సేవ, వీల్‌చైర్లు మరియు స్ట్రెచర్లు.",
+          "description": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సౌకర్యాలు: సింగిల్ గదులు మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్, అంబులెన్స్ సేవ, వీల్‌చైర్లు మరియు స్ట్రెచర్లు.",
           "h1": "శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సౌకర్యాలు",
           "intro": [
-            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్ రోగులకు మరియు వారితో ఉండే కుటుంబ సభ్యులకు సౌకర్యంగా ఉండేలా నిర్మించబడింది.",
-            "హాస్పిటల్‌లో సింగిల్ మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, నిరంతర ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్ స్థలం, అంబులెన్స్ సేవ, అవసరమైన రోగుల కోసం వీల్‌చైర్లు మరియు స్ట్రెచర్లు ఉన్నాయి."
+            "సజ్జాపురం, తణుకులోని శ్రీ బాలాజీ హాస్పిటల్ పేషెంట్లకు మరియు వారితో ఉండే కుటుంబ సభ్యులకు సౌకర్యంగా ఉండేలా నిర్మించబడింది.",
+            "హాస్పిటల్‌లో సింగిల్ గదులు మరియు ఏసీ గదులు, లిఫ్ట్, జనరేటర్ బ్యాకప్, నిరంతర ఆర్‌ఓ తాగునీరు, విశాలమైన పార్కింగ్ స్థలం, అంబులెన్స్ సేవ, అవసరమైన పేషెంట్ల కోసం వీల్‌చైర్లు మరియు స్ట్రెచర్లు ఉన్నాయి."
           ],
           "faqs": [
             {
               "q": "ఏసీ గదులు అందుబాటులో ఉన్నాయా?",
-              "a": "అవును. శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సింగిల్ మరియు ఏసీ గదులు అందుబాటులో ఉన్నాయి."
+              "a": "అవును. శ్రీ బాలాజీ హాస్పిటల్, తణుకులో సింగిల్ గదులు మరియు ఏసీ గదులు అందుబాటులో ఉన్నాయి."
             },
             {
               "q": "హాస్పిటల్‌లో పార్కింగ్ ఉందా?",

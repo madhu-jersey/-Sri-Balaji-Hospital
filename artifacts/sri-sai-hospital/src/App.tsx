@@ -299,7 +299,7 @@ function Reviews() {
           <span className="eyebrow">{t('Patient experiences')}</span>
           <h2 id="reviews-heading">
             {lang === 'te' ? (
-              <><span className="review-word"><span>రోగులు</span></span>{' '}<em><span className="review-word"><span>ఏమంటున్నారు</span></span></em></>
+              <><span className="review-word"><span>పేషెంట్లు</span></span>{' '}<em><span className="review-word"><span>ఏమంటున్నారు</span></span></em></>
             ) : (
               <><span className="review-word"><span>What</span></span>{' '}<span className="review-word"><span>patients</span></span>{' '}<em><span className="review-word"><span>say</span></span></em></>
             )}
@@ -387,10 +387,6 @@ function Visit() {
                 <div className="hours-row reveal" style={{ '--hours-index': 1 } as React.CSSProperties}><span>{t('OP · Sunday')}</span><span>{t('10:00 AM – 8:00 PM')}</span></div>
                 <div className="hours-row reveal" style={{ '--hours-index': 2 } as React.CSSProperties}><span>{t('Doctor consultation')}</span><span>{t('10 AM – 2 PM, 6 PM – 8:30 PM')}</span></div>
               </div>
-            </div>
-            <div className="visit-block casualty-block reveal" style={{ '--visit-index': 3 } as React.CSSProperties}>
-              <p className="visit-label">{t('Accessibility')}</p>
-              <p className="visit-value"><span className="casualty-dot" aria-hidden="true" />{t('Wheelchair-accessible parking & entrance')}</p>
             </div>
           </div>
           <div

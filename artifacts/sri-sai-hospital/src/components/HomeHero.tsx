@@ -84,8 +84,8 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           <p className="sbh-lead">{t('Comprehensive medical care, critical care, emergency services and surgical care, led by Dr. D. Billy Graham, M.D.')}</p>
           {/* Owner-confirmed highlights (Nov 2026): established 2006, doctor has 25 years of experience. */}
           <dl className="sbh-stats" data-testid="hero-highlights">
-            <div><dt>{t('Serving Tanuku since 2006')}</dt><dd>{t('20 years')}</dd></div>
-            <div><dt>{t("Doctor's experience")}</dt><dd>{t('25 years')}</dd></div>
+            <div><dt>{t('Running Sri Balaji Hospital since 2006')}</dt><dd>{t('20 years')}</dd></div>
+            <div><dt>{t('of experience as a doctor')}</dt><dd>{t('25 years')}</dd></div>
           </dl>
           <div className="sbh-actions">
             <a className="sbh-button sbh-button-solid" href={`tel:${phone}`} data-testid="button-call-hero">
@@ -97,8 +97,8 @@ export function HomeHero({ phone, phoneLabel, directions, isOpenAt }: HomeHeroPr
           </div>
           <p className="sbh-note" data-testid="text-emergency-contact">
             {lang === 'te'
-              ? <span>అత్యవసర పరిస్థితుల్లో 24 గంటలూ <PhoneNumbers testId="button-call-emergency" /> కు కాల్ చేయండి.</span>
-              : <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24 hours a day.</span>}
+              ? <span>అత్యవసర పరిస్థితుల్లో 24/7 <PhoneNumbers testId="button-call-emergency" /> కు కాల్ చేయండి.</span>
+              : <span>For emergencies, call <PhoneNumbers testId="button-call-emergency" />, 24/7.</span>}
           </p>
         </div>
 
